@@ -1,15 +1,14 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Scripts
 {
     public class GetDamage : MonoBehaviour
     {
         public int hp;
         public int baseDamage;
         public float multiplier;
-        void Start()
+        
+        private void Start()
         {
             int actualDamage = CalculateActualDamage(multiplier);
             Debug.Log($"Космическая сила наносит {actualDamage} урона великому ничто, у которого было {hp.ToString()} хп.");

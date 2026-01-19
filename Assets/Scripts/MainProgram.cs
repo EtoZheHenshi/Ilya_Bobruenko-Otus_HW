@@ -1,21 +1,18 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class MainProgram : MonoBehaviour
+namespace Scripts
 {
-    int _intVariable = 5;
-    float _floatVariable = -3.235243f;
-    bool _boolVariable = true;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class MainProgram : MonoBehaviour
     {
-        Debug.Log($"Переменная int = {_intVariable.ToString()}");
-        Debug.Log($"Переменная float = {_floatVariable.ToString("0.##")}");
-        Debug.Log($"Переменная bool = {_boolVariable.ToString()}");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        private int _intVariable = 5;
+        private float _floatVariable = -3.235243f;
+        private bool _boolVariable = true;
+        
+        private void Start()
+        {
+            Debug.Log($"Переменная int = {_intVariable.ToString()}");
+            Debug.Log($"Переменная float = {_floatVariable.ToString("0.##")}");
+            Debug.Log($"Переменная bool = {_boolVariable.ToString()}");
+        }
     }
 }
