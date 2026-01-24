@@ -1,5 +1,4 @@
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Characters
 {
@@ -7,7 +6,7 @@ namespace Characters
     {
         public Renderer character;
         
-        void Start()
+        private void Start()
         {
             ChangeColorToCharacter();
         }
