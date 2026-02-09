@@ -20,7 +20,6 @@ namespace Controls
         {
             _actions.Enable();
             _actions.Player.Movement.performed += Movement;
-            _actions.Player.Jump.performed += Jump;
             _actions.Player.SwitchMovementLogic.performed += SwitchMovementLogic;
 
             _actions.Player.Movement.canceled += Movement;
@@ -30,15 +29,9 @@ namespace Controls
         {
             _actions.Disable();
             _actions.Player.Movement.performed -= Movement;
-            _actions.Player.Jump.performed -= Jump;
             _actions.Player.SwitchMovementLogic.performed -= SwitchMovementLogic;
 
             _actions.Player.Movement.canceled -= Movement;
-        }
-
-        private void Jump(InputAction.CallbackContext ctx)
-        {
-            throw new NotImplementedException();
         }
 
         private void Movement(InputAction.CallbackContext ctx)

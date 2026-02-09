@@ -20,7 +20,7 @@ namespace Player
             Move = MoveTransform;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             Move();
         }
@@ -32,7 +32,7 @@ namespace Player
 
         void MovePhisic()
         {
-            rb.AddForce(MoveDirection * (speed * Time.deltaTime), ForceMode.Acceleration);
+            rb.linearVelocity = MoveDirection * speed;
         }
 
         public void SwitchMovementLogic()
