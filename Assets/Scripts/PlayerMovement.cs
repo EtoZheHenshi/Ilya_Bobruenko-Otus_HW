@@ -6,7 +6,6 @@ namespace Player
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private float speed;
-        [SerializeField] private float jumpForce;
         [SerializeField] private Rigidbody rb;
 
         public Vector3 MoveDirection { get; set; }
@@ -20,9 +19,20 @@ namespace Player
             Move = MoveTransform;
         }
 
+        private void Update()
+        {
+            if (!_isPhisic)
+            {
+                Move();
+            }
+        }
+
         private void FixedUpdate()
         {
-            Move();
+            if (_isPhisic)
+            {
+                Move();
+            }
         }
 
         void MoveTransform()
