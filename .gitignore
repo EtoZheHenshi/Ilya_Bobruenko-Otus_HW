@@ -12,6 +12,9 @@
 /[Uu]ser[Ss]ettings/
 *.log
 
+# Частично игнор Packages, чтобы убрать добавление файлов плагинов
+Packages/com.unity.*
+
 # JetBrains Rider
 .idea/
 *.sln.iml
