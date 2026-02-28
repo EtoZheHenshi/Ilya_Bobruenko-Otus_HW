@@ -47,12 +47,12 @@ namespace Controls
 
         private void Movement(InputAction.CallbackContext ctx)
         {
-            playerMovement.MoveDirection = new Vector3(ctx.ReadValue<Vector2>().x, 0, ctx.ReadValue<Vector2>().y).normalized;
+            playerMovement.InputMoveDirection = new Vector3(ctx.ReadValue<Vector2>().x, 0, ctx.ReadValue<Vector2>().y).normalized;
         }
 
         private void Look(InputAction.CallbackContext ctx)
         {
-            playerMovement.CameraRotationDirection = ctx.ReadValue<Vector2>();
+            playerMovement.InputCameraRotationDirection = ctx.ReadValue<Vector2>();
         }
         
         private void SwitchMovementLogic(InputAction.CallbackContext ctx)

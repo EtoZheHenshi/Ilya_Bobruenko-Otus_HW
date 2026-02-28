@@ -15,10 +15,10 @@ namespace Player
         [SerializeField] private float cameraLeftClamp;
         [SerializeField] private float cameraRightClamp;
 
-        public Vector3 MoveDirection { get; set; }
-        public Vector2 CameraRotationDirection { get; set; }
+        public Vector3 InputMoveDirection { get; set; }
+        public Vector2 InputCameraRotationDirection { get; set; }
         
-        private bool _isPhisic;
+        private bool _isPhisic = false;
         
         private float _targetYaw;
         private float _targetPitch;
@@ -27,8 +27,9 @@ namespace Player
         private float _rotationSmoothTime = 0.12f;
         private float _targetRotation;
 
-        private Action<Vector3, float> Move { get; set; }
-        private Action<float> Rotate { get; set; }
+        private Vector3 _characterMoveDirection;
+        private float _characterMoveSpeed;
+        private float _characterRotation;
 
         private GameObject _mainCamera;
 
@@ -37,18 +38,15 @@ namespace Player
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         }
 
-        private void Start()
-        {
-            Move = MoveTransform;
-            Rotate = RotateTransform;
-        }
-
         private void Update()
         {
+            CameraRotation();
+            MoveAndRotate();
             if (!_isPhisic)
             {
-                CameraRotation();
-                MoveAndRotate();
+                CalculateRotation(Time.deltaTime);
+                MoveTransform();
+                RotateTransform();
             }
         }
 
@@ -56,74 +54,82 @@ namespace Player
         {
             if (_isPhisic)
             {
-                CameraRotation();
-                MoveAndRotate();
+                CalculateRotation(Time.fixedDeltaTime);
+                RotatePhisic();
+                MovePhisic();
             }
         }
         
         public void SwitchMovementLogic()
         {
+            _isPhisic = !_isPhisic;
+
             if (_isPhisic)
             {
-                Move = MoveTransform;
-                Rotate = RotateTransform;
-                _isPhisic = false;
+                rb.isKinematic = false;
+                rb.interpolation = RigidbodyInterpolation.Interpolate;
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
             }
             else
             {
-                Move = MovePhisic;
-                Rotate = RotatePhisic;
-                _isPhisic = true;
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.isKinematic = true;
+                rb.interpolation = RigidbodyInterpolation.None;
             }
         }
 
         private void MoveAndRotate()
         {
-            float targetSpeed = speed;
+            _characterMoveSpeed = speed;
 
-            if (MoveDirection == Vector3.zero)
+            if (InputMoveDirection == Vector3.zero)
             {
-                targetSpeed = 0.0f;
+                _characterMoveSpeed = 0.0f;
             }
             
-            if (MoveDirection != Vector3.zero)
+            if (InputMoveDirection != Vector3.zero)
             {
-                _targetRotation = Mathf.Atan2(MoveDirection.x, MoveDirection.z) * Mathf.Rad2Deg +
+                _targetRotation = Mathf.Atan2(InputMoveDirection.x, InputMoveDirection.z) * Mathf.Rad2Deg +
                                   _mainCamera.transform.eulerAngles.y;
-                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, _rotationSmoothTime);
-                Rotate(rotation);
             }
             
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-            Move(targetDirection.normalized, targetSpeed);
-        }
-
-        private void MoveTransform(Vector3 direction, float speed)
-        {
-            transform.Translate(direction.normalized * (speed * Time.deltaTime), Space.World);
+            _characterMoveDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
         }
         
-        private void MovePhisic(Vector3 direction, float speed)
+        private void CalculateRotation(float deltaTime)
         {
-            rb.linearVelocity = direction * speed;
+            float currentRotation = _isPhisic ? rb.rotation.eulerAngles.y : transform.eulerAngles.y;
+            _characterRotation = Mathf.SmoothDampAngle(currentRotation, _targetRotation, ref _rotationVelocity, _rotationSmoothTime, Mathf.Infinity, deltaTime);
         }
 
-        private void RotateTransform(float rotation)
+        private void MoveTransform()
         {
-            transform.rotation = Quaternion.Euler(0f, rotation, 0f);
+            transform.Translate(_characterMoveDirection * (_characterMoveSpeed * Time.deltaTime), Space.World);
+        }
+        
+        private void MovePhisic()
+        {
+            rb.linearVelocity = _characterMoveDirection * _characterMoveSpeed;
         }
 
-        private void RotatePhisic(float rotation)
+        private void RotateTransform()
         {
-            rb.MoveRotation(Quaternion.Euler(0f, rotation, 0f));
+            transform.rotation = Quaternion.Euler(0f, _characterRotation, 0f);
+        }
+
+        private void RotatePhisic()
+        {
+            rb.MoveRotation(Quaternion.Euler(0f, _characterRotation, 0f));
         }
 
         private void CameraRotation()
         {
-            if (CameraRotationDirection != Vector2.zero)
+            if (InputCameraRotationDirection != Vector2.zero)
             {
-                _targetYaw += CameraRotationDirection.x;
-                _targetPitch += CameraRotationDirection.y;
+                _targetYaw += InputCameraRotationDirection.x;
+                _targetPitch += InputCameraRotationDirection.y;
             }
             
             _targetYaw = ClampAngle(_targetYaw, cameraLeftClamp, cameraRightClamp);
