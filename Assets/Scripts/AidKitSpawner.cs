@@ -8,7 +8,7 @@ namespace AidKit
         [SerializeField] private Vector2 spawnerSize;
         [SerializeField] private GameObject aidKitPrefab;
 
-        void Start()
+        private void Start()
         {
             CreateAidKit();
         }

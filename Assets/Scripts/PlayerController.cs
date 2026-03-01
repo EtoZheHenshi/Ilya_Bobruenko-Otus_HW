@@ -1,4 +1,3 @@
-using System;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -42,7 +41,6 @@ namespace Controls
 
             _actions.Player.Movement.canceled -= Movement;
             _actions.Player.Look.canceled -= Look;
-            
         }
 
         private void Movement(InputAction.CallbackContext ctx)
