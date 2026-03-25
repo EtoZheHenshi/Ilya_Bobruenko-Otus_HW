@@ -211,7 +211,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 30
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -583,7 +583,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 30
+    FieldOfView: 40
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -630,6 +630,7 @@ GameObject:
   - component: {fileID: 1077289106}
   - component: {fileID: 1077289105}
   - component: {fileID: 1077289104}
+  - component: {fileID: 1077289108}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -734,13 +735,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6be55843e2743c4a3b45fabc1c59263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerController
-  characterController: {fileID: 0}
+  characterController: {fileID: 1077289105}
   gravity: 9.8
   speed: 5
   sprintSpeed: 10
+  mainCamera: {fileID: 330585545}
   playerCameraTarget: {fileID: 209189444}
-  downAngleLimit: 70
-  upAngleLimit: 30
+  downAngleLimit: -30
+  upAngleLimit: 70
+  animator: {fileID: 1077289108}
+--- !u!95 &1077289108
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077289102}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 1841c298173cdad4db8df8602c8f1c8d, type: 3}
+  m_Controller: {fileID: 9100000, guid: e9c5fed37d5724441868d971f851627e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1638100607
 GameObject:
   m_ObjectHideFlags: 0

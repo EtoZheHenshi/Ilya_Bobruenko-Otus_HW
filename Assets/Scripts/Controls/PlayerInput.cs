@@ -1,4 +1,3 @@
-using System;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +9,7 @@ namespace Controls
         [SerializeField] private PlayerController playerController;
         private GameInputSystem _inputSystem;
 
-        void Awake()
+        private void Awake()
         {
             _inputSystem = new GameInputSystem();
         }
@@ -18,43 +17,79 @@ namespace Controls
         private void OnEnable()
         {
             _inputSystem.Player.Enable();
-            //_inputSystem.Player.Move.performed += Move;
-            //_inputSystem.Player.Move.canceled += Move;
-            //_inputSystem.Player.Sprint.performed += Sprint;
-            //_inputSystem.Player.Attack.performed += Attack;
+            
+            _inputSystem.Player.Move.performed += Move;
+            _inputSystem.Player.Move.canceled += Move;
+            
+            _inputSystem.Player.Sprint.started += Sprint;
+            _inputSystem.Player.Sprint.canceled += Sprint;
+            
+            _inputSystem.Player.Attack.started += Attack;
+            _inputSystem.Player.Attack.canceled += Attack;
+            
             _inputSystem.Player.Look.performed += Look;
             _inputSystem.Player.Look.canceled += Look;
+
+            _inputSystem.Player.Aim.started += Aim;
+            _inputSystem.Player.Aim.canceled += Aim;
+
+            _inputSystem.Player.Reload.started += Reload;
+            _inputSystem.Player.Reload.canceled += Reload;
         }
 
         private void OnDisable()
         {
             _inputSystem.Player.Disable();
-            //_inputSystem.Player.Move.performed -= Move;
-            //_inputSystem.Player.Move.canceled -= Move;
-            //_inputSystem.Player.Sprint.performed -= Sprint;
-            //_inputSystem.Player.Attack.performed -= Attack;
+            
+            _inputSystem.Player.Move.performed -= Move;
+            _inputSystem.Player.Move.canceled -= Move;
+            
+            _inputSystem.Player.Sprint.started -= Sprint;
+            _inputSystem.Player.Sprint.canceled -= Sprint;
+            
+            _inputSystem.Player.Attack.started -= Attack;
+            _inputSystem.Player.Attack.canceled -= Attack;
+            
             _inputSystem.Player.Look.performed -= Look;
             _inputSystem.Player.Look.canceled -= Look;
+            
+            _inputSystem.Player.Aim.started -= Aim;
+            _inputSystem.Player.Aim.canceled -= Aim;
+
+            _inputSystem.Player.Reload.started -= Reload;
+            _inputSystem.Player.Reload.canceled -= Reload;
         }
 
         private void Move(InputAction.CallbackContext ctx)
         {
-            throw new NotImplementedException();
+            Vector3 moveDirection = new Vector3(ctx.ReadValue<Vector2>().x, 0f, ctx.ReadValue<Vector2>().y);
+            playerController.InputMovementDirection = moveDirection.normalized;
         }
 
         private void Sprint(InputAction.CallbackContext ctx)
         {
-            throw new NotImplementedException();
+            playerController.IsSprinting = !playerController.IsSprinting;
         }
 
         private void Attack(InputAction.CallbackContext ctx)
         {
-            throw new NotImplementedException();
+            playerController.Attack();
+            Debug.Log("Атака");
         }
         
         private void Look(InputAction.CallbackContext ctx)
         {
-            playerController.CameraRotation = ctx.ReadValue<Vector2>();
+            playerController.InputCameraRotation = ctx.ReadValue<Vector2>();
+        }
+        
+        private void Aim(InputAction.CallbackContext obj)
+        {
+            playerController.Aim();
+        }
+        
+        private void Reload(InputAction.CallbackContext obj)
+        {
+            playerController.Reload();
         }
     }
 }

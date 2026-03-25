@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Player
@@ -10,36 +9,86 @@ namespace Player
         [SerializeField] private float gravity;
         [SerializeField] private float speed;
         [SerializeField] private float sprintSpeed;
-        
-        [Header("Camera")]
+
+        [Header("Camera")] 
+        [SerializeField] private Camera mainCamera;
         [SerializeField] private Transform playerCameraTarget;
         [SerializeField] private float downAngleLimit;
         [SerializeField] private float upAngleLimit;
 
-        public Vector2 CameraRotation { get; set; }
+        [Header("Animator")]
+        [SerializeField] private Animator animator;
         
-        private const float ConstYVelocity = 2.0f;
+        public Vector2 InputCameraRotation { get; set; }
+        public Vector3 InputMovementDirection { get; set; }
+        public bool IsSprinting { get; set; }
+        
+        private bool IsAttacking { get; set; }
+        private bool IsReloading { get; set; }
+        private bool IsAiming { get; set; }
+        
+        private const float ConstYVelocity = -2.0f;
 
-        private float _cinemachineTargetYaw;
-        private float _cinemachineTargetPitch;
+        private float _playerCameraTargetYaw;
+        private float _playerCameraTargetPitch;
+
+        private float _playerSpeed;
+        private Vector3 _playerMovementDirection;
+        private float _playerRotationTarget;
+        private float _smoothVelocity;
+        private readonly float _smoothTime = 0.12f;
 
         private void Update()
         {
             CameraMovement();
+            MoveAndRotate();
+        }
+
+        private void MoveAndRotate()
+        {
+            if (InputMovementDirection == Vector3.zero)
+            {
+                _playerSpeed = 0f;
+            }
+            else if (IsSprinting)
+            {
+                _playerSpeed = sprintSpeed;
+            }
+            else
+            {
+                _playerSpeed = speed;
+            }
+            
+            if (InputMovementDirection != Vector3.zero)
+            {
+                _playerRotationTarget = Mathf.Atan2(InputMovementDirection.x, InputMovementDirection.z) * Mathf.Rad2Deg +
+                                        mainCamera.transform.eulerAngles.y;
+                float rotationY = Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, _playerRotationTarget,
+                    ref _smoothVelocity, _smoothTime);
+                transform.rotation = Quaternion.Euler(0f, rotationY, 0f);
+                
+                _playerMovementDirection = Quaternion.Euler(0f, _playerRotationTarget, 0f) * Vector3.forward;
+            }
+            
+            characterController.Move(_playerMovementDirection * (_playerSpeed * Time.deltaTime) +
+                                     new Vector3(0f, ConstYVelocity * Time.deltaTime, 0f));
+            
+            animator.SetFloat("Speed", _playerSpeed);
+            animator.SetBool("IsSprinting", IsSprinting);
         }
 
         private void CameraMovement()
         {
-            if (CameraRotation != Vector2.zero)
+            if (InputCameraRotation != Vector2.zero)
             {
-                _cinemachineTargetYaw += CameraRotation.x;
-                _cinemachineTargetPitch += CameraRotation.y;
+                _playerCameraTargetYaw += InputCameraRotation.x;
+                _playerCameraTargetPitch += InputCameraRotation.y;
             }
             
-            _cinemachineTargetYaw = ClamAngel(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-            _cinemachineTargetPitch = ClamAngel(_cinemachineTargetPitch, downAngleLimit, upAngleLimit);
+            _playerCameraTargetYaw = ClamAngel(_playerCameraTargetYaw, float.MinValue, float.MaxValue);
+            _playerCameraTargetPitch = ClamAngel(_playerCameraTargetPitch, downAngleLimit, upAngleLimit);
             
-            playerCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch, _cinemachineTargetYaw, 0f);
+            playerCameraTarget.rotation = Quaternion.Euler(_playerCameraTargetPitch, _playerCameraTargetYaw, 0f);
         }
 
         private float ClamAngel(float angel, float minValue, float maxValue)
@@ -48,6 +97,32 @@ namespace Player
             if (angel < -360f) angel += 360f;
             
             return Mathf.Clamp(angel, minValue, maxValue);
+        }
+
+        public void Attack()
+        {
+            IsAttacking = !IsAttacking;
+            animator.SetBool("IsAttacking", IsAttacking);
+        }
+
+        public void Aim()
+        {
+            IsAiming = !IsAiming;
+            animator.SetBool("IsAiming", IsAiming);
+        }
+
+        public void Reload()
+        {
+            if (!IsReloading)
+            {
+                IsReloading = true;
+                animator.SetTrigger("ReloadTrigger");
+            }
+        }
+
+        public void OnReloadEnd()
+        {
+            IsReloading = false;
         }
     }
 }

@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: dbca6a8acce7f2c48ad2326cf4c4df4a
+guid: 7923619cc41cab541871807c8c49729d
+AssetOrigin:
+  serializedVersion: 1
+  productId: 340690
+  packageName: Human Soldier Animations FREE
+  packageVersion: 1.0
+  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/AssaultRifle/HumanF@AssaultRifle_Aim01.fbx
+  uploadId: 825260
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -31,18 +38,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: HumanF@AssaultRifle_Aim01_Shoot01
-      takeName: HumanF@AssaultRifle_Aim01_Shoot01
-      internalID: -3191409282960832475
+      name: AssaultRifle_Aim
+      takeName: HumanF@AssaultRifle_Aim01
+      internalID: -1987043112579189747
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 70
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -203,6 +210,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -951,8 +961,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1841c298173cdad4db8df8602c8f1c8d,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1841c298173cdad4db8df8602c8f1c8d, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -964,10 +973,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 340690
-  packageName: Human Soldier Animations FREE
-  packageVersion: 1.0
-  assetPath: Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/AssaultRifle/HumanF@AssaultRifle_Aim01_Shoot01.fbx
-  uploadId: 825260
