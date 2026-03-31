@@ -14,6 +14,12 @@ namespace Controls
             _inputSystem = new GameInputSystem();
         }
 
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         private void OnEnable()
         {
             _inputSystem.Player.Enable();
@@ -74,7 +80,6 @@ namespace Controls
         private void Attack(InputAction.CallbackContext ctx)
         {
             playerController.Attack();
-            Debug.Log("Атака");
         }
         
         private void Look(InputAction.CallbackContext ctx)

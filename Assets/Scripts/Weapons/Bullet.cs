@@ -13,6 +13,10 @@ namespace Weapons
             if (_isLaunch)
             {
                 transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, _targetPosition) < 0.1f)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
@@ -22,6 +26,7 @@ namespace Weapons
             transform.LookAt(hitInfoPoint);
             _targetPosition = hitInfoPoint;
             _speed = speed;
+            transform.parent = null;
             gameObject.SetActive(true);
             _isLaunch = true;
         }

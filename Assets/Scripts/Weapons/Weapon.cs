@@ -10,6 +10,9 @@ namespace Weapons
         [SerializeField] private Bullet bullet;
         [SerializeField] private int maxBulletInMagazine;
         [SerializeField] private float bulletSpeed;
+        [SerializeField] private float delayBeetweenShots;
+        
+        public bool IsShooting { get; set; }
 
         private Bullet[] _magazine;
         private int _currentBulletInMagazine = -1;
@@ -24,17 +27,32 @@ namespace Weapons
                 _magazineRoot = new GameObject("Magazine");
                 _magazineRoot.transform.SetParent(transform);
             }
+            
+            Reload();
         }
 
-        public void Shoot()
+        public IEnumerator Shoot()
         {
-            Bullet currentBullet = _magazine[_currentBulletInMagazine - 1];
-            _currentBulletInMagazine++;
-            
-            Ray ray = Camera.main!.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+            while (IsShooting)
             {
-                currentBullet.Launch(bulletLaunchPosition, hit.point, bulletSpeed);
+                if (_currentBulletInMagazine <= maxBulletInMagazine)
+                {
+                    Bullet currentBullet = _magazine[_currentBulletInMagazine - 1];
+                    _currentBulletInMagazine++;
+
+                    Ray ray = Camera.main!.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                    if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+                    {
+                        currentBullet.Launch(bulletLaunchPosition, hit.point, bulletSpeed);
+                    }
+                    else
+                    {
+                        Vector3 targetPoint = ray.origin + ray.direction * 100f;
+                        currentBullet.Launch(bulletLaunchPosition, targetPoint, bulletSpeed);
+                    }
+                }
+
+                yield return new WaitForSeconds(delayBeetweenShots);
             }
         }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Weapons;
 
 namespace Player
 {
@@ -18,6 +19,9 @@ namespace Player
 
         [Header("Animator")]
         [SerializeField] private Animator animator;
+        
+        [Header("Weapon")]
+        [SerializeField] private Weapon weapon;
         
         public Vector2 InputCameraRotation { get; set; }
         public Vector3 InputMovementDirection { get; set; }
@@ -103,6 +107,8 @@ namespace Player
         {
             _isAttacking = !_isAttacking;
             animator.SetBool("IsAttacking", _isAttacking);
+            weapon.IsShooting = !weapon.IsShooting;
+            StartCoroutine(weapon.Shoot());
         }
 
         public void Aim()
@@ -117,6 +123,7 @@ namespace Player
             {
                 _isReloading = true;
                 animator.SetTrigger("ReloadTrigger");
+                weapon.Reload();
             }
         }
 
