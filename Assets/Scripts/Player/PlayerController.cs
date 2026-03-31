@@ -22,10 +22,10 @@ namespace Player
         public Vector2 InputCameraRotation { get; set; }
         public Vector3 InputMovementDirection { get; set; }
         public bool IsSprinting { get; set; }
-        
-        private bool IsAttacking { get; set; }
-        private bool IsReloading { get; set; }
-        private bool IsAiming { get; set; }
+
+        private bool _isAttacking;
+        private bool _isReloading;
+        private bool _isAiming;
         
         private const float ConstYVelocity = -2.0f;
 
@@ -101,28 +101,28 @@ namespace Player
 
         public void Attack()
         {
-            IsAttacking = !IsAttacking;
-            animator.SetBool("IsAttacking", IsAttacking);
+            _isAttacking = !_isAttacking;
+            animator.SetBool("IsAttacking", _isAttacking);
         }
 
         public void Aim()
         {
-            IsAiming = !IsAiming;
-            animator.SetBool("IsAiming", IsAiming);
+            _isAiming = !_isAiming;
+            animator.SetBool("IsAiming", _isAiming);
         }
 
         public void Reload()
         {
-            if (!IsReloading)
+            if (!_isReloading)
             {
-                IsReloading = true;
+                _isReloading = true;
                 animator.SetTrigger("ReloadTrigger");
             }
         }
 
         public void OnReloadEnd()
         {
-            IsReloading = false;
+            _isReloading = false;
         }
     }
 }
