@@ -51,7 +51,7 @@ namespace Weapons
                         currentBullet.Launch(bulletLaunchPosition, hit.point, bulletSpeed);
                         if (hit.transform.TryGetComponent(out BulletDamageable damageable))
                         {
-                            StartCoroutine(damageable.CreateBulletHole(hit.point, hit.normal));
+                            StartCoroutine(damageable.CreateBulletHole(currentBullet, hit.point, hit.normal));
                         }
                     }
                     else
