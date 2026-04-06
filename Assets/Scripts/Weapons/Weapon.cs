@@ -14,6 +14,11 @@ namespace Weapons
         
         public bool IsShooting { get; set; }
 
+        public int Ammo
+        {
+            get { return maxBulletInMagazine - _currentBulletInMagazine + 1; }
+        }
+
         private Bullet[] _magazine;
         private int _currentBulletInMagazine = -1;
         private GameObject _magazineRoot;
@@ -44,6 +49,10 @@ namespace Weapons
                     if (Physics.Raycast(ray, out RaycastHit hit, 100f))
                     {
                         currentBullet.Launch(bulletLaunchPosition, hit.point, bulletSpeed);
+                        if (hit.transform.TryGetComponent(out BulletDamageable damageable))
+                        {
+                            StartCoroutine(damageable.CreateBulletHole(hit.point, hit.normal));
+                        }
                     }
                     else
                     {
