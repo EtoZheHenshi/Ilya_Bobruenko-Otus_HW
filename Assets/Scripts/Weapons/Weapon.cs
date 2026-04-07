@@ -13,6 +13,8 @@ namespace Weapons
         [SerializeField] private float delayBeetweenShots;
         
         public bool IsShooting { get; set; }
+        
+        public bool IsReloading  { get; set; }
 
         public int Ammo
         {
@@ -22,6 +24,7 @@ namespace Weapons
         private Bullet[] _magazine;
         private int _currentBulletInMagazine = -1;
         private GameObject _magazineRoot;
+        private float _nextShootTime;
 
         private void Start()
         {
@@ -34,12 +37,21 @@ namespace Weapons
             }
             
             Reload();
+            IsReloading = false;
         }
 
-        public IEnumerator Shoot()
+        private void Update()
         {
-            while (IsShooting)
+            if (IsReloading || !IsShooting) return;
+
+            if (Time.time >= _nextShootTime)
             {
+                Shoot();
+            }
+        }
+
+        public void Shoot()
+        {
                 if (_currentBulletInMagazine <= maxBulletInMagazine)
                 {
                     Bullet currentBullet = _magazine[_currentBulletInMagazine - 1];
@@ -59,14 +71,14 @@ namespace Weapons
                         Vector3 targetPoint = ray.origin + ray.direction * 100f;
                         currentBullet.Launch(bulletLaunchPosition, targetPoint, bulletSpeed);
                     }
+                    
+                    _nextShootTime = Time.time + delayBeetweenShots;
                 }
-
-                yield return new WaitForSeconds(delayBeetweenShots);
-            }
         }
 
         public void Reload()
         {
+            IsReloading = true;
             if (_currentBulletInMagazine < _magazine.Length || _currentBulletInMagazine > _magazine.Length)
             {
                 _currentBulletInMagazine = _magazine.Length;

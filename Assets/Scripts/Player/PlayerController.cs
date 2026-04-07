@@ -108,7 +108,6 @@ namespace Player
             _isAttacking = !_isAttacking;
             animator.SetBool("IsAttacking", _isAttacking);
             weapon.IsShooting = !weapon.IsShooting;
-            StartCoroutine(weapon.Shoot());
         }
 
         public void Aim()
@@ -130,6 +129,7 @@ namespace Player
         public void OnReloadEnd()
         {
             _isReloading = false;
+            weapon.IsReloading = false;
         }
     }
 }
