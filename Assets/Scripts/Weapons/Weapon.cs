@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using System.Collections;
 
 namespace Weapons
 {
@@ -13,7 +11,6 @@ namespace Weapons
         [SerializeField] private float delayBeetweenShots;
         
         public bool IsShooting { get; set; }
-        
         public bool IsReloading  { get; set; }
 
         public int Ammo
