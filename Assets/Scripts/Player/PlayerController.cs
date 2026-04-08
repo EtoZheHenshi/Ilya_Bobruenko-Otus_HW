@@ -22,7 +22,8 @@ namespace Player
         
         [Header("Weapon")]
         [SerializeField] private Weapon weapon;
-        
+
+        public Weapon Weapon => weapon;
         public Vector2 InputCameraRotation { get; set; }
         public Vector3 InputMovementDirection { get; set; }
         public bool IsSprinting { get; set; }

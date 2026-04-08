@@ -903,7 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638e87e6aad546f18b8b269890c4eab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.AmmoCounter
-  weapon: {fileID: 7628036818364154949}
+  weapon: {fileID: 0}
   ammoText: {fileID: 1016090571}
 --- !u!1 &1053650814
 GameObject:
@@ -1153,7 +1153,7 @@ MonoBehaviour:
   downAngleLimit: -30
   upAngleLimit: 70
   animator: {fileID: 1077289108}
-  weapon: {fileID: 7628036818364154949}
+  weapon: {fileID: 0}
 --- !u!95 &1077289108
 Animator:
   serializedVersion: 7
@@ -4001,14 +4001,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7628036818364154948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1414c4b469014fe0a936ca90cbcbbd4b, type: 3}
+  m_Script: {fileID: 11500000, guid: d77bb06fa64f469ea09d7b9413e2aa56, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Weapons.Weapon
-  bulletLaunchPosition: {fileID: 1340094532}
-  bullet: {fileID: 4210328415687861628, guid: a178728bf197971439d902a547c9d0f4, type: 3}
-  maxBulletInMagazine: 30
-  bulletSpeed: 25
-  delayBeetweenShots: 0.1
+  m_EditorClassIdentifier: Assembly-CSharp::Weapons.AssaultRifle.AssaultRifle
+  weaponData: {fileID: 11400000, guid: 2915dde7f08a900498b8361ac8da68a3, type: 2}
 --- !u!4 &7635634209327808386
 Transform:
   m_ObjectHideFlags: 0

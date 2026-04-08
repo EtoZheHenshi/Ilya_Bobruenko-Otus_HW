@@ -2,20 +2,17 @@ using UnityEngine;
 
 namespace Weapons
 {
-    public class Weapon : MonoBehaviour
+    public abstract class Weapon : MonoBehaviour
     {
+        [SerializeField] private WeaponData weaponData;
         [SerializeField] private Transform bulletLaunchPosition;
-        [SerializeField] private Bullet bullet;
-        [SerializeField] private int maxBulletInMagazine;
-        [SerializeField] private float bulletSpeed;
-        [SerializeField] private float delayBeetweenShots;
         
         public bool IsShooting { get; set; }
         public bool IsReloading  { get; set; }
 
         public int Ammo
         {
-            get { return maxBulletInMagazine - _currentBulletInMagazine + 1; }
+            get { return weaponData.MaxBulletInMagazine - _currentBulletInMagazine + 1; }
         }
 
         private Bullet[] _magazine;
@@ -25,7 +22,7 @@ namespace Weapons
 
         private void Start()
         {
-            _magazine = new Bullet[maxBulletInMagazine];
+            _magazine = new Bullet[weaponData.MaxBulletInMagazine];
             
             if (_magazineRoot == null)
             {
@@ -49,7 +46,7 @@ namespace Weapons
 
         public void Shoot()
         {
-                if (_currentBulletInMagazine <= maxBulletInMagazine)
+                if (_currentBulletInMagazine <= weaponData.MaxBulletInMagazine)
                 {
                     Bullet currentBullet = _magazine[_currentBulletInMagazine - 1];
                     _currentBulletInMagazine++;
@@ -57,7 +54,7 @@ namespace Weapons
                     Ray ray = Camera.main!.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
                     if (Physics.Raycast(ray, out RaycastHit hit, 100f))
                     {
-                        currentBullet.Launch(bulletLaunchPosition, hit.point, bulletSpeed);
+                        currentBullet.Launch(bulletLaunchPosition, hit.point, weaponData.BulletSpeed);
                         if (hit.transform.TryGetComponent(out BulletDamageable damageable))
                         {
                             StartCoroutine(damageable.CreateBulletHole(currentBullet, hit.point, hit.normal));
@@ -66,10 +63,10 @@ namespace Weapons
                     else
                     {
                         Vector3 targetPoint = ray.origin + ray.direction * 100f;
-                        currentBullet.Launch(bulletLaunchPosition, targetPoint, bulletSpeed);
+                        currentBullet.Launch(bulletLaunchPosition, targetPoint, weaponData.BulletSpeed);
                     }
                     
-                    _nextShootTime = Time.time + delayBeetweenShots;
+                    _nextShootTime = Time.time + weaponData.DelayBeetweenShots;
                 }
         }
 
@@ -83,7 +80,7 @@ namespace Weapons
 
             for (int i = _currentBulletInMagazine; i > 0; i--)
             {
-                Bullet newBullet = Instantiate(bullet, _magazineRoot.transform);
+                Bullet newBullet = Instantiate(weaponData.Bullet, _magazineRoot.transform);
                 newBullet.gameObject.SetActive(false);
                 _magazine[i - 1] = newBullet;
             }
