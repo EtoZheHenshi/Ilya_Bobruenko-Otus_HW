@@ -10,17 +10,17 @@ namespace Weapons
         public bool IsShooting { get; set; }
         public bool IsReloading  { get; set; }
 
-        public int Ammo
-        {
-            get { return weaponData.MaxBulletInMagazine - _currentBulletInMagazine + 1; }
-        }
+        public int Ammo => weaponData.MaxBulletInMagazine - _currentBulletInMagazine + 1;
+        public string WeaponName => weaponName;
+
+        protected string weaponName = "defaultName";
 
         private Bullet[] _magazine;
         private int _currentBulletInMagazine = -1;
         private GameObject _magazineRoot;
         private float _nextShootTime;
 
-        private void Start()
+        protected virtual void Start()
         {
             _magazine = new Bullet[weaponData.MaxBulletInMagazine];
             
