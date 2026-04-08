@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80229dfc5bf74276bfc0367fb44076af, type: 3}
   m_Name: AssaultRifleData
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.WeaponData
-  bulletLaunchPosition: {fileID: 0}
   bullet: {fileID: 4210328415687861628, guid: a178728bf197971439d902a547c9d0f4, type: 3}
-  maxBulletInMagazine: 0
-  bulletSpeed: 0
-  delayBeetweenShots: 0
+  maxBulletInMagazine: 30
+  bulletSpeed: 25
+  delayBeetweenShots: 0.1

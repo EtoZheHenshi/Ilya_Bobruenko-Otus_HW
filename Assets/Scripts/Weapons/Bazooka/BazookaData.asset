@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BazookaData
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.WeaponData
   bullet: {fileID: 0}
-  maxBulletInMagazine: 0
-  bulletSpeed: 0
+  maxBulletInMagazine: 1
+  bulletSpeed: 10
   delayBeetweenShots: 0
