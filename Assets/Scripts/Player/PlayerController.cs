@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Weapons;
 
@@ -42,6 +43,11 @@ namespace Player
         private float _playerRotationTarget;
         private float _smoothVelocity;
         private readonly float _smoothTime = 0.12f;
+
+        private void Start()
+        {
+            ChangeWeapon();
+        }
 
         private void Update()
         {
@@ -131,6 +137,12 @@ namespace Player
         {
             _isReloading = false;
             weapon.IsReloading = false;
+        }
+
+        public void ChangeWeapon()
+        {
+            animator.SetInteger("WeaponType", weapon.WeaponID);
+            animator.SetTrigger("ChangeWeaponTrigger");
         }
     }
 }

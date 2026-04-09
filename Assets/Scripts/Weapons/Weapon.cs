@@ -11,9 +11,8 @@ namespace Weapons
         public bool IsReloading  { get; set; }
 
         public int Ammo => weaponData.MaxBulletInMagazine - _currentBulletInMagazine + 1;
-        public string WeaponName => weaponName;
-
-        protected string weaponName = "defaultName";
+        public string WeaponName => weaponData.WeaponName;
+        public int WeaponID => weaponData.WeaponID;
 
         private Bullet[] _magazine;
         private int _currentBulletInMagazine = -1;
