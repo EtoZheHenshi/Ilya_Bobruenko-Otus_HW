@@ -53,16 +53,12 @@ namespace Weapons
                     Ray ray = Camera.main!.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
                     if (Physics.Raycast(ray, out RaycastHit hit, 100f))
                     {
-                        currentBullet.Launch(bulletLaunchPosition, hit.point, weaponData.BulletSpeed);
-                        if (hit.transform.TryGetComponent(out BulletDamageable damageable))
-                        {
-                            StartCoroutine(damageable.CreateBulletHole(currentBullet, hit.point, hit.normal));
-                        }
+                        currentBullet.LaunchIntoObject(bulletLaunchPosition, hit, weaponData.BulletSpeed);
                     }
                     else
                     {
-                        Vector3 targetPoint = ray.origin + ray.direction * 100f;
-                        currentBullet.Launch(bulletLaunchPosition, targetPoint, weaponData.BulletSpeed);
+                        Vector3 hitPoint = ray.origin + ray.direction * 100f;
+                        currentBullet.Launch(bulletLaunchPosition, hitPoint, weaponData.BulletSpeed);
                     }
                     
                     _nextShootTime = Time.time + weaponData.DelayBeetweenShots;

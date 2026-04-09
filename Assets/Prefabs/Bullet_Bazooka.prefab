@@ -135,3 +135,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e8dac7ba6f4bf9af267caf5da28cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.Bullet
+  damageDecalPrefab: {fileID: 306913050714992258, guid: 0a49635e3d5f4d646a3d08fe6d50f4cf, type: 3}
