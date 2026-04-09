@@ -42,7 +42,7 @@ namespace Weapons
             
             if (hit.transform.TryGetComponent(out BulletDamageable damageable))
             {
-                _damageDecal = damageable.CreateBulletHole(damageDecalPrefab, this, hit.point, hit.normal);
+                _damageDecal = damageable.CreateBulletHole(damageDecalPrefab, hit.point, hit.normal);
             }
         }
 

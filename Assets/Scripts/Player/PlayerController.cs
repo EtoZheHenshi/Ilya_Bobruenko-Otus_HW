@@ -112,6 +112,7 @@ namespace Player
 
         public void Attack()
         {
+            if (!_isAiming && !_isAttacking) return;
             _isAttacking = !_isAttacking;
             animator.SetBool("IsAttacking", _isAttacking);
             weapon.IsShooting = !weapon.IsShooting;
