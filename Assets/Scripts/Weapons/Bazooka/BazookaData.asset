@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80229dfc5bf74276bfc0367fb44076af, type: 3}
   m_Name: BazookaData
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.WeaponData
-  bullet: {fileID: 0}
+  weaponID: 1
+  weaponName: Bazooka
+  bullet: {fileID: 9035848116942011643, guid: 8f9e9ce37f69ae747ba94ab3a2ae5ca8, type: 3}
   maxBulletInMagazine: 1
   bulletSpeed: 10
   delayBeetweenShots: 0

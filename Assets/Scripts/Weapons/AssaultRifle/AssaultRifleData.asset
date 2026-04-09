@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80229dfc5bf74276bfc0367fb44076af, type: 3}
   m_Name: AssaultRifleData
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.WeaponData
+  weaponID: 0
+  weaponName: AssaultRifle
   bullet: {fileID: 4210328415687861628, guid: a178728bf197971439d902a547c9d0f4, type: 3}
   maxBulletInMagazine: 30
   bulletSpeed: 25

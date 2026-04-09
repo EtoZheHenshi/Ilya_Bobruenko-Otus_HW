@@ -275,8 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f476005b50049e08ed666d1ea41d6d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.BulletDamageable
-  bulletHolePrefab: {fileID: 306913050714992258, guid: 0a49635e3d5f4d646a3d08fe6d50f4cf, type: 3}
-  liveTime: 5
 --- !u!1 &209189443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1306,7 @@ MonoBehaviour:
   downAngleLimit: -30
   upAngleLimit: 70
   animator: {fileID: 1077289108}
-  weapon: {fileID: 7628036818364154949}
+  weapon: {fileID: 6325249380758498641}
 --- !u!95 &1077289108
 Animator:
   serializedVersion: 7
@@ -1841,8 +1839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f476005b50049e08ed666d1ea41d6d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.BulletDamageable
-  bulletHolePrefab: {fileID: 306913050714992258, guid: 0a49635e3d5f4d646a3d08fe6d50f4cf, type: 3}
-  liveTime: 5
 --- !u!4 &2025968486
 Transform:
   m_ObjectHideFlags: 0
@@ -3704,7 +3700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &6325249380758498641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4161,7 +4157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7628036818364154949
 MonoBehaviour:
   m_ObjectHideFlags: 0
