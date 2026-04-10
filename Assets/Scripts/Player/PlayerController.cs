@@ -20,13 +20,15 @@ namespace Player
         [Header("Animator")]
         [SerializeField] private Animator animator;
         
-        [Header("Weapon")]
-        [SerializeField] private Weapon weapon;
+        [Header("Weapons")]
+        [SerializeField] private Weapon[] weapons;
 
-        public Weapon Weapon => weapon;
+        public Weapon Weapon => _weaponSelector.CurrentWeapon;
         public Vector2 InputCameraRotation { get; set; }
         public Vector3 InputMovementDirection { get; set; }
         public bool IsSprinting { get; set; }
+
+        private WeaponSelector _weaponSelector;
 
         private bool _isAttacking;
         private bool _isReloading;
@@ -45,7 +47,8 @@ namespace Player
 
         private void Start()
         {
-            ChangeWeapon();
+            _weaponSelector = new WeaponSelector(weapons);
+            SelectWeapon(0);
         }
 
         private void Update()
@@ -114,7 +117,7 @@ namespace Player
             if (!_isAiming && !_isAttacking) return;
             _isAttacking = !_isAttacking;
             animator.SetBool("IsAttacking", _isAttacking);
-            weapon.IsShooting = !weapon.IsShooting;
+            Weapon.IsShooting = !Weapon.IsShooting;
         }
 
         public void Aim()
@@ -129,20 +132,44 @@ namespace Player
             {
                 _isReloading = true;
                 animator.SetTrigger("ReloadTrigger");
-                weapon.Reload();
+                Weapon.Reload();
             }
         }
 
         public void OnReloadEnd()
         {
             _isReloading = false;
-            weapon.IsReloading = false;
+            Weapon.IsReloading = false;
         }
 
-        public void ChangeWeapon()
+        public void SelectWeapon(int index)
         {
-            animator.SetInteger("WeaponType", weapon.WeaponID);
-            animator.SetTrigger("ChangeWeaponTrigger");
+            if (Weapon == null || index != Weapon.WeaponID)
+            {
+                _weaponSelector.SelectWeapon(index);
+                OnReloadEnd();
+                animator.SetInteger("WeaponType", Weapon.WeaponID);
+                animator.SetTrigger("ChangeWeaponTrigger");
+            }
+        }
+
+        public void ScrollWeapon(float direction)
+        {
+            if (direction > 0)
+            {
+                SelectWeapon(Weapon.WeaponID + 1);
+            }
+            else if (direction < 0)
+            {
+                if (Weapon.WeaponID == 0)
+                {
+                    SelectWeapon(weapons.Length - 1);
+                }
+                else
+                {
+                    SelectWeapon(Weapon.WeaponID - 1);
+                }
+            }
         }
     }
 }

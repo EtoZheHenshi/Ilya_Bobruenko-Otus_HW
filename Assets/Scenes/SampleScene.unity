@@ -1275,7 +1275,10 @@ MonoBehaviour:
   downAngleLimit: -30
   upAngleLimit: 70
   animator: {fileID: 1077289108}
-  weapon: {fileID: 7628036818364154949}
+  weapons:
+  - {fileID: 7628036818364154949}
+  - {fileID: 6325249380758498641}
+  - {fileID: 8914287627131626718}
 --- !u!95 &1077289108
 Animator:
   serializedVersion: 7
@@ -4036,7 +4039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7628036818364154949
 MonoBehaviour:
   m_ObjectHideFlags: 0

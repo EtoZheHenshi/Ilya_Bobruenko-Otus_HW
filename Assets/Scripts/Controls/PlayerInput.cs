@@ -41,6 +41,10 @@ namespace Controls
 
             _inputSystem.Player.Reload.started += Reload;
             _inputSystem.Player.Reload.canceled += Reload;
+
+            _inputSystem.Player.WeaponSelect.performed += WeaponSelect;
+
+            _inputSystem.Player.WeaponScroll.performed += WeaponScroll;
         }
 
         private void OnDisable()
@@ -64,6 +68,10 @@ namespace Controls
 
             _inputSystem.Player.Reload.started -= Reload;
             _inputSystem.Player.Reload.canceled -= Reload;
+            
+            _inputSystem.Player.WeaponSelect.performed -= WeaponSelect;
+            
+            _inputSystem.Player.WeaponScroll.performed -= WeaponScroll;
         }
 
         private void Move(InputAction.CallbackContext ctx)
@@ -87,14 +95,27 @@ namespace Controls
             playerController.InputCameraRotation = ctx.ReadValue<Vector2>();
         }
         
-        private void Aim(InputAction.CallbackContext obj)
+        private void Aim(InputAction.CallbackContext ctx)
         {
             playerController.Aim();
         }
         
-        private void Reload(InputAction.CallbackContext obj)
+        private void Reload(InputAction.CallbackContext ctx)
         {
             playerController.Reload();
+        }
+        
+        private void WeaponSelect(InputAction.CallbackContext ctx)
+        {
+            if (int.TryParse(ctx.control.name, out int index))
+            {
+                playerController.SelectWeapon(index - 1);
+            }
+        }
+        
+        private void WeaponScroll(InputAction.CallbackContext ctx)
+        {
+            playerController.ScrollWeapon(ctx.ReadValue<Vector2>().y);
         }
     }
 }
