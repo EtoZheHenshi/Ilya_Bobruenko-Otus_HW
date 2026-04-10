@@ -1,6 +1,6 @@
 namespace Weapons.Rifle
 {
-    public class Rifle : Weapon
+    public sealed class Rifle : Weapon
     {
         // Логика пронзающих выстрелов и приближения экрана при прицеливании
     }

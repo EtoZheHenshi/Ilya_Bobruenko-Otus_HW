@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Weapons
 {
     [CreateAssetMenu(menuName = "Data/SO/WeaponData")]
-    public class WeaponData : ScriptableObject
+    public sealed class WeaponData : ScriptableObject
     {
         [SerializeField] private int weaponID;
         [SerializeField] private string weaponName;

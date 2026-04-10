@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using Weapons;
 
 namespace Player
 {
-    public class PlayerController : MonoBehaviour
+    public sealed class PlayerController : MonoBehaviour
     {
         [Header("Character Controller")]
         [SerializeField] private CharacterController characterController;

@@ -5,7 +5,7 @@ using Weapons;
 
 namespace UI
 {
-    public class HUD : MonoBehaviour
+    public sealed class HUD : MonoBehaviour
     {
         [SerializeField] private PlayerController playerController;
         [SerializeField] private TMP_Text ammoText;

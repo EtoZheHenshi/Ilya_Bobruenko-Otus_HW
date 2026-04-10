@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Weapons
 {
-    public class Bullet : MonoBehaviour
+    public sealed class Bullet : MonoBehaviour
     {
         [SerializeField] private Decal damageDecalPrefab;
 

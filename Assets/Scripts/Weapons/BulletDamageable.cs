@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Weapons
 {
-    public class BulletDamageable : MonoBehaviour
+    public sealed class BulletDamageable : MonoBehaviour
     {
         public Decal CreateBulletHole(Decal decalPrefab, Vector3 position, Vector3 normal)
         {
