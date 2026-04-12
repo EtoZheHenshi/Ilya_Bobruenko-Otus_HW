@@ -1,36 +1,39 @@
-using System;
-using Unity.VisualScripting;
+using Gameplay;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace InputLogic
 {
-    public class GameplayInputController : MonoBehaviour
+    public sealed class GameplayInputController
     {
-        private PlayerInput _playerInput;
+        private readonly PlayerInput _playerInput;
+        private readonly Paddle _paddle;
 
-        private void Start()
+        public GameplayInputController(PlayerInput playerInput,  Paddle paddle)
         {
-            _playerInput = InputManager.Instance.PlayerInput;
+            _playerInput = playerInput;
+            _paddle = paddle;
         }
 
-        private void OnEnable()
+        public void Enable()
         {
             _playerInput.Gameplay.Enable();
 
             _playerInput.Gameplay.Move.performed += Move;
+            _playerInput.Gameplay.Move.canceled += Move;
         }
 
-        private void OnDisable()
+        public void Disable()
         {
             _playerInput.Gameplay.Disable();
 
             _playerInput.Gameplay.Move.performed -= Move;
+            _playerInput.Gameplay.Move.canceled -= Move;
         }
 
-        private void Move(InputAction.CallbackContext obj)
+        private void Move(InputAction.CallbackContext ctx)
         {
-            throw new NotImplementedException();
+            _paddle.Direction = ctx.ReadValue<Vector2>().x;
         }
     }
 }

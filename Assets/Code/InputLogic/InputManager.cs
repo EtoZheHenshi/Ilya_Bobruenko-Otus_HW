@@ -1,12 +1,15 @@
-using System;
+using Gameplay;
 using UnityEngine;
 
 namespace InputLogic
 {
-    public class InputManager : MonoBehaviour
+    public sealed class InputManager : MonoBehaviour
     {
+        [SerializeField] private Paddle paddle;
+        
         public static InputManager Instance { get; private set; }
         public PlayerInput PlayerInput { get; private set; }
+        public GameplayInputController GameplayInput { get; private set; }
 
         private void Awake()
         {
@@ -21,6 +24,9 @@ namespace InputLogic
             
             PlayerInput = new PlayerInput();
             PlayerInput.Enable();
+            
+            GameplayInput = new GameplayInputController(PlayerInput, paddle);
+            GameplayInput.Enable();
         }
 
         private void OnDestroy()
