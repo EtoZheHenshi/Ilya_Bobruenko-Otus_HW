@@ -9,6 +9,10 @@ namespace Gameplay
     {
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float speed;
+        [SerializeField] private Transform paddle;
+
+        private float _offsetY;
+        private bool _isLaunch;
 
         private void Start()
         {
@@ -16,6 +20,15 @@ namespace Gameplay
             {
                 StartMove();
             };
+            _offsetY = transform.position.y - paddle.position.y;
+        }
+
+        private void Update()
+        {
+            if (!_isLaunch)
+            {
+                transform.position = new Vector3(paddle.position.x, paddle.position.y + _offsetY, paddle.position.z);
+            }
         }
 
         private void OnCollisionEnter(Collision other)
@@ -59,7 +72,7 @@ namespace Gameplay
 
         public void StartMove()
         {
-            transform.parent = transform.parent.parent;
+            _isLaunch = true;
             Vector3 direction = new Vector3(Random.Range(-1f, 1f), 1f, 0).normalized;
             rb.linearVelocity = direction * speed;
         }

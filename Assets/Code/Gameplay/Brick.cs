@@ -6,7 +6,7 @@ namespace Gameplay
     {
         public void Die()
         {
-            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
         }
     }
 }
