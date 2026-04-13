@@ -12,7 +12,7 @@ namespace InputLogic
         
         private void Awake()
         {
-            if (Instance != null)
+            if (Instance !=null && Instance != this)
             {
                 Destroy(gameObject);
                 return;
@@ -30,7 +30,7 @@ namespace InputLogic
 
         private void OnDestroy()
         {
-            _playerInput.Disable();
+            _playerInput?.Disable();
         }
     }
 }

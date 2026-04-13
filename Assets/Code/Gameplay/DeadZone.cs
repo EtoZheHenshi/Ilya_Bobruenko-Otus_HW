@@ -1,4 +1,6 @@
+using InputLogic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Gameplay
 {
@@ -6,7 +8,8 @@ namespace Gameplay
     {
         public void GameOver()
         {
-            Debug.Log("GameOver");
+            InputManager.Instance.GameplayInput.Clear();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

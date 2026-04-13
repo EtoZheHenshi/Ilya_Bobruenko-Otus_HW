@@ -36,6 +36,12 @@ namespace InputLogic
             
             _playerInput.Gameplay.Start.started -= StartInvoke;
         }
+        
+        public void Clear()
+        {
+            Move = null;
+            Start = null;
+        }
 
         private void MoveInvoke(InputAction.CallbackContext ctx)
         {
