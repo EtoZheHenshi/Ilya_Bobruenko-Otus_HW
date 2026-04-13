@@ -1,3 +1,4 @@
+using System;
 using Gameplay;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,34 +7,44 @@ namespace InputLogic
 {
     public sealed class GameplayInputController
     {
-        private readonly PlayerInput _playerInput;
-        private readonly Paddle _paddle;
+        public event Action<InputAction.CallbackContext> Move;
+        public event Action<InputAction.CallbackContext> Start;
 
-        public GameplayInputController(PlayerInput playerInput,  Paddle paddle)
+        private readonly PlayerInput _playerInput;
+
+        public GameplayInputController(PlayerInput playerInput)
         {
             _playerInput = playerInput;
-            _paddle = paddle;
         }
 
         public void Enable()
         {
             _playerInput.Gameplay.Enable();
 
-            _playerInput.Gameplay.Move.performed += Move;
-            _playerInput.Gameplay.Move.canceled += Move;
+            _playerInput.Gameplay.Move.performed += MoveInvoke;
+            _playerInput.Gameplay.Move.canceled += MoveInvoke;
+            
+            _playerInput.Gameplay.Start.started += StartInvoke;
         }
 
         public void Disable()
         {
             _playerInput.Gameplay.Disable();
 
-            _playerInput.Gameplay.Move.performed -= Move;
-            _playerInput.Gameplay.Move.canceled -= Move;
+            _playerInput.Gameplay.Move.performed -= MoveInvoke;
+            _playerInput.Gameplay.Move.canceled -= MoveInvoke;
+            
+            _playerInput.Gameplay.Start.started -= StartInvoke;
         }
 
-        private void Move(InputAction.CallbackContext ctx)
+        private void MoveInvoke(InputAction.CallbackContext ctx)
         {
-            _paddle.Direction = ctx.ReadValue<Vector2>().x;
+            Move?.Invoke(ctx);
+        }
+        
+        private void StartInvoke(InputAction.CallbackContext ctx)
+        {
+            Start?.Invoke(ctx);
         }
     }
 }

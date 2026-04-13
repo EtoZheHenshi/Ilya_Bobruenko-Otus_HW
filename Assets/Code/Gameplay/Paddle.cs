@@ -1,5 +1,5 @@
 using System;
-using Unity.VisualScripting;
+using InputLogic;
 using UnityEngine;
 
 namespace Gameplay
@@ -9,7 +9,19 @@ namespace Gameplay
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float speed;
         
-        public float Direction { get; set; }
+        public float Width {get; private set;}
+
+        private float _direction;
+
+        private void Start()
+        {
+            InputManager.Instance.GameplayInput.Move += ctx =>
+            {
+                _direction = ctx.ReadValue<Vector2>().x;
+            };
+            
+            Width = transform.localScale.x;
+        }
 
         private void FixedUpdate()
         {
@@ -18,7 +30,7 @@ namespace Gameplay
 
         private void Move()
         {
-            float x = Direction * speed * Time.fixedDeltaTime;
+            float x = _direction * speed;
             rb.linearVelocity = new Vector3(x, 0, 0);
         }
     }

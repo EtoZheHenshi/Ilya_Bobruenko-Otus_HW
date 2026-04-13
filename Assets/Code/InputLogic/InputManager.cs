@@ -5,12 +5,11 @@ namespace InputLogic
 {
     public sealed class InputManager : MonoBehaviour
     {
-        [SerializeField] private Paddle paddle;
-        
         public static InputManager Instance { get; private set; }
-        public PlayerInput PlayerInput { get; private set; }
         public GameplayInputController GameplayInput { get; private set; }
 
+        private PlayerInput _playerInput;
+        
         private void Awake()
         {
             if (Instance != null)
@@ -22,16 +21,16 @@ namespace InputLogic
             Instance = this;
             DontDestroyOnLoad(gameObject);
             
-            PlayerInput = new PlayerInput();
-            PlayerInput.Enable();
+            _playerInput = new PlayerInput();
+            _playerInput.Enable();
             
-            GameplayInput = new GameplayInputController(PlayerInput, paddle);
+            GameplayInput = new GameplayInputController(_playerInput);
             GameplayInput.Enable();
         }
 
         private void OnDestroy()
         {
-            PlayerInput.Disable();
+            _playerInput.Disable();
         }
     }
 }

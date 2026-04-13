@@ -102,6 +102,15 @@ namespace InputLogic
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""b10f542d-8786-4022-972d-e02b840ce5d7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -203,6 +212,17 @@ namespace InputLogic
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6881fd75-8351-45ef-9a71-9382d5ccfdb3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +249,7 @@ namespace InputLogic
             // Gameplay
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+            m_Gameplay_Start = m_Gameplay.FindAction("Start", throwIfNotFound: true);
         }
 
         ~@PlayerInput()
@@ -310,6 +331,7 @@ namespace InputLogic
         private readonly InputActionMap m_Gameplay;
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_Gameplay_Move;
+        private readonly InputAction m_Gameplay_Start;
         /// <summary>
         /// Provides access to input actions defined in input action map "Gameplay".
         /// </summary>
@@ -325,6 +347,10 @@ namespace InputLogic
             /// Provides access to the underlying input action "Gameplay/Move".
             /// </summary>
             public InputAction @Move => m_Wrapper.m_Gameplay_Move;
+            /// <summary>
+            /// Provides access to the underlying input action "Gameplay/Start".
+            /// </summary>
+            public InputAction @Start => m_Wrapper.m_Gameplay_Start;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -354,6 +380,9 @@ namespace InputLogic
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
 
             /// <summary>
@@ -368,6 +397,9 @@ namespace InputLogic
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
+                @Start.started -= instance.OnStart;
+                @Start.performed -= instance.OnStart;
+                @Start.canceled -= instance.OnStart;
             }
 
             /// <summary>
@@ -428,6 +460,13 @@ namespace InputLogic
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnMove(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Start" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnStart(InputAction.CallbackContext context);
         }
     }
 }
