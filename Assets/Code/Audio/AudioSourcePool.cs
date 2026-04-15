@@ -19,9 +19,9 @@ namespace Audio
 
         private void CreateSources()
         {
-            if (_audioSources != null && _audioSources.Count > 0)
+            if (_audioSources != null && audioSourceCount > 0)
             {
-                for (int i = 0; i < _audioSources.Count; i++)
+                for (int i = 0; i < audioSourceCount; i++)
                 {
                     _audioSources.Enqueue(CreateOneSource($"AudioSource_{i}"));
                 }

@@ -55,13 +55,10 @@ namespace Gameplay
                 }
                 else
                 {
-                    float x = rb.linearVelocity.x;
-                    if (Mathf.Abs(x) < 0.2f)
-                    {
-                        x = Mathf.Sign(x == 0 ? Random.Range(-1f, 1f) : x) * 0.2f;
-                    }
+                    float x = CorrectVelocity(rb.linearVelocity.x);
+                    float y = CorrectVelocity(rb.linearVelocity.y);
             
-                    rb.linearVelocity = new Vector3(x, rb.linearVelocity.y, 0).normalized * speed;
+                    rb.linearVelocity = new Vector3(x, y, 0).normalized * speed;
                 }
             }
         }
@@ -80,11 +77,24 @@ namespace Gameplay
             rb.linearVelocity = rb.linearVelocity.normalized * speed;
         }
 
-        public void StartMove()
+        private void StartMove()
         {
-            _isLaunch = true;
-            Vector3 direction = new Vector3(Random.Range(-1f, 1f), 1f, 0).normalized;
-            rb.linearVelocity = direction * speed;
+            if (!_isLaunch)
+            {
+                _isLaunch = true;
+                Vector3 direction = new Vector3(Random.Range(-1f, 1f), 1f, 0).normalized;
+                rb.linearVelocity = direction * speed;
+            }
+        }
+
+        private float CorrectVelocity(float vel)
+        {
+            if (Mathf.Abs(vel) < 0.2f)
+            {
+                vel = Mathf.Sign(vel == 0 ? Random.Range(-1f, 1f) : vel) * 0.2f;
+            }
+
+            return vel;
         }
     }
 }

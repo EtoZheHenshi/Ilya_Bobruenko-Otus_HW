@@ -126,3 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Brick
   brickDestroySound: {fileID: 11400000, guid: 1fc9865a48568124d838f51b408886fe, type: 2}
+  rend: {fileID: 8670438931837177624}
