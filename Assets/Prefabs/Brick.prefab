@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1a340f2dd0415686143e1cba6a33d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Brick
+  brickDestroySound: {fileID: 11400000, guid: 1fc9865a48568124d838f51b408886fe, type: 2}

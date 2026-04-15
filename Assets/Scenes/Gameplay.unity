@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 44726142}
   - component: {fileID: 44726144}
   m_Layer: 0
-  m_Name: '[InputLogic]'
+  m_Name: '[InputManager]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,6 +366,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &383661192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383661193}
+  - component: {fileID: 383661195}
+  - component: {fileID: 383661194}
+  m_Layer: 0
+  m_Name: '[AudioManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &383661193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383661192}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.21762, y: 0.8261, z: 15.59236}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &383661194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383661192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba873a23423f46729af38cfabd3619f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Audio.AudioSourcePool
+  audioSourceCount: 8
+--- !u!114 &383661195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383661192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e13dcf762440b8a4503b90d6cb4761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Audio.AudioManager
+  pool: {fileID: 383661194}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,6 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87c0e8fa5454d83b8f159113418cfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.DeadZone
+  gameOverSound: {fileID: 11400000, guid: 27f6e4b5880b1a148b54895f6d42f519, type: 2}
 --- !u!1 &1920403918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,3 +1316,4 @@ SceneRoots:
   - {fileID: 1087479977}
   - {fileID: 357888121}
   - {fileID: 44726142}
+  - {fileID: 383661193}

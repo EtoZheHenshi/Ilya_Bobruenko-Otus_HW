@@ -156,3 +156,4 @@ MonoBehaviour:
   rb: {fileID: 6143219286934461652}
   speed: 5
   paddle: {fileID: 0}
+  ballHitSound: {fileID: 11400000, guid: e2449ae35ab73a849af974d184028b24, type: 2}

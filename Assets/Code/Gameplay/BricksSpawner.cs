@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace Gameplay
 {
-    public class BricksSpawner : MonoBehaviour
+    public sealed class BricksSpawner : MonoBehaviour
     {
         [SerializeField] private Brick brickPrefab;
         [SerializeField] private int maxColumnCount = 8;
