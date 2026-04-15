@@ -1,6 +1,4 @@
 using System;
-using Gameplay;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace InputLogic
