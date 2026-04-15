@@ -1,3 +1,4 @@
+using Audio;
 using GameSubLogic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Weapons
     public sealed class Bullet : MonoBehaviour
     {
         [SerializeField] private Decal damageDecalPrefab;
+        [SerializeField] private SoundData impactSound;
 
         private Decal _damageDecal;
         
@@ -50,6 +52,8 @@ namespace Weapons
         {
             if (_damageDecal != null)
             {
+                AudioManager.Instance.PlaySound(impactSound, _damageDecal.transform.position);
+                
                 _damageDecal.gameObject.SetActive(true);
             }
             Destroy(gameObject);

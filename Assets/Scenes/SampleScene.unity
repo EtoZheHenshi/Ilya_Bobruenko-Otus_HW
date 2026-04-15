@@ -859,6 +859,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &932028317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932028320}
+  - component: {fileID: 932028319}
+  - component: {fileID: 932028318}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &932028318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932028317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cda6d4629474c759a156cd1b3dc242c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Audio.AudioSourcePool
+  poolSize: 50
+--- !u!114 &932028319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932028317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842fb8f71a8a4912bdad9eb176972682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Audio.AudioManager
+  pool: {fileID: 932028318}
+--- !u!4 &932028320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932028317}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2257, y: -0, z: 2.00207}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &939195058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,6 +1338,7 @@ MonoBehaviour:
   - {fileID: 7628036818364154949}
   - {fileID: 6325249380758498641}
   - {fileID: 8914287627131626718}
+  stepsSound: {fileID: 11400000, guid: 09036f1f9fe2e674d9b5afb7e03d0fb0, type: 2}
 --- !u!95 &1077289108
 Animator:
   serializedVersion: 7
@@ -3605,6 +3665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.Bazooka.Bazooka
   weaponData: {fileID: 11400000, guid: 332fe1b6810c72a4583b4d1c81f4c4ad, type: 2}
   bulletLaunchPosition: {fileID: 939195059}
+  shotSound: {fileID: 11400000, guid: d6d72bb6aeaf6eb4da17801644824d94, type: 2}
 --- !u!1 &6526271423440837652
 GameObject:
   m_ObjectHideFlags: 0
@@ -4054,6 +4115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.AssaultRifle.AssaultRifle
   weaponData: {fileID: 11400000, guid: 2915dde7f08a900498b8361ac8da68a3, type: 2}
   bulletLaunchPosition: {fileID: 1340094532}
+  shotSound: {fileID: 11400000, guid: 80b25b3fcab5b414ea88ef82c4eac42b, type: 2}
 --- !u!4 &7635634209327808386
 Transform:
   m_ObjectHideFlags: 0
@@ -4293,6 +4355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.Rifle.Rifle
   weaponData: {fileID: 11400000, guid: 84edfd7b99cb77b45940ac69ed3abfe3, type: 2}
   bulletLaunchPosition: {fileID: 59374971}
+  shotSound: {fileID: 11400000, guid: 7ed86d5cb00ec71469b0dfa932e83582, type: 2}
 --- !u!1 &8980713082204621071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4375,3 +4438,4 @@ SceneRoots:
   - {fileID: 1053650818}
   - {fileID: 1542454504}
   - {fileID: 1396603265}
+  - {fileID: 932028320}

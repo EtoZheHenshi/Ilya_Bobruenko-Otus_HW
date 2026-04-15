@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bfb8b11c59421c94903bedcc20a845, type: 3}
   m_Name: Bazooka_Shot_SoundData
   m_EditorClassIdentifier: Assembly-CSharp::Audio.SoundData
-  clips: []
-  isPitchRandom: 0
+  clips:
+  - {fileID: 8300000, guid: 0ccbb7088884b8042b3db8239c1335ea, type: 3}
+  - {fileID: 8300000, guid: e24444940a3b3da43bc995b2940b4de6, type: 3}
+  isPitchRandom: 1
   pitchVariance: 0.1
   volume: 1
   pitch: 1

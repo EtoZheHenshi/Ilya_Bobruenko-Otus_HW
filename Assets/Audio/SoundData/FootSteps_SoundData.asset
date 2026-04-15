@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bfb8b11c59421c94903bedcc20a845, type: 3}
   m_Name: FootSteps_SoundData
   m_EditorClassIdentifier: Assembly-CSharp::Audio.SoundData
-  clips: []
-  isPitchRandom: 0
+  clips:
+  - {fileID: 8300000, guid: dc6aee7399cbb6840b03dff905e5f5c2, type: 3}
+  - {fileID: 8300000, guid: 61cfccb2156c06c4c982ffb5baa02902, type: 3}
+  - {fileID: 8300000, guid: 02de5f38d8cb3d24999001ef0524ea6f, type: 3}
+  - {fileID: 8300000, guid: 50a084982d33f6d428fdb2f262c94014, type: 3}
+  - {fileID: 8300000, guid: a1ffe218eb62776439d0dd9b7d0bd1d7, type: 3}
+  isPitchRandom: 1
   pitchVariance: 0.1
   volume: 1
   pitch: 1

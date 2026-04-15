@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 
 namespace Weapons
@@ -6,6 +7,7 @@ namespace Weapons
     {
         [SerializeField] private WeaponData weaponData;
         [SerializeField] private Transform bulletLaunchPosition;
+        [SerializeField] private SoundData shotSound;
         
         public bool IsShooting { get; set; }
         public bool IsReloading  { get; set; }
@@ -47,6 +49,8 @@ namespace Weapons
         {
                 if (_currentBulletInMagazine <= weaponData.MaxBulletInMagazine)
                 {
+                    AudioManager.Instance.PlaySound(shotSound, bulletLaunchPosition.position);
+                    
                     Bullet currentBullet = _magazine[_currentBulletInMagazine - 1];
                     _currentBulletInMagazine++;
 

@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 using Weapons;
 
@@ -22,6 +23,9 @@ namespace Player
         
         [Header("Weapons")]
         [SerializeField] private Weapon[] weapons;
+
+        [Header("Sounds")] 
+        [SerializeField] private SoundData stepsSound;
 
         public Weapon Weapon => _weaponSelector.CurrentWeapon;
         public Vector2 InputCameraRotation { get; set; }
@@ -170,6 +174,11 @@ namespace Player
                     SelectWeapon(Weapon.WeaponID - 1);
                 }
             }
+        }
+
+        public void OnStepSound()
+        {
+            AudioManager.Instance.PlaySound(stepsSound, transform.position);
         }
     }
 }

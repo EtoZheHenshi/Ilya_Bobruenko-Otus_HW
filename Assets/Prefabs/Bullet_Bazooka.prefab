@@ -136,3 +136,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.Bullet
   damageDecalPrefab: {fileID: 306913050714992258, guid: 505adf414e4e6014693e4ef09d0343f2, type: 3}
+  impactSound: {fileID: 11400000, guid: 4d1dd406a90b1864e84366e6c0fe3a5f, type: 2}
