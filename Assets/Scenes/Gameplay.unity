@@ -1148,7 +1148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87c0e8fa5454d83b8f159113418cfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.DeadZone
+  bricks: {fileID: 893358557}
   gameOverSound: {fileID: 11400000, guid: 27f6e4b5880b1a148b54895f6d42f519, type: 2}
+  winningSound: {fileID: 11400000, guid: c898bfdbaf57658499413dbd24e2fe71, type: 2}
 --- !u!1 &1920403918
 GameObject:
   m_ObjectHideFlags: 0
