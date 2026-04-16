@@ -24,10 +24,14 @@ namespace Player
         [Header("Sounds")] 
         [SerializeField] private SoundData stepsSound;
         
+        [Header("Stats")]
+        [SerializeField] private int hp;
+        
         public Vector2 InputCameraRotation { get; set; }
         public Vector3 InputMovementDirection { get; set; }
         public bool IsSprinting { get; set; }
-        
+        public int Hp => hp;
+
         private const float ConstYVelocity = -2.0f;
 
         private float _playerCameraTargetYaw;
