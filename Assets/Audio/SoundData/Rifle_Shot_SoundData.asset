@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Rifle_Shot_SoundData
   m_EditorClassIdentifier: Assembly-CSharp::Audio.SoundData
   clips:
-  - {fileID: 8300000, guid: 57ade6ffeb0f0f2438b64701e349734a, type: 3}
   - {fileID: 8300000, guid: 5544a40b4cc8a5a448254f7500ce8bf3, type: 3}
   isPitchRandom: 1
   pitchVariance: 0.1
