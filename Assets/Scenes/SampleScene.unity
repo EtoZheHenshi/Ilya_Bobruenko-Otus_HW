@@ -655,6 +655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.HUD
   playerController: {fileID: 1077289107}
+  weaponController: {fileID: 1077289109}
   ammoText: {fileID: 1016090571}
   weaponNameText: {fileID: 681901506}
 --- !u!1 &681901504
@@ -808,6 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.AmmoCounter
   playerController: {fileID: 1077289107}
+  weaponController: {fileID: 0}
   ammoText: {fileID: 1016090571}
   weaponNameText: {fileID: 681901506}
 --- !u!1 &832575517
@@ -1217,6 +1219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1077289103}
   - component: {fileID: 1077289107}
+  - component: {fileID: 1077289109}
   - component: {fileID: 1077289106}
   - component: {fileID: 1077289105}
   - component: {fileID: 1077289104}
@@ -1313,6 +1316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerController: {fileID: 1077289107}
+  weaponController: {fileID: 1077289109}
 --- !u!114 &1077289107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,10 +1338,6 @@ MonoBehaviour:
   downAngleLimit: -30
   upAngleLimit: 70
   animator: {fileID: 1077289108}
-  weapons:
-  - {fileID: 7628036818364154949}
-  - {fileID: 6325249380758498641}
-  - {fileID: 8914287627131626718}
   stepsSound: {fileID: 11400000, guid: 09036f1f9fe2e674d9b5afb7e03d0fb0, type: 2}
 --- !u!95 &1077289108
 Animator:
@@ -1361,6 +1361,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1077289109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077289102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244e39b23e3d433e991f62eed6d08005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weapons.WeaponController
+  weapons:
+  - {fileID: 7628036818364154949}
+  - {fileID: 6325249380758498641}
+  - {fileID: 8914287627131626718}
+  animator: {fileID: 1077289108}
 --- !u!1 &1340094531
 GameObject:
   m_ObjectHideFlags: 0

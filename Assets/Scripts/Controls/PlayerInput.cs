@@ -1,12 +1,14 @@
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapons;
 
 namespace Controls
 {
     public sealed class PlayerInput : MonoBehaviour
     {
         [SerializeField] private PlayerController playerController;
+        [SerializeField] private WeaponController weaponController;
         private GameInputSystem _inputSystem;
 
         private void Awake()
@@ -87,7 +89,7 @@ namespace Controls
 
         private void Attack(InputAction.CallbackContext ctx)
         {
-            playerController.Attack();
+            weaponController.Attack();
         }
         
         private void Look(InputAction.CallbackContext ctx)
@@ -97,25 +99,25 @@ namespace Controls
         
         private void Aim(InputAction.CallbackContext ctx)
         {
-            playerController.Aim();
+            weaponController.Aim();
         }
         
         private void Reload(InputAction.CallbackContext ctx)
         {
-            playerController.Reload();
+            weaponController.Reload();
         }
         
         private void WeaponSelect(InputAction.CallbackContext ctx)
         {
             if (int.TryParse(ctx.control.name, out int index))
             {
-                playerController.SelectWeapon(index - 1);
+                weaponController.SelectWeapon(index - 1);
             }
         }
         
         private void WeaponScroll(InputAction.CallbackContext ctx)
         {
-            playerController.ScrollWeapon(ctx.ReadValue<Vector2>().y);
+            weaponController.ScrollWeapon(ctx.ReadValue<Vector2>().y);
         }
     }
 }

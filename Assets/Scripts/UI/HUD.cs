@@ -8,13 +8,14 @@ namespace UI
     public sealed class HUD : MonoBehaviour
     {
         [SerializeField] private PlayerController playerController;
+        [SerializeField] private WeaponController weaponController;
         [SerializeField] private TMP_Text ammoText;
         [SerializeField] private TMP_Text weaponNameText;
 
         private void Update()
         {
-            ammoText.text = playerController.Weapon.Ammo.ToString();
-            weaponNameText.text = playerController.Weapon.WeaponName;
+            ammoText.text = weaponController.Weapon.Ammo.ToString();
+            weaponNameText.text = weaponController.Weapon.WeaponName;
         }
     }
 }
