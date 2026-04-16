@@ -1,4 +1,6 @@
+using System;
 using Player;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapons;
@@ -9,6 +11,7 @@ namespace Controls
     {
         [SerializeField] private PlayerController playerController;
         [SerializeField] private WeaponController weaponController;
+        [SerializeField] private UIController UIController;
         private GameInputSystem _inputSystem;
 
         private void Awake()
@@ -47,11 +50,16 @@ namespace Controls
             _inputSystem.Player.WeaponSelect.performed += WeaponSelect;
 
             _inputSystem.Player.WeaponScroll.performed += WeaponScroll;
+
+            _inputSystem.Player.Pause.started += Pause;
+            
+            _inputSystem.UI.Pause.started += Pause;
         }
 
         private void OnDisable()
         {
             _inputSystem.Player.Disable();
+            _inputSystem.UI.Disable();
             
             _inputSystem.Player.Move.performed -= Move;
             _inputSystem.Player.Move.canceled -= Move;
@@ -74,6 +82,25 @@ namespace Controls
             _inputSystem.Player.WeaponSelect.performed -= WeaponSelect;
             
             _inputSystem.Player.WeaponScroll.performed -= WeaponScroll;
+            
+            _inputSystem.Player.Pause.started -= Pause;
+            
+            _inputSystem.UI.Pause.started -= Pause;
+        }
+
+        private void Update()
+        {
+            if (_inputSystem.Player.enabled && UIController.IsPause)
+            {
+                _inputSystem.Player.Disable();
+                _inputSystem.UI.Enable();
+            }
+            
+            if (_inputSystem.UI.enabled && !UIController.IsPause)
+            {
+                _inputSystem.UI.Disable();
+                _inputSystem.Player.Enable();
+            }
         }
 
         private void Move(InputAction.CallbackContext ctx)
@@ -118,6 +145,11 @@ namespace Controls
         private void WeaponScroll(InputAction.CallbackContext ctx)
         {
             weaponController.ScrollWeapon(ctx.ReadValue<Vector2>().y);
+        }
+        
+        private void Pause(InputAction.CallbackContext obj)
+        {
+            UIController.PauseSwitch();
         }
     }
 }

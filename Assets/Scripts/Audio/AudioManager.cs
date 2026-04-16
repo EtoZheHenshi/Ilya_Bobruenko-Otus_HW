@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Audio
 {
     public sealed class AudioManager : MonoBehaviour
     {
         [SerializeField] private AudioSourcePool pool;
+        [SerializeField] private AudioMixer mixer;
         
         public static AudioManager Instance { get; private set; }
+        public AudioMixer Mixer => mixer;
 
         private void Awake()
         {

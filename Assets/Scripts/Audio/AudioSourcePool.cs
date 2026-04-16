@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Audio
 {
     public sealed class AudioSourcePool : MonoBehaviour
     {
         [SerializeField] private int poolSize = 50;
-
+        [SerializeField] private AudioMixerGroup mixerGroup;
+        
         private Queue<AudioSource> _pool;
         private int _extraSourceCount;
 
@@ -49,6 +51,7 @@ namespace Audio
             
             AudioSource source = obj.AddComponent<AudioSource>();
             source.playOnAwake = false;
+            source.outputAudioMixerGroup = mixerGroup;
             
             return source;
         }
