@@ -8,8 +8,6 @@ namespace Audio
         [SerializeField] private AudioSourcePool pool;
         
         public static AudioManager Instance { get; private set; }
-        
-        private Vector3 _spawnPoint;
 
         private void Awake()
         {
@@ -21,8 +19,6 @@ namespace Audio
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            
-            _spawnPoint = Camera.main.transform.position;
         }
 
         public void PlaySound(SoundData soundData)

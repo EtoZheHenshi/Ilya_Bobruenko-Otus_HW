@@ -1,5 +1,6 @@
 using InputLogic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Gameplay
 {
@@ -14,10 +15,7 @@ namespace Gameplay
 
         private void Start()
         {
-            InputManager.Instance.GameplayInput.Move += ctx =>
-            {
-                _direction = ctx.ReadValue<Vector2>().x;
-            };
+            InputManager.Instance.GameplayInput.Move += MoveGameplayInputListener;
             
             Width = transform.localScale.x;
         }
@@ -31,6 +29,11 @@ namespace Gameplay
         {
             float x = _direction * speed;
             rb.linearVelocity = new Vector3(x, 0, 0);
+        }
+
+        private void MoveGameplayInputListener(InputAction.CallbackContext ctx)
+        {
+            _direction = ctx.ReadValue<Vector2>().x;
         }
     }
 }

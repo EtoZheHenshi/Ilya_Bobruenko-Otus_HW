@@ -13,6 +13,11 @@ namespace Gameplay
         public void Die()
         {
             AudioManager.Instance.PlaySound(brickDestroySound);
+            RewardData.AddCoin();
+            if (transform.parent.childCount <= 1)
+            {
+                LevelData.Win();
+            }
             Destroy(gameObject);
         }
     }

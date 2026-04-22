@@ -1,6 +1,7 @@
 using Audio;
 using InputLogic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 namespace Gameplay
@@ -19,10 +20,8 @@ namespace Gameplay
 
         private void Start()
         {
-            InputManager.Instance.GameplayInput.Start += ctx =>
-            {
-                StartMove();
-            };
+            InputManager.Instance.GameplayInput.Start += StartGameplayInputListener;
+            
             _offsetY = transform.position.y - paddle.position.y;
         }
 
@@ -94,6 +93,11 @@ namespace Gameplay
             }
 
             return vel;
+        }
+
+        private void StartGameplayInputListener(InputAction.CallbackContext ctx)
+        {
+            StartMove();
         }
     }
 }
