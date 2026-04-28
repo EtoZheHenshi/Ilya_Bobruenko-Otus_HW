@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class LoseWindowAnimator : MonoBehaviour
+    public sealed class LoseWindowAnimator : MonoBehaviour
     {
         [SerializeField] private FadeCanvasGroup losePanelShow;
         [SerializeField] private FallFromAbove trophyShow;

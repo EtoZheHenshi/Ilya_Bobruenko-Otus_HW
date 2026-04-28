@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tween
 {
-    public class FadeCanvasGroup : MonoBehaviour
+    public sealed class FadeCanvasGroup : MonoBehaviour
     {
         [SerializeField] private TweenParams tweenParams;
         [SerializeField] private float startAlpha;

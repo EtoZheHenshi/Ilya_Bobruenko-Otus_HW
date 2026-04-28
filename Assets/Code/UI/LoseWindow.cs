@@ -1,3 +1,4 @@
+using Audio;
 using Gameplay;
 using TMPro;
 using UnityEngine;
@@ -32,6 +33,7 @@ namespace UI
         
         private void Restart()
         {
+            AudioManager.Instance.PlaySound(AudioLibraryUI.Instance.Library["ButtonClick"]);
             RewardData.ResetReward();
             LevelData.RestartLevel();
         }

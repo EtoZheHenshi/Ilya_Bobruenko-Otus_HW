@@ -1,10 +1,10 @@
-using System;
+using Audio;
 using DG.Tweening;
 using UnityEngine;
 
 namespace Tween
 {
-    public class FallFromAbove : MonoBehaviour
+    public sealed class FallFromAbove : MonoBehaviour
     {
         [SerializeField] private TweenParams tweenParams;
         [SerializeField] private RectTransform rectTransform;
@@ -23,6 +23,7 @@ namespace Tween
             _sequence = DOTween.Sequence();
             
             _sequence.OnStart( () => gameObject.SetActive(true));
+            _sequence.OnComplete(() => AudioManager.Instance.PlaySound(AudioLibraryUI.Instance.Library["RewardShow"]));
 
             _sequence.Append(rectTransform.DOScale(1.0f, tweenParams.duration)
                 .SetEase(tweenParams.easeType)

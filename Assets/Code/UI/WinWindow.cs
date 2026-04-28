@@ -1,3 +1,5 @@
+using System.Linq;
+using Audio;
 using Gameplay;
 using TMPro;
 using Tween;
@@ -29,11 +31,13 @@ namespace UI
 
         private void GetAds()
         {
+            AudioManager.Instance.PlaySound(AudioLibraryUI.Instance.Library["ButtonClick"]);
             Debug.Log("Здесь будет реклама");
         }
 
         private void Collect()
         {
+            AudioManager.Instance.PlaySound(AudioLibraryUI.Instance.Library["ButtonClick"]);
             RewardData.AddLevelReward();
             LevelData.NextLevel();
         }
