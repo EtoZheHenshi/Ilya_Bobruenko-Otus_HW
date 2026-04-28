@@ -1,6 +1,8 @@
 using Audio;
+using DG.Tweening;
 using Gameplay;
 using InputLogic;
+using Tween;
 using UnityEngine;
 
 namespace UI
@@ -10,6 +12,7 @@ namespace UI
         [SerializeField] private WinWindow winWindow;
         [SerializeField] private LoseWindow loseWindow;
         [SerializeField] private Transform bricks;
+        [SerializeField] private FadeCanvasGroup winShowAnimation;
         
         [Header("Sounds")]
         [SerializeField] public SoundData gameOverSound;
@@ -23,6 +26,7 @@ namespace UI
 
         private void Show()
         {
+            winShowAnimation.GetSequence().Play();
             InputManager.Instance.GameplayInput.Disable();
             
             if (LevelData.LevelWin)

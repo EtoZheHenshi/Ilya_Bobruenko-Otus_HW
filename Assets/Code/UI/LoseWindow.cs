@@ -10,6 +10,7 @@ namespace UI
         [SerializeField] private Button restartBtn;
         [SerializeField] private TMP_Text coinText;
         [SerializeField] private TMP_Text trophyText;
+        [SerializeField] private LoseWindowAnimator animator;
 
         private void Start()
         {
@@ -20,6 +21,7 @@ namespace UI
         {
             UpdateText();
             gameObject.SetActive(true);
+            animator.Show();
         }
         
         private void UpdateText()
