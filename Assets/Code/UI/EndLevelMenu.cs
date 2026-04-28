@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class EndLevelMenu : MonoBehaviour
+    public sealed class EndLevelMenu : MonoBehaviour
     {
         [SerializeField] private WinWindow winWindow;
         [SerializeField] private LoseWindow loseWindow;

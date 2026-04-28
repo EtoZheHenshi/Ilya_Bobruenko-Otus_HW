@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class LoseWindow : MonoBehaviour
+    public sealed class LoseWindow : MonoBehaviour
     {
         [SerializeField] private Button restartBtn;
         [SerializeField] private TMP_Text coinText;

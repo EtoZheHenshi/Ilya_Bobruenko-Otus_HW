@@ -1,16 +1,18 @@
 using Gameplay;
 using TMPro;
+using Tween;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class WinWindow : MonoBehaviour
+    public sealed class WinWindow : MonoBehaviour
     {
         [SerializeField] private Button collectBtn;
         [SerializeField] private Button AdsBtn;
         [SerializeField] private TMP_Text coinText;
         [SerializeField] private TMP_Text trophyText;
+        [SerializeField] private WinWindowAnimator animator;
 
         private void Start()
         {
@@ -22,6 +24,7 @@ namespace UI
         {
             UpdateText();
             gameObject.SetActive(true);
+            animator.Show();
         }
 
         private void GetAds()

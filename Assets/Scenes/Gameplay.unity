@@ -119,43 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &341437
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 341438}
-  m_Layer: 5
-  m_Name: WinPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &341438
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 341437}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 614647701}
-  - {fileID: 939214451}
-  m_Father: {fileID: 839854614}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -200}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &22028807
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 281304976}
+  - component: {fileID: 281304977}
   m_Layer: 5
   m_Name: TrophyReward
   m_TagString: Untagged
@@ -511,6 +475,23 @@ RectTransform:
   m_AnchoredPosition: {x: -25, y: 0}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &281304977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281304975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed01c99fe5a14a1abb342d4bd9f1e17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tween.FallFromAbove
+  tweenParams:
+    duration: 1
+    delay: 0
+    easeType: 1
+  rectTransform: {fileID: 281304976}
 --- !u!1 &286991578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 512177127}
+  - component: {fileID: 512177128}
   m_Layer: 5
   m_Name: CoinReward
   m_TagString: Untagged
@@ -1196,6 +1178,23 @@ RectTransform:
   m_AnchoredPosition: {x: 25, y: 0}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &512177128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512177126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed01c99fe5a14a1abb342d4bd9f1e17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tween.FallFromAbove
+  tweenParams:
+    duration: 1
+    delay: 0
+    easeType: 1
+  rectTransform: {fileID: 512177127}
 --- !u!1 &567448909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,10 +1325,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 614647701}
+  - component: {fileID: 614647705}
   - component: {fileID: 614647703}
   - component: {fileID: 614647702}
+  - component: {fileID: 614647704}
   m_Layer: 5
-  m_Name: WinPanelImg
+  m_Name: WinImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1346,12 +1347,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 341438}
+  m_Children:
+  - {fileID: 939214451}
+  m_Father: {fileID: 839854614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -175}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &614647702
@@ -1392,6 +1394,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614647700}
   m_CullTransparentMesh: 1
+--- !u!225 &614647704
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614647700}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &614647705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614647700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da97b5d05584d96be174bc7d6cc555c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tween.FadeCanvasGroup
+  tweenParams:
+    duration: 1
+    delay: 0
+    easeType: 1
+  startAlpha: 0
+  endAlpha: 1
+  canvasGroup: {fileID: 614647704}
 --- !u!1 &648582231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,6 +2097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 839854614}
   - component: {fileID: 839854615}
+  - component: {fileID: 839854616}
   m_Layer: 5
   m_Name: WinWindow
   m_TagString: Untagged
@@ -2083,7 +2117,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 341438}
+  - {fileID: 614647701}
   - {fileID: 281304976}
   - {fileID: 512177127}
   - {fileID: 1284259891}
@@ -2110,6 +2144,23 @@ MonoBehaviour:
   AdsBtn: {fileID: 667385433}
   coinText: {fileID: 1353038388}
   trophyText: {fileID: 807693782}
+  animator: {fileID: 839854616}
+--- !u!114 &839854616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839854613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4047a721554551864d6b85f4b02073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.WinWindowAnimator
+  winPanelShow: {fileID: 614647705}
+  trophyShow: {fileID: 281304977}
+  coinShow: {fileID: 512177128}
+  buttonsShow: {fileID: 1284259893}
 --- !u!1 &893358556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,7 +2314,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 341438}
+  m_Father: {fileID: 614647701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2807,6 +2858,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1284259891}
+  - component: {fileID: 1284259893}
+  - component: {fileID: 1284259892}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -2835,6 +2888,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1284259892
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284259890}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1284259893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284259890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da97b5d05584d96be174bc7d6cc555c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tween.FadeCanvasGroup
+  tweenParams:
+    duration: 0.5
+    delay: 0
+    easeType: 1
+  startAlpha: 0
+  endAlpha: 1
+  canvasGroup: {fileID: 1284259892}
 --- !u!1 &1294808520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3730,9 +3814,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1837551847}
   - component: {fileID: 1837551851}
+  - component: {fileID: 1837551853}
   - component: {fileID: 1837551850}
   - component: {fileID: 1837551849}
   - component: {fileID: 1837551848}
+  - component: {fileID: 1837551852}
   m_Layer: 5
   m_Name: EndLevelMenu
   m_TagString: Untagged
@@ -3842,6 +3928,37 @@ MonoBehaviour:
   bricks: {fileID: 893358557}
   gameOverSound: {fileID: 11400000, guid: 27f6e4b5880b1a148b54895f6d42f519, type: 2}
   winningSound: {fileID: 11400000, guid: c898bfdbaf57658499413dbd24e2fe71, type: 2}
+--- !u!225 &1837551852
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837551846}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1837551853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837551846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da97b5d05584d96be174bc7d6cc555c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tween.ShowFromFadeCanvas
+  tweenParams:
+    duration: 0.5
+    delay: 0
+    easeType: 1
+  startAlpha: 0
+  endAlpha: 1
+  canvasGroup: {fileID: 1837551852}
 --- !u!1 &1920403918
 GameObject:
   m_ObjectHideFlags: 0
