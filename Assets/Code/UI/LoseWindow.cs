@@ -1,4 +1,5 @@
 using Audio;
+using DG.Tweening;
 using Gameplay;
 using TMPro;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace UI
         [SerializeField] private Button restartBtn;
         [SerializeField] private TMP_Text coinText;
         [SerializeField] private TMP_Text trophyText;
-        [SerializeField] private LoseWindowAnimator animator;
+        [SerializeField] private WinLoseWindowAnimator animator;
 
         private void Start()
         {
@@ -22,7 +23,7 @@ namespace UI
         {
             UpdateText();
             gameObject.SetActive(true);
-            animator.Show();
+            animator.Show().Play();
         }
         
         private void UpdateText()
@@ -35,7 +36,8 @@ namespace UI
         {
             AudioManager.Instance.PlaySound(AudioLibraryUI.Instance.Library["ButtonClick"]);
             RewardData.ResetReward();
-            LevelData.RestartLevel();
+            Sequence seq = animator.Hide().OnComplete(LevelData.RestartLevel);
+            seq.Play();
         }
     }
 }

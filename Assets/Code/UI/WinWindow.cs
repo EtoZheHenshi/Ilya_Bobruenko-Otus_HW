@@ -1,8 +1,7 @@
-using System.Linq;
 using Audio;
+using DG.Tweening;
 using Gameplay;
 using TMPro;
-using Tween;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,7 @@ namespace UI
         [SerializeField] private Button AdsBtn;
         [SerializeField] private TMP_Text coinText;
         [SerializeField] private TMP_Text trophyText;
-        [SerializeField] private WinWindowAnimator animator;
+        [SerializeField] private WinLoseWindowAnimator animator;
 
         private void Start()
         {
@@ -26,7 +25,7 @@ namespace UI
         {
             UpdateText();
             gameObject.SetActive(true);
-            animator.Show();
+            animator.Show().Play();
         }
 
         private void GetAds()
@@ -39,7 +38,8 @@ namespace UI
         {
             AudioManager.Instance.PlaySound(AudioLibraryUI.Instance.Library["ButtonClick"]);
             RewardData.AddLevelReward();
-            LevelData.NextLevel();
+            Sequence seq = animator.Hide().OnComplete(LevelData.NextLevel);
+            seq.Play();
         }
         
         private void UpdateText()

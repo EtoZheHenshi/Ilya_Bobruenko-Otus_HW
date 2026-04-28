@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Audio
 {
     [Serializable]
-    public class AudioLibraryFile
+    public sealed class AudioLibraryFile
     {
         [SerializeField] private string name;
         [SerializeField] private SoundData sound;

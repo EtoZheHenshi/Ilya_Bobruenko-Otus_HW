@@ -1223,6 +1223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567448910}
   - component: {fileID: 567448915}
+  - component: {fileID: 567448916}
   - component: {fileID: 567448913}
   - component: {fileID: 567448912}
   - component: {fileID: 567448911}
@@ -1367,6 +1368,25 @@ MonoBehaviour:
   startAlpha: 0
   endAlpha: 1
   canvasGroup: {fileID: 567448914}
+--- !u!114 &567448916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567448909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830fefb69d9046bfaf14de1352351c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tween.Scale
+  tweenParams:
+    duration: 1
+    delay: 0
+    easeType: 1
+  rectTransform: {fileID: 567448910}
+  startScale: {x: 0.1, y: 0.1, z: 0.1}
+  endScale: {x: 1, y: 1, z: 1}
 --- !u!1 &614647700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,6 +1506,8 @@ GameObject:
   m_Component:
   - component: {fileID: 648582232}
   - component: {fileID: 648582233}
+  - component: {fileID: 648582236}
+  - component: {fileID: 648582235}
   - component: {fileID: 648582234}
   m_Layer: 5
   m_Name: LoseWindow
@@ -1532,8 +1554,20 @@ MonoBehaviour:
   restartBtn: {fileID: 567448911}
   coinText: {fileID: 498541377}
   trophyText: {fileID: 2082960946}
-  animator: {fileID: 648582234}
---- !u!114 &648582234
+  animator: {fileID: 648582236}
+--- !u!225 &648582234
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648582231}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &648582235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1542,13 +1576,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 648582231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22acc994970f4c0c9d3f1569196d38dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2da97b5d05584d96be174bc7d6cc555c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI.LoseWindowAnimator
-  losePanelShow: {fileID: 833581558}
+  m_EditorClassIdentifier: Assembly-CSharp::Tween.FadeCanvasGroup
+  tweenParams:
+    duration: 1
+    delay: 0
+    easeType: 1
+  startAlpha: 1
+  endAlpha: 0
+  canvasGroup: {fileID: 648582234}
+--- !u!114 &648582236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648582231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4047a721554551864d6b85f4b02073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.WinLoseWindowAnimator
+  panelShow: {fileID: 833581558}
   trophyShow: {fileID: 1478519853}
   coinShow: {fileID: 1231747760}
-  buttonShow: {fileID: 567448915}
+  buttonsFade: {fileID: 567448915}
+  buttonsScale: {fileID: 567448916}
+  hideWindow: {fileID: 648582235}
 --- !u!1 &667385431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2201,6 +2256,8 @@ GameObject:
   - component: {fileID: 839854614}
   - component: {fileID: 839854615}
   - component: {fileID: 839854616}
+  - component: {fileID: 839854618}
+  - component: {fileID: 839854617}
   m_Layer: 5
   m_Name: WinWindow
   m_TagString: Untagged
@@ -2260,10 +2317,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4047a721554551864d6b85f4b02073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.WinWindowAnimator
-  winPanelShow: {fileID: 614647705}
+  panelShow: {fileID: 614647705}
   trophyShow: {fileID: 281304977}
   coinShow: {fileID: 512177128}
-  buttonsShow: {fileID: 1284259893}
+  buttonsFade: {fileID: 1284259893}
+  buttonsScale: {fileID: 1284259894}
+  hideWindow: {fileID: 839854618}
+--- !u!225 &839854617
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839854613}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &839854618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839854613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da97b5d05584d96be174bc7d6cc555c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tween.FadeCanvasGroup
+  tweenParams:
+    duration: 1
+    delay: 0
+    easeType: 1
+  startAlpha: 1
+  endAlpha: 0
+  canvasGroup: {fileID: 839854617}
 --- !u!1 &893358556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,6 +3083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1284259891}
   - component: {fileID: 1284259893}
+  - component: {fileID: 1284259894}
   - component: {fileID: 1284259892}
   m_Layer: 5
   m_Name: Buttons
@@ -3053,6 +3144,25 @@ MonoBehaviour:
   startAlpha: 0
   endAlpha: 1
   canvasGroup: {fileID: 1284259892}
+--- !u!114 &1284259894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284259890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830fefb69d9046bfaf14de1352351c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tween.Scale
+  tweenParams:
+    duration: 1
+    delay: 0
+    easeType: 1
+  rectTransform: {fileID: 1284259891}
+  startScale: {x: 0.1, y: 0.1, z: 0.1}
+  endScale: {x: 1, y: 1, z: 1}
 --- !u!1 &1294808520
 GameObject:
   m_ObjectHideFlags: 0
@@ -4054,7 +4164,7 @@ MonoBehaviour:
   winWindow: {fileID: 839854615}
   loseWindow: {fileID: 648582233}
   bricks: {fileID: 893358557}
-  winShowAnimation: {fileID: 1837551853}
+  windowShowAnimation: {fileID: 1837551853}
   gameOverSound: {fileID: 11400000, guid: 27f6e4b5880b1a148b54895f6d42f519, type: 2}
   winningSound: {fileID: 11400000, guid: c898bfdbaf57658499413dbd24e2fe71, type: 2}
 --- !u!225 &1837551852

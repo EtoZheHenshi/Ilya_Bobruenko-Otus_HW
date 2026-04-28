@@ -12,7 +12,7 @@ namespace UI
         [SerializeField] private WinWindow winWindow;
         [SerializeField] private LoseWindow loseWindow;
         [SerializeField] private Transform bricks;
-        [SerializeField] private FadeCanvasGroup winShowAnimation;
+        [SerializeField] private FadeCanvasGroup windowShowAnimation;
         
         [Header("Sounds")]
         [SerializeField] public SoundData gameOverSound;
@@ -26,7 +26,7 @@ namespace UI
 
         private void Show()
         {
-            winShowAnimation.GetSequence().Play();
+            windowShowAnimation.GetSequence().Play();
             InputManager.Instance.GameplayInput.Disable();
             
             if (LevelData.LevelWin)
