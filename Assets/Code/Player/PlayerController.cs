@@ -1,4 +1,5 @@
 using System;
+using Code.Guns;
 using Code.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,9 @@ namespace Code.Player
         [SerializeField] private CharacterController controller;
         [SerializeField] private float moveSpeed;
 
+        [Space] 
+        [SerializeField] private PlayerGunSelector gunSelector;
+
         private Vector2 _directionToMove;
         private Vector3 _directionToRotate;
         private Camera _camera;
@@ -17,6 +21,7 @@ namespace Code.Player
         private void Start()
         {
             InputManager.Instance.Gameplay.OnMove += GameplayOnMoveListener;
+            InputManager.Instance.Gameplay.OnShoot += GameplayOnShootListener;
             _camera = Camera.main;
         }
 
@@ -29,11 +34,6 @@ namespace Code.Player
         private void Move()
         {
             controller.Move(new Vector3(_directionToMove.x, 0, _directionToMove.y) * (moveSpeed * Time.deltaTime));
-        }
-
-        private void GameplayOnMoveListener(InputAction.CallbackContext ctx)
-        {
-            _directionToMove = ctx.ReadValue<Vector2>().normalized;
         }
         
         private void Rotate()
@@ -56,6 +56,19 @@ namespace Code.Player
                 
                 _directionToRotate = point - transform.position;
                 _directionToRotate.y = 0;
+            }
+        }
+        
+        private void GameplayOnMoveListener(InputAction.CallbackContext ctx)
+        {
+            _directionToMove = ctx.ReadValue<Vector2>().normalized;
+        }
+
+        private void GameplayOnShootListener(InputAction.CallbackContext ctx)
+        {
+            if (gunSelector.ActiveGun != null)
+            {
+                gunSelector.ActiveGun.Shoot();
             }
         }
     }
