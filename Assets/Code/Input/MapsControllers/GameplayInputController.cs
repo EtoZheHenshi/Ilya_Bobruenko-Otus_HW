@@ -14,8 +14,8 @@ namespace Code.Input.MapsControllers
             map.Move.performed += OnMoveInvoke;
             map.Move.canceled += OnMoveInvoke;
             
-            map.Shoot.performed += OnShootInvoke;
-            //map.Shoot.canceled += OnShootInvoke;
+            map.Shoot.started += OnShootInvoke;
+            map.Shoot.canceled += OnShootInvoke;
             
             map.Pause.started += OnPauseInvoke;
         }

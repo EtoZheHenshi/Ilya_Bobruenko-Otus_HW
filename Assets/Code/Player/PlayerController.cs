@@ -17,6 +17,7 @@ namespace Code.Player
         private Vector2 _directionToMove;
         private Vector3 _directionToRotate;
         private Camera _camera;
+        private bool _isShooting;
 
         private void Start()
         {
@@ -29,6 +30,7 @@ namespace Code.Player
         {
             Move();
             Rotate();
+            Shoot();
         }
 
         private void Move()
@@ -66,7 +68,12 @@ namespace Code.Player
 
         private void GameplayOnShootListener(InputAction.CallbackContext ctx)
         {
-            if (gunSelector.ActiveGun != null)
+            _isShooting = !_isShooting;
+        }
+
+        public void Shoot()
+        {
+            if (_isShooting && gunSelector.ActiveGun != null)
             {
                 gunSelector.ActiveGun.Shoot();
             }
