@@ -148,7 +148,7 @@ namespace Code.Input
                 {
                     ""name"": ""down"",
                     ""id"": ""3d155cf3-8024-4a3b-a65c-f96d72174b5c"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -159,7 +159,7 @@ namespace Code.Input
                 {
                     ""name"": ""left"",
                     ""id"": ""95a505ea-9edf-4225-b4d3-4cfe59085f75"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

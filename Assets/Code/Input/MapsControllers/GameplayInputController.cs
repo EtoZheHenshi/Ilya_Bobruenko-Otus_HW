@@ -12,6 +12,7 @@ namespace Code.Input.MapsControllers
         public GameplayInputController(PlayerInput.GameplayActions map)
         {
             map.Move.performed += OnMoveInvoke;
+            map.Move.canceled += OnMoveInvoke;
             
             map.Shoot.started += OnShootInvoke;
             map.Shoot.canceled += OnShootInvoke;

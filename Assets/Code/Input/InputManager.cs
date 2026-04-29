@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Code.Input
 {
-    public class InputManager : MonoBehaviour
+    public sealed class InputManager : MonoBehaviour
     {
         public static InputManager Instance { get; private set; }
         
