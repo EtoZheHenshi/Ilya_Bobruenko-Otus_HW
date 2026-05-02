@@ -8,6 +8,7 @@ namespace Code.Input
     {
         public static InputManager Instance { get; private set; }
         
+        public bool Initialized { get; private set; }
         public InputActionMap CurrentMap { get; private set; }
         public GameplayInputController Gameplay { get; private set; }
         public MainMenuInputController MainMenu { get; private set; }
@@ -41,6 +42,7 @@ namespace Code.Input
             }
             
             SwitchActiveMap("Gameplay");
+            Initialized = true;
         }
 
         public void SwitchActiveMap(string mapName)

@@ -17,7 +17,7 @@ namespace Code.Guns
         public ShootConfigSO ShootConfig;
         public TrailConfigSO TrailConfig;
         
-        private MonoBehaviour ActiveMonoBehaviour; //?
+        private MonoBehaviour ActiveMonoBehaviour;
         private GameObject Model;
         private float LastShootTime;
         private ParticleSystem ShootSystem;
@@ -42,11 +42,11 @@ namespace Code.Guns
             if (Time.time > ShootConfig.FireRate + LastShootTime)
             {
                 LastShootTime = Time.time;
-                ShootSystem.Play(); //?
+                ShootSystem.Play();
                 Vector3 shootDirection = ShootSystem.transform.forward
                                          + new Vector3(
                                              Random.Range(-ShootConfig.Spread.x, ShootConfig.Spread.x),
-                                             Random.Range(-ShootConfig.Spread.y, ShootConfig.Spread.y),
+                                             0,
                                              Random.Range(-ShootConfig.Spread.z, ShootConfig.Spread.z)
                                          );
                 shootDirection.Normalize();
@@ -87,7 +87,7 @@ namespace Code.Guns
             instance.transform.position = startPoint;
             yield return null;
             
-            instance.emitting = true; //?
+            instance.emitting = true;
             
             float distance = Vector3.Distance(startPoint, endPoint);
             float remainingDistance = distance;
@@ -117,7 +117,7 @@ namespace Code.Guns
                 // );
             }
             
-            yield return new WaitForSeconds(TrailConfig.Duration); //?
+            yield return new WaitForSeconds(TrailConfig.Duration);
             yield return null;
             instance.emitting = false;
             instance.gameObject.SetActive(false);

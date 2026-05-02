@@ -10,6 +10,7 @@ namespace Code.Player
     {
         [SerializeField] private CharacterController controller;
         [SerializeField] private float moveSpeed;
+        [SerializeField] private Transform crosshair;
 
         [Space] 
         [SerializeField] private PlayerGunSelector gunSelector;
@@ -30,6 +31,7 @@ namespace Code.Player
         {
             Move();
             Rotate();
+            MoveCrosshair();
             Shoot();
         }
 
@@ -44,6 +46,11 @@ namespace Code.Player
             
             Quaternion targetRotation = Quaternion.LookRotation(_directionToRotate);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+        }
+
+        private void MoveCrosshair()
+        {
+            crosshair.position = new Vector3(_directionToRotate.x, crosshair.position.y, _directionToRotate.z);
         }
 
         private void SetDirectionToRotate()
