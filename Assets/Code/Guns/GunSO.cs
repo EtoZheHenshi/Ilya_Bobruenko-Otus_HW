@@ -1,4 +1,5 @@
 using System.Collections;
+using Code.Enemies;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -13,6 +14,7 @@ namespace Code.Guns
         public GameObject ModelPrefab;
         public Vector3 SpawnPoint;
         public Vector3 SpawnRotation;
+        public int Damage;
 
         public ShootConfigSO ShootConfig;
         public TrailConfigSO TrailConfig;
@@ -107,6 +109,11 @@ namespace Code.Guns
 
             if (hit.collider != null)
             {
+                if (hit.collider.TryGetComponent(out IDamageable damageable))
+                {
+                    damageable.TakeDamage(Damage);
+                }
+                
                 Debug.Log("Попадание");
                 // SurfaceManager.Instance.HandleImpact(
                 //     hit.transform.gameObject,
