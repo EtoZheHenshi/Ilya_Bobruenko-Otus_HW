@@ -1,3 +1,4 @@
+using Code.Input;
 using UnityEngine;
 
 namespace Code.GameLogic
@@ -18,6 +19,31 @@ namespace Code.GameLogic
                 case GameStateType.Gameplay:
                 {
                     CursorHide();
+                    InputManager.Instance.SwitchActiveMap("Gameplay");
+                    break;
+                }
+                case GameStateType.MainMenu:
+                {
+                    CursorShow();
+                    InputManager.Instance.SwitchActiveMap("MainMenu");
+                    break;
+                }
+                case GameStateType.PauseMenu:
+                {
+                    CursorShow();
+                    InputManager.Instance.SwitchActiveMap("PauseMenu");
+                    break;
+                }
+                case GameStateType.UpgradeMenu:
+                {
+                    CursorShow();
+                    InputManager.Instance.SwitchActiveMap("UpgradeMenu");
+                    break;
+                }
+                case GameStateType.None:
+                {
+                    CursorHide();
+                    InputManager.Instance.DisableActiveMap();
                     break;
                 }
                 default:

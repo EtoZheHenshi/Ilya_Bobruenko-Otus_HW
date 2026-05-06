@@ -1,4 +1,3 @@
-using System;
 using Code.Guns;
 using Code.Input;
 using UnityEngine;
@@ -17,22 +16,28 @@ namespace Code.Player
 
         private Vector2 _directionToMove;
         private Vector3 _directionToRotate;
+        private Vector3 _lookPoint;
         private Camera _camera;
         private bool _isShooting;
+        private bool _isInitialized;
 
-        private void Start()
+        private void Update()
+        {
+            if (!_isInitialized) return;
+            
+            Move();
+            SetDirectionToRotate();
+            MoveCrosshair();
+            Rotate();
+            Shoot();
+        }
+
+        public void Initialize()
         {
             InputManager.Instance.Gameplay.OnMove += GameplayOnMoveListener;
             InputManager.Instance.Gameplay.OnShoot += GameplayOnShootListener;
             _camera = Camera.main;
-        }
-
-        private void Update()
-        {
-            Move();
-            Rotate();
-            MoveCrosshair();
-            Shoot();
+            _isInitialized = true;
         }
 
         private void Move()
@@ -42,15 +47,16 @@ namespace Code.Player
         
         private void Rotate()
         {
-            SetDirectionToRotate();
-            
-            Quaternion targetRotation = Quaternion.LookRotation(_directionToRotate);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+            if (_directionToRotate.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(_directionToRotate);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+            }
         }
 
         private void MoveCrosshair()
         {
-            crosshair.position = new Vector3(_directionToRotate.x, crosshair.position.y, _directionToRotate.z);
+            crosshair.position = new Vector3(_lookPoint.x, crosshair.position.y, _lookPoint.z);
         }
 
         private void SetDirectionToRotate()
@@ -61,9 +67,9 @@ namespace Code.Player
 
             if (plane.Raycast(ray, out float distance))
             {
-                Vector3 point = ray.GetPoint(distance);
+                _lookPoint = ray.GetPoint(distance);
                 
-                _directionToRotate = point - transform.position;
+                _directionToRotate = _lookPoint - transform.position;
                 _directionToRotate.y = 0;
             }
         }
@@ -75,7 +81,8 @@ namespace Code.Player
 
         private void GameplayOnShootListener(InputAction.CallbackContext ctx)
         {
-            _isShooting = !_isShooting;
+            if (ctx.started) _isShooting = true;
+            if (ctx.canceled) _isShooting = false;
         }
 
         public void Shoot()

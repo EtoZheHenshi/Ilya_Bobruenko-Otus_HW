@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Code.Guns
         [Header("Runtime Filled")] 
         public GunSO ActiveGun;
 
-        private void Start()
+        public void Initialize()
         {
             GunSO gun = Guns.Find(gun => gun.Type == Gun);
 

@@ -1,3 +1,4 @@
+using System;
 using Code.Input.MapsControllers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,14 +9,13 @@ namespace Code.Input
     {
         public static InputManager Instance { get; private set; }
         
-        public bool Initialized { get; private set; }
-        public InputActionMap CurrentMap { get; private set; }
         public GameplayInputController Gameplay { get; private set; }
         public MainMenuInputController MainMenu { get; private set; }
         public PauseMenuInputController PauseMenu { get; private set; }
         public UpgradeMenuController UpgradeMenu { get; private set; }
         
         private PlayerInput _playerInput;
+        private InputActionMap _currentMap;
 
         private void Awake()
         {
@@ -26,41 +26,56 @@ namespace Code.Input
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-            
-            _playerInput = new PlayerInput();
-            _playerInput.Enable();
-            
-            Gameplay = new GameplayInputController(_playerInput.Gameplay);
-            MainMenu = new MainMenuInputController(_playerInput.MainMenu);
-            PauseMenu = new PauseMenuInputController(_playerInput.PauseMenu);
-            UpgradeMenu = new UpgradeMenuController(_playerInput.UpgradeMenu);
+            //DontDestroyOnLoad(gameObject);
+        }
 
-            foreach (InputActionMap map in _playerInput.asset.actionMaps)
+        public bool Initialize()
+        {
+            try
             {
-                map.Disable();
-            }
+                _playerInput = new PlayerInput();
+                _playerInput.Enable();
             
-            SwitchActiveMap("Gameplay");
-            Initialized = true;
+                Gameplay = new GameplayInputController(_playerInput.Gameplay);
+                MainMenu = new MainMenuInputController(_playerInput.MainMenu);
+                PauseMenu = new PauseMenuInputController(_playerInput.PauseMenu);
+                UpgradeMenu = new UpgradeMenuController(_playerInput.UpgradeMenu);
+
+                foreach (InputActionMap map in _playerInput.asset.actionMaps)
+                {
+                    map.Disable();
+                }
+                
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Ошибка инициализации InputManager - {e.Message}");
+                return false;
+            }
         }
 
         public void SwitchActiveMap(string mapName)
         {
-            CurrentMap?.Disable();
+            _currentMap?.Disable();
             
-            CurrentMap = _playerInput.asset.FindActionMap(mapName);
-            CurrentMap.Enable();
+            _currentMap = _playerInput.asset.FindActionMap(mapName);
+            _currentMap.Enable();
         }
 
-        private void OnEnable()
+        public void DisableActiveMap()
         {
-            _playerInput.Enable();
+            _currentMap?.Disable();
         }
 
-        private void OnDisable()
-        {
-            _playerInput.Disable();
-        }
+        // private void OnEnable()
+        // {
+        //     _playerInput.Enable();
+        // }
+        //
+        // private void OnDisable()
+        // {
+        //     _playerInput.Disable();
+        // }
     }
 }

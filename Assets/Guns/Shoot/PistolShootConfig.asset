@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.Guns.ShootConfigSO
   HitMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   Spread: {x: 0.1, y: 0.1, z: 0.1}
   FireRate: 0.25
