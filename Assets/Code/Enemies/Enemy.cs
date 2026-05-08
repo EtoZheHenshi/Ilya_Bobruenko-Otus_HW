@@ -7,6 +7,7 @@ namespace Code.Enemies
         [SerializeField] private int maxHealth;
         
         private int _currentHealth;
+        private EnemyHitFlash _hitFlash;
         
         public int MaxHealth => maxHealth;
         public int CurrentHealth => _currentHealth;
@@ -14,6 +15,7 @@ namespace Code.Enemies
         private void Start()
         {
             _currentHealth = maxHealth;
+            _hitFlash = GetComponent<EnemyHitFlash>();
         }
 
         public void TakeDamage(int damage)
@@ -24,6 +26,7 @@ namespace Code.Enemies
             {
                 Debug.Log("Die");
             }
+            _hitFlash.Flash();
         }
     }
 }
