@@ -6,12 +6,11 @@ namespace Code.Enemies
     public class EnemyHitFlash : MonoBehaviour
     {
         private Renderer[] _renderers;
-
         private MaterialPropertyBlock _block;
         
         private static readonly int HitStrengthID = Shader.PropertyToID("_HitStrength");
 
-        private void Start()
+        private void Awake()
         {
             _renderers = GetComponentsInChildren<Renderer>();
             _block = new MaterialPropertyBlock();

@@ -1,14 +1,13 @@
 using System;
 using Code.Input.MapsControllers;
+using Code.Templates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Code.Input
 {
-    public sealed class InputManager : MonoBehaviour
+    public sealed class InputManager : SingletonMonoBehaviour<InputManager>
     {
-        public static InputManager Instance { get; private set; }
-        
         public GameplayInputController Gameplay { get; private set; }
         public MainMenuInputController MainMenu { get; private set; }
         public PauseMenuInputController PauseMenu { get; private set; }
@@ -16,18 +15,6 @@ namespace Code.Input
         
         private PlayerInput _playerInput;
         private InputActionMap _currentMap;
-
-        private void Awake()
-        {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            //DontDestroyOnLoad(gameObject);
-        }
 
         public bool Initialize()
         {

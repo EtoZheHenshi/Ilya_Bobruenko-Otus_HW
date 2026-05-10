@@ -1,48 +1,43 @@
 using System;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Code.Enemies
 {
-    [RequireComponent(typeof(EnemyHitFlash))]
-    public abstract class Enemy : MonoBehaviour, IDamageable
+    [RequireComponent(
+        typeof(EnemyHealthSystem),
+        typeof(EnemyHitFlash), 
+        typeof(EnemyController)
+        )
+    ]
+    public abstract class Enemy : MonoBehaviour
     {
-        [SerializeField] private int maxHealth;
-        [SerializeField] private GameObject player;
-        
-        private int _currentHealth;
+        private EnemyHealthSystem _healthSystem;
         private EnemyHitFlash _hitFlash;
-        private NavMeshAgent _agent;
+        private EnemyController _controller;
+
+        public virtual EnemyType Type => EnemyType.None;
         
-        public int MaxHealth => maxHealth;
-        public int CurrentHealth => _currentHealth;
+        private void Awake()
+        {
+            _healthSystem = GetComponent<EnemyHealthSystem>();
+            _hitFlash = GetComponent<EnemyHitFlash>();
+            _controller = GetComponent<EnemyController>();
+        }
 
         private void Start()
         {
-            _currentHealth = maxHealth;
-            _hitFlash = GetComponent<EnemyHitFlash>();
-            _agent = GetComponent<NavMeshAgent>();
+            Initialize();
         }
 
-        private void Update()
+        public void Initialize()
         {
-            MoveToPlayer();
+            _healthSystem.OnTakeDamage += _hitFlash.Flash;
+            _healthSystem.OnDeath += Death;
         }
 
-        private void MoveToPlayer()
+        protected virtual void Death()
         {
-            _agent.SetDestination(player.transform.position);
-        }
-
-        public void TakeDamage(int damage)
-        {
-            _currentHealth -= damage;
-
-            if (_currentHealth <= 0)
-            {
-                Debug.Log("Die");
-            }
-            _hitFlash.Flash();
+            Destroy(gameObject);
         }
     }
 }

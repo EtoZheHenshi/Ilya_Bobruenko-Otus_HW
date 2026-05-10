@@ -1,5 +1,5 @@
 using Code.Guns;
-using Code.Player;
+using Code.PlayerLogic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,9 +7,6 @@ namespace Code.GameLogic
 {
     public class GameplaySceneEntryPoint : MonoBehaviour
     {
-        [SerializeField] private PlayerController playerController;
-        [SerializeField] private PlayerGunSelector playerGunSelector;
-        
         private void Start()
         {
             if (!Bootstrap.IsInitialized)
@@ -18,9 +15,8 @@ namespace Code.GameLogic
                 SceneManager.LoadScene("Bootstrap");
                 return;
             }
-            
-            playerController.Initialize();
-            playerGunSelector.Initialize();
+
+            Player.Instance.Initialize();
             
             GameState.SwitchGameState(GameStateType.Gameplay);
         }

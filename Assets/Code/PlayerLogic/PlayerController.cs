@@ -3,7 +3,7 @@ using Code.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Code.Player
+namespace Code.PlayerLogic
 {
     public sealed class PlayerController : MonoBehaviour
     {

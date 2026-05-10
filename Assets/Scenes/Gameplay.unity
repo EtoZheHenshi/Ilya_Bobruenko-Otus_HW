@@ -734,6 +734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1008893585}
+  - component: {fileID: 1008893591}
   - component: {fileID: 1008893588}
   - component: {fileID: 1008893589}
   - component: {fileID: 1008893587}
@@ -760,6 +761,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 62205040}
+  - {fileID: 1104414575}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1008893586
@@ -873,6 +875,18 @@ CapsuleCollider:
   m_Height: 0.9
   m_Direction: 1
   m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!114 &1008893591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008893584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e14a152d935470faf36dc54b48c65c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.PlayerLogic.Player
 --- !u!1 &1104414573
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,12 +971,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104414573}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.01, z: 1.7}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.7, y: 0.6999999, z: 0.6999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1008893585}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &1144584816 stripped
 Transform:
@@ -1284,7 +1298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfdb772bad104c028c265a1cb6820d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.GameLogic.GameplaySceneEntryPoint
-  playerController: {fileID: 1008893588}
   playerGunSelector: {fileID: 1008893589}
 --- !u!4 &1859547353
 Transform:
@@ -1711,10 +1724,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155342731798770183, guid: f5c9bb58134253e45b3f404487dbf5c8, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1008893584}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1786,7 +1795,6 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1874205071}
   - {fileID: 1008893585}
-  - {fileID: 1104414575}
   - {fileID: 926175923176188557}
   - {fileID: 1859547353}
   - {fileID: 184070143}
