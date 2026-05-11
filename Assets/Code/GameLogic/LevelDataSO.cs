@@ -15,7 +15,7 @@ namespace Code.GameLogic
         [Serializable]
         public sealed class EnemyCount
         {
-            public EnemyType enemyType;
+            public EnemyConfigSO enemyConfig;
             public int count;
         }
     }

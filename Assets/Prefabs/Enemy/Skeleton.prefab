@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2676982aba1f47be927d4f205b36fb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.Skeleton
+  config: {fileID: 11400000, guid: 05f1dd2373702624ebc28fb09ef8bfe9, type: 2}
 --- !u!114 &4338102358238793328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +87,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8de63b6b7504b96837a62cdfb75cca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.EnemyHealthSystem
-  maxHealth: 10
 --- !u!195 &3318328086850301148
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442599393851628881}
   m_Enabled: 1
-  m_AgentTypeID: -902729914
+  m_AgentTypeID: 0
   m_Radius: 0.2
   m_Speed: 2
   m_Acceleration: 8

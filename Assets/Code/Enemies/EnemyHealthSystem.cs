@@ -5,19 +5,19 @@ namespace Code.Enemies
 {
     public sealed class EnemyHealthSystem : MonoBehaviour, IDamageable
     {
-        [SerializeField] private int maxHealth;
-        
+        private int _maxHealth;
         private int _currentHealth;
         
-        public int MaxHealth => maxHealth;
+        public int MaxHealth => _maxHealth;
         public int CurrentHealth => _currentHealth;
         
         public event Action OnTakeDamage;
         public event Action OnDeath;
 
-        private void Start()
+        public void Initialize(int maxHealth)
         {
-            _currentHealth = maxHealth;
+            _maxHealth = maxHealth;
+            _currentHealth = _maxHealth;
         }
         
         public void TakeDamage(int damage)

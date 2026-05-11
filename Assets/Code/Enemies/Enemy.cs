@@ -1,4 +1,4 @@
-using System;
+using Code.PlayerLogic;
 using UnityEngine;
 
 namespace Code.Enemies
@@ -11,11 +11,10 @@ namespace Code.Enemies
     ]
     public abstract class Enemy : MonoBehaviour
     {
+        [SerializeField] private EnemyConfigSO config;
         private EnemyHealthSystem _healthSystem;
         private EnemyHitFlash _hitFlash;
         private EnemyController _controller;
-
-        public virtual EnemyType Type => EnemyType.None;
         
         private void Awake()
         {
@@ -31,8 +30,11 @@ namespace Code.Enemies
 
         public void Initialize()
         {
+            _healthSystem.Initialize(config.MaxHealth);
             _healthSystem.OnTakeDamage += _hitFlash.Flash;
             _healthSystem.OnDeath += Death;
+            
+            _controller.Initialize(Player.Instance.transform);
         }
 
         protected virtual void Death()

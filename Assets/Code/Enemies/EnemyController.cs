@@ -1,5 +1,3 @@
-using System;
-using Code.PlayerLogic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +7,7 @@ namespace Code.Enemies
     public sealed class EnemyController : MonoBehaviour
     {
         private NavMeshAgent _agent;
+        private Transform _target;
 
         private void Awake()
         {
@@ -20,9 +19,14 @@ namespace Code.Enemies
             MoveToPlayer();
         }
 
+        public void Initialize(Transform target)
+        {
+            _target = target;
+        }
+
         private void MoveToPlayer()
         {
-            _agent.SetDestination(Player.Instance.transform.position);
+            _agent.SetDestination(_target.position);
         }
     }
 }

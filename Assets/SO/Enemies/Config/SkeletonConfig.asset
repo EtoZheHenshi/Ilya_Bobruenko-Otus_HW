@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5a966848894c70bf354eb364183938, type: 3}
+  m_Name: SkeletonConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.EnemyConfigSO
+  maxHealth: 10
+  spawnTags:
+  - {fileID: 11400000, guid: ad10877cf67f3c844b7ef1d592f8393e, type: 2}
+  enemyPrefab: {fileID: 7155342731798770183, guid: f5c9bb58134253e45b3f404487dbf5c8, type: 3}
