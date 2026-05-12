@@ -16,6 +16,8 @@ namespace Code.Enemies
         private EnemyHitFlash _hitFlash;
         private EnemyController _controller;
         
+        public EnemyHealthSystem HealthSystem => _healthSystem;
+        
         private void Awake()
         {
             _healthSystem = GetComponent<EnemyHealthSystem>();
