@@ -8,6 +8,8 @@ namespace Code.Enemies
     {
         private NavMeshAgent _agent;
         private Transform _target;
+        
+        private bool _isInitialized;
 
         private void Awake()
         {
@@ -16,12 +18,14 @@ namespace Code.Enemies
 
         private void Update()
         {
+            if(!_isInitialized) return;
             MoveToPlayer();
         }
 
         public void Initialize(Transform target)
         {
             _target = target;
+            _isInitialized = true;
         }
 
         private void MoveToPlayer()

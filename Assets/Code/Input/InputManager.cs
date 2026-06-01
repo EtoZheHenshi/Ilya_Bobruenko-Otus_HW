@@ -55,6 +55,11 @@ namespace Code.Input
             _currentMap?.Disable();
         }
 
+        public void EnableActiveMap()
+        {
+            _currentMap?.Enable();
+        }
+
         // private void OnEnable()
         // {
         //     _playerInput.Enable();

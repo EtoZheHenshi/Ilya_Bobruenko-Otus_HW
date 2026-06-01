@@ -8,18 +8,10 @@ namespace Code.Enemies.WaveSystem
 {
     public sealed class WaveManager : MonoBehaviour
     {
-        [SerializeField] private WaveConfigSO waveConfig;
-        [SerializeField] private EnemySpawnerSystem enemySpawnerSystem;
-
         public event Action OnWavesFinished;
         
-        private Dictionary<WaveEntry, List<EnemySpawner>> _waves = new();
+        private readonly Dictionary<WaveEntry, List<EnemySpawner>> _waves = new();
         private int _countOfAllEnemiesInWaves;
-        
-        public void Initialize()
-        {
-            FillWaves();
-        }
 
         public IEnumerator StartAllWaves()
         {
@@ -31,6 +23,21 @@ namespace Code.Enemies.WaveSystem
             yield return new WaitUntil(() => _countOfAllEnemiesInWaves == 0);
             
             OnWavesFinished?.Invoke();
+        }
+
+        public void FillWaves(WaveConfigSO waveConfig, EnemySpawnerSystem enemySpawnerSystem)
+        {
+            _waves.Clear();
+            _countOfAllEnemiesInWaves = 0;
+            
+            for (int i = 0; i < waveConfig.WaveEntries.Count; i++)
+            {
+                List<EnemySpawner> supportedSpawners = enemySpawnerSystem.GetSupportedSpawners(
+                    waveConfig.WaveEntries[i].enemyConfig);
+                _waves.Add(waveConfig.WaveEntries[i], supportedSpawners);
+                
+                _countOfAllEnemiesInWaves += waveConfig.WaveEntries[i].count;
+            }
         }
 
         private IEnumerator StartWave(WaveEntry waveEntry, List<EnemySpawner> supportedSpawners)
@@ -49,18 +56,6 @@ namespace Code.Enemies.WaveSystem
         private void HandleEnemyDeath()
         {
             _countOfAllEnemiesInWaves--;
-        }
-
-        private void FillWaves()
-        {
-            for (int i = 0; i < waveConfig.WaveEntries.Count; i++)
-            {
-                List<EnemySpawner> supportedSpawners = enemySpawnerSystem.GetSupportedSpawners(
-                    waveConfig.WaveEntries[i].enemyConfig);
-                _waves.Add(waveConfig.WaveEntries[i], supportedSpawners);
-                
-                _countOfAllEnemiesInWaves += waveConfig.WaveEntries[i].count;
-            }
         }
     }
 }
