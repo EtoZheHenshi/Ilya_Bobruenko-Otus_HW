@@ -20,7 +20,7 @@ namespace Code.Enemies
         
         private void Awake()
         {
-            _healthSystem = new  HealthSystem(_config.MaxHealth);
+            _healthSystem = new HealthSystem(_config.MaxHealth);
             _hitFlash = GetComponent<HitFlash>();
             _controller = GetComponent<EnemyController>();
         }
@@ -36,6 +36,11 @@ namespace Code.Enemies
             _healthSystem.OnDeath += Death;
             
             _controller.Initialize(Player.Instance.transform);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            _healthSystem.TakeDamage(damage);
         }
 
         protected virtual void Death()

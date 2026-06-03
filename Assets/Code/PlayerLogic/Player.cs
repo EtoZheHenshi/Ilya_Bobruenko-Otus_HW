@@ -1,4 +1,3 @@
-using System;
 using Code.GeneralLogic;
 using Code.Guns;
 using Code.Templates;
@@ -44,6 +43,14 @@ namespace Code.PlayerLogic
             if (!_isInitialized) return;
             
             _playerLvlSystem.UpdateTick();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out IPickupable pickupable))
+            {
+                pickupable.Pickup(this);
+            }
         }
 
         public void Initialize()

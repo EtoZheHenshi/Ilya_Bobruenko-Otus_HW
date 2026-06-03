@@ -1,5 +1,6 @@
 using System.Collections;
 using Code.Enemies;
+using Code.GeneralLogic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -109,9 +110,9 @@ namespace Code.Guns
 
             if (hit.collider != null)
             {
-                if (hit.collider.TryGetComponent(out IDamageable damageable))
+                if (hit.collider.TryGetComponent(out Enemy enemy))
                 {
-                    damageable.TakeDamage(Damage);
+                    enemy.TakeDamage(Damage);
                 }
                 
                 Debug.Log("Попадание");

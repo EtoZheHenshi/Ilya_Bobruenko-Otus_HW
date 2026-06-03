@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2676982aba1f47be927d4f205b36fb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.Skeleton
-  _config: {fileID: 0}
+  _config: {fileID: 11400000, guid: 05f1dd2373702624ebc28fb09ef8bfe9, type: 2}
 --- !u!114 &4338102358238793328
 MonoBehaviour:
   m_ObjectHideFlags: 0

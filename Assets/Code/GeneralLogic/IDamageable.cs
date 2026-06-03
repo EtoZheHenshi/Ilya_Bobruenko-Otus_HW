@@ -1,6 +1,6 @@
 using System;
 
-namespace Code.Enemies
+namespace Code.GeneralLogic
 {
     public interface IDamageable
     {
