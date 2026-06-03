@@ -1,9 +1,12 @@
+using System;
+
 namespace Code.GeneralLogic
 {
-    public readonly struct StatModifier
+    [Serializable]
+    public struct StatModifier
     {
-        public readonly float Value;
-        public readonly StatModifierType Type;
+        public float Value;
+        public StatModifierType Type;
 
         public StatModifier(float value, StatModifierType type)
         {

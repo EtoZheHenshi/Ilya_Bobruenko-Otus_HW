@@ -15,7 +15,7 @@ namespace Code.GeneralLogic
 
         public float Value => GetValue();
 
-        public void AddModifier(StatModifier modifier)
+        public void AddModifierSO(StatModifier modifier)
         {
             _modifiers.Add(modifier);
         }

@@ -17,6 +17,6 @@ MonoBehaviour:
     _maxValue: 20
     _minValue: 1
   _moveSpeed:
-    _baseValue: 5
+    _baseValue: 3
     _maxValue: 10
     _minValue: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Code.Items.ItemEffectTypes
 {
     [CreateAssetMenu(fileName = "HealEffect", menuName = "Items/ItemEffects/HealEffect")]
-    public sealed class HealEffect : ItemEffect
+    public sealed class HealEffectSO : ItemEffectSO
     {
         [SerializeField] private int _healAmount;
         

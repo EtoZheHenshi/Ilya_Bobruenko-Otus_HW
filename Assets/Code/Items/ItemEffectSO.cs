@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Code.Items
 {
-    public abstract class ItemEffect : ScriptableObject
+    public abstract class ItemEffectSO : ScriptableObject
     {
         public abstract void Apply(Player player); 
     }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388b53c5d31f4899b30d5d1bb8c880e1, type: 3}
+  m_Name: PlayerMoveSpeedUpgrade
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Upgrades.StatUpgrades.PlayerMoveSpeedUpgradeSO
+  _title: Move Speed Upgrade
+  _description: 'Increases character speed by {0} point '
+  _statModifier:
+    Value: 2
+    Type: 0
+  _playerStats: {fileID: 11400000, guid: a7d82cf5828a1e940b20de578198e5a4, type: 2}

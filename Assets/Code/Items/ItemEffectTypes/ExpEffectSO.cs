@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Code.Items.ItemEffectTypes
 {
     [CreateAssetMenu(fileName = "ExpEffect", menuName = "Items/ItemEffects/ExpEffect")]
-    public sealed class ExpEffect : ItemEffect
+    public sealed class ExpEffectSO : ItemEffectSO
     {
         [SerializeField] private int _expAmount;
         
