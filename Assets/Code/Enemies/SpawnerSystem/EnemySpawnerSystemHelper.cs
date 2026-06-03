@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Code.Enemies
+namespace Code.Enemies.SpawnerSystem
 {
     public sealed class EnemySpawnerSystemHelper : MonoBehaviour
     {

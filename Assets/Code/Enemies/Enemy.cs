@@ -1,4 +1,5 @@
 using Code.GeneralLogic;
+using Code.Items;
 using Code.PlayerLogic;
 using UnityEngine;
 
@@ -12,27 +13,28 @@ namespace Code.Enemies
     public abstract class Enemy : MonoBehaviour
     {
         [SerializeField] private EnemyConfigSO _config;
-        private HealthSystem _healthSystem;
+        
         private HitFlash _hitFlash;
         private EnemyController _controller;
+        
+        private HealthSystem _healthSystem;
+        private DropSystem _dropSystem;
         
         public HealthSystem HealthSystem => _healthSystem;
         
         private void Awake()
         {
-            _healthSystem = new HealthSystem(_config.MaxHealth);
             _hitFlash = GetComponent<HitFlash>();
             _controller = GetComponent<EnemyController>();
-        }
-
-        private void Start()
-        {
-            Initialize();
+            
+            _healthSystem = new HealthSystem(_config.MaxHealth);
+            _dropSystem = new DropSystem(_config.DroppableItems.DroppableItems, transform);
         }
 
         public void Initialize()
         {
             _healthSystem.OnTakeDamage += _hitFlash.Flash;
+            _healthSystem.OnDeath += _dropSystem.CreateDrop;
             _healthSystem.OnDeath += Death;
             
             _controller.Initialize(Player.Instance.transform);

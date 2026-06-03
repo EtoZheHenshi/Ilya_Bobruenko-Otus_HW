@@ -8,6 +8,7 @@ namespace Code.GeneralLogic
     {
         private int _maxHealth;
         private int _currentHealth;
+        private bool _isDead;
         
         public int MaxHealth => _maxHealth;
         public int CurrentHealth => _currentHealth;
@@ -23,6 +24,7 @@ namespace Code.GeneralLogic
         
         public void TakeDamage(int damage)
         {
+            if (_isDead) return;
             _currentHealth -= damage;
 
             if (_currentHealth > 0)
@@ -31,6 +33,7 @@ namespace Code.GeneralLogic
             }
             else
             {
+                _isDead = true;
                 OnDeath?.Invoke();
             }
         }

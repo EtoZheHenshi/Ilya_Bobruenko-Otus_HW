@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Code.GameLogic;
 using UnityEngine;
 
-namespace Code.Enemies
+namespace Code.Enemies.SpawnerSystem
 {
     public sealed class EnemySpawnerSystem : MonoBehaviour
     {

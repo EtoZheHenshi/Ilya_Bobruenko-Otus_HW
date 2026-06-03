@@ -115,7 +115,6 @@ namespace Code.Guns
                     enemy.TakeDamage(Damage);
                 }
                 
-                Debug.Log("Попадание");
                 // SurfaceManager.Instance.HandleImpact(
                 //     hit.transform.gameObject,
                 //     endPoint,
