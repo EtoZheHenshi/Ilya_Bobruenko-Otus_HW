@@ -943,6 +943,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 39620151980169835, guid: 3cdbd6bf5926d59438c2c82a8d202b03, type: 3}
   m_PrefabInstance: {fileID: 1884274091}
   m_PrefabAsset: {fileID: 0}
+--- !u!143 &1008893587 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 7037464050921113582, guid: 5a74bc2c8cde4d24292024a56df377d3, type: 3}
+  m_PrefabInstance: {fileID: 4176554938548395886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1008893589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8379048743129536193, guid: 5a74bc2c8cde4d24292024a56df377d3, type: 3}
+  m_PrefabInstance: {fileID: 4176554938548395886}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3238d245ecea4a4b8178caaec088feff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Guns.PlayerGunSelector
 --- !u!1001 &1055728085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1000,6 +1016,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cdbd6bf5926d59438c2c82a8d202b03, type: 3}
+--- !u!4 &1104414575 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4395885870717124670, guid: 5a74bc2c8cde4d24292024a56df377d3, type: 3}
+  m_PrefabInstance: {fileID: 4176554938548395886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1144584816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8245576503658501668, guid: f1a36bb2e370c3e40b0aa0640548afed, type: 3}
@@ -1674,6 +1695,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Player]'
       objectReference: {fileID: 0}
+    - target: {fileID: 3979091019602771376, guid: 5a74bc2c8cde4d24292024a56df377d3, type: 3}
+      propertyPath: _crosshair
+      value: 
+      objectReference: {fileID: 1104414575}
+    - target: {fileID: 3979091019602771376, guid: 5a74bc2c8cde4d24292024a56df377d3, type: 3}
+      propertyPath: _controller
+      value: 
+      objectReference: {fileID: 1008893587}
+    - target: {fileID: 3979091019602771376, guid: 5a74bc2c8cde4d24292024a56df377d3, type: 3}
+      propertyPath: _gunSelector
+      value: 
+      objectReference: {fileID: 1008893589}
     - target: {fileID: 7096207367717589754, guid: 5a74bc2c8cde4d24292024a56df377d3, type: 3}
       propertyPath: _playerConfig
       value: 

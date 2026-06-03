@@ -32,8 +32,8 @@ namespace Code.PlayerLogic
             _gunSelector = GetComponent<PlayerGunSelector>();
             _hitFlash = GetComponent<HitFlash>();
             
-            _healthSystem = new HealthSystem(_playerConfig.MaxHealth);
-            _playerLvlSystem = new PlayerLvlSystem(_playerConfig.PlayerLvlExpTable);
+            _healthSystem = new HealthSystem(_playerConfig.Stats.MaxHealth);
+            _playerLvlSystem = new PlayerLvlSystem(_playerConfig.LvlExpTable);
             
             DontDestroyOnLoad(this);
         }
@@ -55,7 +55,7 @@ namespace Code.PlayerLogic
 
         public void Initialize()
         {
-            _playerController.Initialize();
+            _playerController.Initialize(_playerConfig.Stats.MoveSpeed);
             _gunSelector.Initialize();
 
             _healthSystem.OnTakeDamage += _hitFlash.Flash;

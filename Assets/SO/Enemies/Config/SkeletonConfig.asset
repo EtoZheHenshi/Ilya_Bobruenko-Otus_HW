@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5a966848894c70bf354eb364183938, type: 3}
   m_Name: SkeletonConfig
   m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.EnemyConfigSO
-  _maxHealth: 10
+  _enemyStats: {fileID: 11400000, guid: 3e7e57ba4706857489a1420449e614ef, type: 2}
   _spawnTags:
   - {fileID: 11400000, guid: ad10877cf67f3c844b7ef1d592f8393e, type: 2}
   _enemyPrefab: {fileID: 7155342731798770183, guid: f5c9bb58134253e45b3f404487dbf5c8, type: 3}

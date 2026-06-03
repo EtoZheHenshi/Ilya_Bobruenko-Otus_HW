@@ -1,28 +1,26 @@
 using System;
-using Code.Enemies;
-using UnityEngine;
 
 namespace Code.GeneralLogic
 {
     public sealed class HealthSystem : IDamageable
     {
-        private int _maxHealth;
-        private int _currentHealth;
+        private readonly Stat _maxHealth;
+        private float _currentHealth;
         private bool _isDead;
         
-        public int MaxHealth => _maxHealth;
-        public int CurrentHealth => _currentHealth;
+        public Stat MaxHealth => _maxHealth;
+        public float CurrentHealth => _currentHealth;
         
         public event Action OnTakeDamage;
         public event Action OnDeath;
 
-        public HealthSystem(int maxHealth)
+        public HealthSystem(Stat maxHealth)
         {
             _maxHealth = maxHealth;
-            _currentHealth = _maxHealth;
+            _currentHealth = _maxHealth.Value;
         }
         
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             if (_isDead) return;
             _currentHealth -= damage;
@@ -38,12 +36,12 @@ namespace Code.GeneralLogic
             }
         }
 
-        public void Heal(int healAmount)
+        public void Heal(float healAmount)
         {
             _currentHealth += healAmount;
-            if (_currentHealth > _maxHealth)
+            if (_currentHealth > _maxHealth.Value)
             {
-                _currentHealth = _maxHealth;
+                _currentHealth = _maxHealth.Value;
             }
         }
     }

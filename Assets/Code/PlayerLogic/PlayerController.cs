@@ -1,3 +1,4 @@
+using Code.GeneralLogic;
 using Code.Guns;
 using Code.Input;
 using UnityEngine;
@@ -7,13 +8,13 @@ namespace Code.PlayerLogic
 {
     public sealed class PlayerController : MonoBehaviour
     {
-        [SerializeField] private CharacterController controller;
-        [SerializeField] private float moveSpeed;
-        [SerializeField] private Transform crosshair;
+        [SerializeField] private CharacterController _controller;
+        [SerializeField] private Transform _crosshair;
 
         [Space] 
-        [SerializeField] private PlayerGunSelector gunSelector;
+        [SerializeField] private PlayerGunSelector _gunSelector;
 
+        private Stat _moveSpeed;
         private Vector2 _directionToMove;
         private Vector3 _directionToRotate;
         private Vector3 _lookPoint;
@@ -32,8 +33,9 @@ namespace Code.PlayerLogic
             Shoot();
         }
 
-        public void Initialize()
+        public void Initialize(Stat moveSpeed)
         {
+            _moveSpeed = moveSpeed;
             InputManager.Instance.Gameplay.OnMove += GameplayOnMoveListener;
             InputManager.Instance.Gameplay.OnShoot += GameplayOnShootListener;
             _camera = Camera.main;
@@ -42,7 +44,7 @@ namespace Code.PlayerLogic
 
         private void Move()
         {
-            controller.Move(new Vector3(_directionToMove.x, 0, _directionToMove.y) * (moveSpeed * Time.deltaTime));
+            _controller.Move(new Vector3(_directionToMove.x, 0, _directionToMove.y) * (_moveSpeed.Value * Time.deltaTime));
         }
         
         private void Rotate()
@@ -56,7 +58,7 @@ namespace Code.PlayerLogic
 
         private void MoveCrosshair()
         {
-            crosshair.position = new Vector3(_lookPoint.x, crosshair.position.y, _lookPoint.z);
+            _crosshair.position = new Vector3(_lookPoint.x, _crosshair.position.y, _lookPoint.z);
         }
 
         private void SetDirectionToRotate()
@@ -87,9 +89,9 @@ namespace Code.PlayerLogic
 
         public void Shoot()
         {
-            if (_isShooting && gunSelector.ActiveGun != null)
+            if (_isShooting && _gunSelector.ActiveGun != null)
             {
-                gunSelector.ActiveGun.Shoot();
+                _gunSelector.ActiveGun.Shoot();
             }
         }
     }

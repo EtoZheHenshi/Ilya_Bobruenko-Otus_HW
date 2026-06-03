@@ -27,7 +27,7 @@ namespace Code.Enemies
             _hitFlash = GetComponent<HitFlash>();
             _controller = GetComponent<EnemyController>();
             
-            _healthSystem = new HealthSystem(_config.MaxHealth);
+            _healthSystem = new HealthSystem(_config.Stats.MaxHealth);
             _dropSystem = new DropSystem(_config.DroppableItems.DroppableItems, transform);
         }
 
@@ -37,7 +37,7 @@ namespace Code.Enemies
             _healthSystem.OnDeath += _dropSystem.CreateDrop;
             _healthSystem.OnDeath += Death;
             
-            _controller.Initialize(Player.Instance.transform);
+            _controller.Initialize(Player.Instance.transform, _config.Stats.MoveSpeed);
         }
 
         public void TakeDamage(int damage)
