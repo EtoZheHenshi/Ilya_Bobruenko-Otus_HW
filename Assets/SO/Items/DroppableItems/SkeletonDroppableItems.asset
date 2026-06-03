@@ -18,4 +18,4 @@ MonoBehaviour:
     _dropRate: 100
   - _config: {fileID: 11400000, guid: 73cc2dc4975ff2549952b9fe2723f839, type: 2}
     _count: 1
-    _dropRate: 50
+    _dropRate: 10

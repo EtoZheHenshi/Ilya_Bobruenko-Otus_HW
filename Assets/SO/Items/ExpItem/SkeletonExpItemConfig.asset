@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.Items.ItemConfig
   _itemPrefab: {fileID: 7555878568681548610, guid: 5c1153faa2ce31c4b997ba0321e6210f, type: 3}
   _itemEffect: {fileID: 11400000, guid: b8bc64eb978aca84aa2fc153fdb6d2d3, type: 2}
+  _lifeTime: 10
