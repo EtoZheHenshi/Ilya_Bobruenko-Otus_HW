@@ -1,27 +1,27 @@
+using Code.GeneralLogic;
 using Code.PlayerLogic;
 using UnityEngine;
 
 namespace Code.Enemies
 {
     [RequireComponent(
-        typeof(EnemyHealthSystem),
-        typeof(EnemyHitFlash), 
+        typeof(HitFlash), 
         typeof(EnemyController)
         )
     ]
     public abstract class Enemy : MonoBehaviour
     {
-        [SerializeField] private EnemyConfigSO config;
-        private EnemyHealthSystem _healthSystem;
-        private EnemyHitFlash _hitFlash;
+        [SerializeField] private EnemyConfigSO _config;
+        private HealthSystem _healthSystem;
+        private HitFlash _hitFlash;
         private EnemyController _controller;
         
-        public EnemyHealthSystem HealthSystem => _healthSystem;
+        public HealthSystem HealthSystem => _healthSystem;
         
         private void Awake()
         {
-            _healthSystem = GetComponent<EnemyHealthSystem>();
-            _hitFlash = GetComponent<EnemyHitFlash>();
+            _healthSystem = new  HealthSystem(_config.MaxHealth);
+            _hitFlash = GetComponent<HitFlash>();
             _controller = GetComponent<EnemyController>();
         }
 
@@ -32,7 +32,6 @@ namespace Code.Enemies
 
         public void Initialize()
         {
-            _healthSystem.Initialize(config.MaxHealth);
             _healthSystem.OnTakeDamage += _hitFlash.Flash;
             _healthSystem.OnDeath += Death;
             

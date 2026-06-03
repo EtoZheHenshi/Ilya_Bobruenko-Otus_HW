@@ -1,9 +1,9 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Code.Enemies
+namespace Code.GeneralLogic
 {
-    public class EnemyHitFlash : MonoBehaviour
+    public class HitFlash : MonoBehaviour
     {
         private Renderer[] _renderers;
         private MaterialPropertyBlock _block;

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7155342731798770183}
   - component: {fileID: 4338102358238793328}
   - component: {fileID: 3644132626044364301}
-  - component: {fileID: 3045474397910461666}
   - component: {fileID: 3318328086850301148}
   - component: {fileID: 6801204518245906814}
   m_Layer: 9
@@ -50,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2676982aba1f47be927d4f205b36fb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.Skeleton
-  config: {fileID: 11400000, guid: 05f1dd2373702624ebc28fb09ef8bfe9, type: 2}
+  _config: {fileID: 0}
 --- !u!114 &4338102358238793328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,18 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3238a2101fc642fc8a900859c50ed316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.EnemyController
---- !u!114 &3045474397910461666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 442599393851628881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8de63b6b7504b96837a62cdfb75cca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.EnemyHealthSystem
 --- !u!195 &3318328086850301148
 NavMeshAgent:
   m_ObjectHideFlags: 0

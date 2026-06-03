@@ -1,9 +1,10 @@
 using System;
+using Code.Enemies;
 using UnityEngine;
 
-namespace Code.Enemies
+namespace Code.GeneralLogic
 {
-    public sealed class EnemyHealthSystem : MonoBehaviour, IDamageable
+    public sealed class HealthSystem : IDamageable
     {
         private int _maxHealth;
         private int _currentHealth;
@@ -14,7 +15,7 @@ namespace Code.Enemies
         public event Action OnTakeDamage;
         public event Action OnDeath;
 
-        public void Initialize(int maxHealth)
+        public HealthSystem(int maxHealth)
         {
             _maxHealth = maxHealth;
             _currentHealth = _maxHealth;
@@ -31,6 +32,15 @@ namespace Code.Enemies
             else
             {
                 OnDeath?.Invoke();
+            }
+        }
+
+        public void Heal(int healAmount)
+        {
+            _currentHealth += healAmount;
+            if (_currentHealth > _maxHealth)
+            {
+                _currentHealth = _maxHealth;
             }
         }
     }
