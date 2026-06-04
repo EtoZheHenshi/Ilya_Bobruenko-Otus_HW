@@ -18,24 +18,28 @@ namespace Code.GameLogic
             {
                 case GameStateType.Gameplay:
                 {
+                    Time.timeScale = 1;
                     CursorHide();
                     InputManager.Instance.SwitchActiveMap("Gameplay");
                     break;
                 }
                 case GameStateType.MainMenu:
                 {
+                    Time.timeScale = 0;
                     CursorShow();
                     InputManager.Instance.SwitchActiveMap("MainMenu");
                     break;
                 }
                 case GameStateType.PauseMenu:
                 {
+                    Time.timeScale = 0;
                     CursorShow();
                     InputManager.Instance.SwitchActiveMap("PauseMenu");
                     break;
                 }
                 case GameStateType.UpgradeMenu:
                 {
+                    Time.timeScale = 0;
                     CursorShow();
                     InputManager.Instance.SwitchActiveMap("UpgradeMenu");
                     break;
@@ -55,12 +59,12 @@ namespace Code.GameLogic
             CurrentGameState = newGameState;
         }
 
-        public static void CursorHide()
+        private static void CursorHide()
         {
             Cursor.visible = false;
         }
 
-        public static void CursorShow()
+        private static void CursorShow()
         {
             Cursor.visible = true;
         }

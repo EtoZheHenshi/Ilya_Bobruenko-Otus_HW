@@ -4,21 +4,23 @@ using UnityEngine;
 
 namespace Code.Upgrades
 {
-    public abstract class StatUpgradeSO : ScriptableObject
+    public abstract class StatUpgradeSO : UpgradeSO
     {
-        [SerializeField] private string _title;
-        [SerializeField] private string _description;
         [SerializeField] private StatModifier _statModifier;
         
         public abstract Stat Stat { get; }
         public StatModifier StatModifier => _statModifier;
+        
+        public override string Description => string.Format(_description, GetValue());
 
-        public string Title => _title;
-        public string Description => string.Format(_description, GetValue());
-
-        public virtual void Apply()
+        public override void Apply()
         {
             Stat.AddModifierSO(_statModifier);
+        }
+
+        public override bool IsAvailable()
+        {
+            return Stat.Value < Stat.MaxValue;
         }
 
         private float GetValue()

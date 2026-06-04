@@ -1,3 +1,4 @@
+using System;
 using Code.GeneralLogic;
 using Code.Guns;
 using Code.Templates;
@@ -23,6 +24,12 @@ namespace Code.PlayerLogic
         private PlayerLvlSystem _playerLvlSystem;
         
         private bool _isInitialized;
+        
+        public event Action OnLvlUp
+        {
+            add => _playerLvlSystem.OnLvlUp += value;
+            remove => _playerLvlSystem.OnLvlUp -= value;
+        }
 
         protected override void OnAwake()
         {

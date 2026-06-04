@@ -14,6 +14,8 @@ namespace Code.GeneralLogic
         private readonly List<StatModifier> _modifiers = new();
 
         public float Value => GetValue();
+        public float MaxValue => _maxValue;
+        public float MinValue => _minValue;
 
         public void AddModifierSO(StatModifier modifier)
         {
