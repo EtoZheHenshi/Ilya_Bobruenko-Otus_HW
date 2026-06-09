@@ -15,6 +15,27 @@ namespace Code.PlayerLogic
     public sealed class Player : SingletonMonoBehaviour<Player>
     {
         [SerializeField] private PlayerConfigSO _playerConfig;
+
+        public float CurrentHP => _healthSystem.CurrentHealth;
+        public int CurrentLvl => _playerLvlSystem.CurrentLvl;
+        
+        public event Action OnLvlUp
+        {
+            add => _playerLvlSystem.OnLvlUp += value;
+            remove => _playerLvlSystem.OnLvlUp -= value;
+        }
+        
+        public event Action OnHeal
+        {
+            add => _healthSystem.OnHeal += value;
+            remove => _healthSystem.OnHeal -= value;
+        }
+        
+        public event Action OnTakeDamage
+        {
+            add => _healthSystem.OnTakeDamage += value;
+            remove => _healthSystem.OnTakeDamage -= value;
+        }
         
         private PlayerController _playerController;
         private PlayerGunSelector _gunSelector;
@@ -24,12 +45,6 @@ namespace Code.PlayerLogic
         private PlayerLvlSystem _playerLvlSystem;
         
         private bool _isInitialized;
-        
-        public event Action OnLvlUp
-        {
-            add => _playerLvlSystem.OnLvlUp += value;
-            remove => _playerLvlSystem.OnLvlUp -= value;
-        }
 
         protected override void OnAwake()
         {
@@ -81,9 +96,14 @@ namespace Code.PlayerLogic
             _playerLvlSystem.AddExp(expAmount);
         }
 
+        public void TakeDamage(float damageAmount)
+        {
+            _healthSystem.TakeDamage(damageAmount);
+        }
+
         private void Death()
         {
-            
+            Debug.Log("Death");
         }
     }
 }

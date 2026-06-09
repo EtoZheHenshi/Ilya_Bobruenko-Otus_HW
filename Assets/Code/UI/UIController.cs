@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using Code.GameLogic;
+using Code.PlayerLogic;
+using Code.UI.HUD;
 using Code.UI.UpgradeMenu;
 using Code.Upgrades;
 using UnityEngine;
@@ -12,6 +14,7 @@ namespace Code.UI
         private readonly StartLevelUI _startLevelUI;
         private readonly UpgradeMenuModel _upgradeMenuModel;
         private readonly LevelCountUI _levelCountUI;
+        private readonly HUDModel _hudModel;
         
         public event Action OnStartLevel
         {
@@ -20,7 +23,7 @@ namespace Code.UI
         }
 
         public UIController(StartLevelUI startLevelUI, UpgradeMenuView upgradeMenuView, UpgradeManager upgradeManager,
-            LevelCountUI levelCountUI)
+            LevelCountUI levelCountUI, HUDView hudView, Player player)
         {
             _startLevelUI = startLevelUI;
             
@@ -28,6 +31,8 @@ namespace Code.UI
             _upgradeMenuModel.OnHide += SwitchGameStateToGameplay;
             
             _levelCountUI = levelCountUI;
+            
+            _hudModel = new HUDModel(hudView, player);
         }
 
         public IEnumerator StartLevel()

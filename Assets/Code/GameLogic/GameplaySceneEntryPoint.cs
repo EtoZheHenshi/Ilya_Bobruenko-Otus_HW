@@ -3,6 +3,7 @@ using System.Collections;
 using Code.Enemies.WaveSystem;
 using Code.PlayerLogic;
 using Code.UI;
+using Code.UI.HUD;
 using Code.UI.UpgradeMenu;
 using Code.Upgrades;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace Code.GameLogic
         [SerializeField] private StartLevelUI _startLevelUI;
         [SerializeField] private UpgradeMenuView _upgradeMenuView;
         [SerializeField] private LevelCountUI _levelCountUI;
+        [SerializeField] private HUDView _hudView;
         
         [Header("Data")]
         [SerializeField] private AllUpgradesSO _allUpgrades;
@@ -42,7 +44,8 @@ namespace Code.GameLogic
 
             _upgradeManager = new UpgradeManager(_allUpgrades);
             
-            _uiController = new UIController(_startLevelUI, _upgradeMenuView, _upgradeManager, _levelCountUI);
+            _uiController = new UIController(_startLevelUI, _upgradeMenuView, _upgradeManager, _levelCountUI,
+                _hudView, Player.Instance);
             _uiController.OnStartLevel += _levelManager.StartLevel;
             Player.Instance.OnLvlUp += _uiController.ShowUpgradeMenu;
             

@@ -13,6 +13,7 @@ namespace Code.GeneralLogic
         
         public event Action OnTakeDamage;
         public event Action OnDeath;
+        public event Action OnHeal;
 
         public HealthSystem(Stat maxHealth)
         {
@@ -43,6 +44,7 @@ namespace Code.GeneralLogic
             {
                 _currentHealth = _maxHealth.Value;
             }
+            OnHeal?.Invoke();
         }
     }
 }
