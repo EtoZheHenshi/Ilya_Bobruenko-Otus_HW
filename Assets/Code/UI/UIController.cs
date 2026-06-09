@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Code.GameLogic;
 using Code.UI.UpgradeMenu;
 using Code.Upgrades;
@@ -10,6 +11,7 @@ namespace Code.UI
     {
         private readonly StartLevelUI _startLevelUI;
         private readonly UpgradeMenuModel _upgradeMenuModel;
+        private readonly LevelCountUI _levelCountUI;
         
         public event Action OnStartLevel
         {
@@ -17,19 +19,31 @@ namespace Code.UI
             remove => _startLevelUI.OnStart -= value;
         }
 
-        public UIController(StartLevelUI startLevelUI, UpgradeMenuView upgradeMenuView, UpgradeManager upgradeManager)
+        public UIController(StartLevelUI startLevelUI, UpgradeMenuView upgradeMenuView, UpgradeManager upgradeManager,
+            LevelCountUI levelCountUI)
         {
             _startLevelUI = startLevelUI;
             
             _upgradeMenuModel = new UpgradeMenuModel(upgradeMenuView, upgradeManager);
             _upgradeMenuModel.OnHide += SwitchGameStateToGameplay;
+            
+            _levelCountUI = levelCountUI;
         }
 
-        public void StartLevel()
+        public IEnumerator StartLevel()
         {
+            yield return _levelCountUI.ShowWnd($"Level {LevelManager.Instance.LevelCount + 1}");
+            
             _startLevelUI.RefreshTimer();
             _startLevelUI.Show();
             _startLevelUI.StartTimer();
+        }
+
+        public IEnumerator EndLevel()
+        {
+            yield return _levelCountUI.ShowWnd("Level Complete");
+
+            yield return new WaitForSeconds(1f);
         }
 
         public void ShowUpgradeMenu()

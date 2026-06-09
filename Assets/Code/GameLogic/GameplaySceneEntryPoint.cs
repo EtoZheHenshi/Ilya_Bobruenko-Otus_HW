@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Code.Enemies.WaveSystem;
 using Code.PlayerLogic;
 using Code.UI;
@@ -18,6 +19,7 @@ namespace Code.GameLogic
         [Header("UI")]
         [SerializeField] private StartLevelUI _startLevelUI;
         [SerializeField] private UpgradeMenuView _upgradeMenuView;
+        [SerializeField] private LevelCountUI _levelCountUI;
         
         [Header("Data")]
         [SerializeField] private AllUpgradesSO _allUpgrades;
@@ -35,26 +37,45 @@ namespace Code.GameLogic
             }
             
             Player.Instance.Initialize();
-            _waveManager.OnWavesFinished += () => Debug.Log("Level Finished");
+            _waveManager.OnWavesFinished += OnWavesFinishedListener;
             _levelManager.Initialize(_waveManager);
 
             _upgradeManager = new UpgradeManager(_allUpgrades);
             
-            _uiController = new UIController(_startLevelUI, _upgradeMenuView, _upgradeManager);
+            _uiController = new UIController(_startLevelUI, _upgradeMenuView, _upgradeManager, _levelCountUI);
             _uiController.OnStartLevel += _levelManager.StartLevel;
             Player.Instance.OnLvlUp += _uiController.ShowUpgradeMenu;
             
             GameState.SwitchGameState(GameStateType.Gameplay);
 
-            _uiController.StartLevel();
+            StartCoroutine(_uiController.StartLevel());
         }
 
         private void OnDestroy()
         {
             if (!Bootstrap.IsInitialized) return;
-            //_waveManager.OnWavesFinished += () => Debug.Log("Level Finished");
+            _waveManager.OnWavesFinished -= OnWavesFinishedListener;
             _uiController.OnStartLevel -= _levelManager.StartLevel;
             Player.Instance.OnLvlUp -= _uiController.ShowUpgradeMenu;
         }
+
+        private void OnWavesFinishedListener()
+        {
+            StartCoroutine(HandleEndLevel());
+        }
+
+        private IEnumerator HandleEndLevel()
+        {
+            yield return _uiController.EndLevel();
+
+            if(_levelManager.SetNextLevel())
+            {
+                StartCoroutine(_uiController.StartLevel());
+            }
+            else
+            {
+                _levelManager.EndGame();
+            }
+        } 
     }
 }

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c440e9acae346caafaa229c30286fb5, type: 3}
   m_Name: SkeletonExpEffect
   m_EditorClassIdentifier: Assembly-CSharp::Code.Items.ItemEffectTypes.ExpEffect
-  _expAmount: 10
+  _expAmount: 20

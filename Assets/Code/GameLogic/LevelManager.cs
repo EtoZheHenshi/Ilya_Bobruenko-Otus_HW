@@ -12,32 +12,50 @@ namespace Code.GameLogic
         [SerializeField] private WaveConfigSO[] _levelsWaveConfig;
         [SerializeField] private EnemySpawnerSystem _enemySpawnerSystem;
         
-        private bool _isInitialized;
+        public event Action OnGameEnd;
+        
         private WaveManager _waveManager;
         private int _levelCount = 0;
+        private bool _canStartLevel = false;
+        
+        public int LevelCount => _levelCount;
 
         public void Initialize(WaveManager waveManager)
         {
             _waveManager = waveManager;
-            _waveManager.OnWavesFinished += SetNextLevel;
-            _isInitialized = true;
+            CheckNextLevel();
         }
         
         public void StartLevel()
         {
+            if (!_canStartLevel) return;
             _waveManager.FillWaves(_levelsWaveConfig[_levelCount], _enemySpawnerSystem);
             StartCoroutine(_waveManager.StartAllWaves());
         }
 
-        private void SetNextLevel()
+        public bool SetNextLevel()
         {
             _levelCount++;
+            CheckNextLevel();
+            return _canStartLevel;
         }
 
-        private void OnDestroy()
+        public void EndGame()
         {
-            if (!_isInitialized) return;
-            _waveManager.OnWavesFinished -= SetNextLevel;
+            OnGameEnd?.Invoke();
+            Debug.Log("Game End");
+        }
+
+        private void CheckNextLevel()
+        {
+            if (_levelCount < _levelsWaveConfig.Length)
+            {
+                _canStartLevel = true;
+            }
+            else
+            {
+                _canStartLevel = false;
+            }
         }
     }
 }

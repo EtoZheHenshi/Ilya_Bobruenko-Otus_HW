@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388b53c5d31f4899b30d5d1bb8c880e1, type: 3}
   m_Name: PlayerMoveSpeedUpgrade 3
   m_EditorClassIdentifier: Assembly-CSharp::Code.Upgrades.StatUpgrades.PlayerMoveSpeedUpgradeSO
-  _title: Move Speed Upgrade
+  _title: Hitman Speed Upgrade
   _description: 'Increases character speed by {0}% '
   _statModifier:
     Value: 0.02
