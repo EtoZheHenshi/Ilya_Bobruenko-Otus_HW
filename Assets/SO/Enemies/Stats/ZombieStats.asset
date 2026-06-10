@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6febeab5ec70471da139f356f6c8800e, type: 3}
-  m_Name: SkeletonStats
-  m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.EnemyTypes.SkeletonStatsSO
+  m_Script: {fileID: 11500000, guid: 57c18273ecb7475a826aed5601f6646d, type: 3}
+  m_Name: ZombieStats
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Enemies.EnemyTypes.ZombieStatsSO
   _maxHealth:
-    _baseValue: 10
-    _maxValue: 20
-    _minValue: 1
+    _baseValue: 100
+    _maxValue: 150
+    _minValue: 50
   _moveSpeed:
-    _baseValue: 3
+    _baseValue: 3.5
     _maxValue: 5
-    _minValue: 1
+    _minValue: 3
   _touchDamage:
     _baseValue: 1
     _maxValue: 2

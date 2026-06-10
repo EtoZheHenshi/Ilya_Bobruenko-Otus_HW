@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf8c2669d0c4751965d571c5415b0e4, type: 3}
+  m_Name: ZombieExpItemConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Items.ItemConfig
+  _itemPrefab: {fileID: 7555878568681548610, guid: 36ba93b9e4792bb48b476b81aedd519f, type: 3}
+  _itemEffect: {fileID: 11400000, guid: 7a64b519ef7e521489dd532db141a7c8, type: 2}
+  _lifeTime: 10

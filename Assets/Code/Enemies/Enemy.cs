@@ -53,7 +53,7 @@ namespace Code.Enemies
             _controller.Initialize(Player.Instance.transform, _config.Stats.MoveSpeed);
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             _healthSystem.TakeDamage(damage);
         }
