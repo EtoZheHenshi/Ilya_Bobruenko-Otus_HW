@@ -47,6 +47,7 @@ namespace Code.Enemies
         {
             _healthSystem.OnTakeDamage += _hitFlash.Flash;
             _healthSystem.OnDeath += _dropSystem.CreateDrop;
+            _healthSystem.OnDeath += AddKilledEnemies;
             _healthSystem.OnDeath += Death;
             
             _controller.Initialize(Player.Instance.transform, _config.Stats.MoveSpeed);
@@ -71,6 +72,11 @@ namespace Code.Enemies
         protected virtual void Death()
         {
             Destroy(gameObject);
+        }
+
+        private void AddKilledEnemies()
+        {
+            Player.Instance.KilledEnemies++;
         }
     }
 }

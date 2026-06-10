@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Code.GeneralLogic
     {
         private Renderer[] _renderers;
         private MaterialPropertyBlock _block;
+
+        private Tween _flashTween;
         
         private static readonly int HitStrengthID = Shader.PropertyToID("_HitStrength");
 
@@ -18,7 +21,9 @@ namespace Code.GeneralLogic
 
         public void Flash()
         {
-            DOTween.To(
+            _flashTween?.Kill();
+            
+            _flashTween = DOTween.To(
                 () => 1f,
                 SetFlash,
                 0f,
@@ -35,6 +40,11 @@ namespace Code.GeneralLogic
                 _block.SetFloat(HitStrengthID, value);
                 _renderers[i].SetPropertyBlock(_block);
             }
+        }
+
+        private void OnDestroy()
+        {
+            _flashTween?.Kill();
         }
     }
 }

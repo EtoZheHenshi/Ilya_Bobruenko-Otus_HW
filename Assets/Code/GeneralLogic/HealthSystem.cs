@@ -10,6 +10,7 @@ namespace Code.GeneralLogic
         
         public Stat MaxHealth => _maxHealth;
         public float CurrentHealth => _currentHealth;
+        public bool IsDead => _isDead;
         
         public event Action OnTakeDamage;
         public event Action OnDeath;

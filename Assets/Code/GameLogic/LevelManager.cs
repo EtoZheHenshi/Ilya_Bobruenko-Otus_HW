@@ -43,7 +43,6 @@ namespace Code.GameLogic
         public void EndGame()
         {
             OnGameEnd?.Invoke();
-            Debug.Log("Game End");
         }
 
         private void CheckNextLevel()

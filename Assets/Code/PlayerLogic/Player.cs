@@ -18,6 +18,8 @@ namespace Code.PlayerLogic
 
         public float CurrentHP => _healthSystem.CurrentHealth;
         public int CurrentLvl => _playerLvlSystem.CurrentLvl;
+        public int KilledEnemies = 0;
+        public bool IsDead => _healthSystem.IsDead;
         
         public event Action OnLvlUp
         {
@@ -35,6 +37,12 @@ namespace Code.PlayerLogic
         {
             add => _healthSystem.OnTakeDamage += value;
             remove => _healthSystem.OnTakeDamage -= value;
+        }
+        
+        public event Action OnDeath
+        {
+            add => _healthSystem.OnDeath += value;
+            remove => _healthSystem.OnDeath -= value;
         }
         
         private PlayerController _playerController;
@@ -57,7 +65,7 @@ namespace Code.PlayerLogic
             _healthSystem = new HealthSystem(_playerConfig.Stats.MaxHealth);
             _playerLvlSystem = new PlayerLvlSystem(_playerConfig.LvlExpTable);
             
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
         }
 
         private void Update()

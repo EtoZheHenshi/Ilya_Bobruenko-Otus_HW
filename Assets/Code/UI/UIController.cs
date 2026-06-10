@@ -15,6 +15,7 @@ namespace Code.UI
         private readonly UpgradeMenuModel _upgradeMenuModel;
         private readonly LevelCountUI _levelCountUI;
         private readonly HUDModel _hudModel;
+        private readonly GameEndUI _gameEndUI;
         
         public event Action OnStartLevel
         {
@@ -23,7 +24,7 @@ namespace Code.UI
         }
 
         public UIController(StartLevelUI startLevelUI, UpgradeMenuView upgradeMenuView, UpgradeManager upgradeManager,
-            LevelCountUI levelCountUI, HUDView hudView, Player player)
+            LevelCountUI levelCountUI, HUDView hudView, Player player, GameEndUI gameEndUI)
         {
             _startLevelUI = startLevelUI;
             
@@ -33,6 +34,10 @@ namespace Code.UI
             _levelCountUI = levelCountUI;
             
             _hudModel = new HUDModel(hudView, player);
+            
+            _gameEndUI = gameEndUI;
+            _gameEndUI.RestartButton.onClick.AddListener(GameSceneManager.RestartScene);
+            _gameEndUI.ExitButton.onClick.AddListener(GameSceneManager.ExitGame);
         }
 
         public IEnumerator StartLevel()
@@ -56,6 +61,25 @@ namespace Code.UI
             GameState.SwitchGameState(GameStateType.UpgradeMenu);
             _upgradeMenuModel.UpdateCards();
             _upgradeMenuModel.Show();
+        }
+
+        public void ShowGameOverMenu()
+        {
+            GameState.SwitchGameState(GameStateType.OtherMenu);
+            if (Player.Instance.IsDead)
+            {
+                _gameEndUI.GameOverText.text = "YOU DIED";
+                _gameEndUI.GameOverText.color = new Color(142, 0, 0);
+            }
+            else
+            {
+                _gameEndUI.GameOverText.text = "YOU WIN";
+                _gameEndUI.GameOverText.color = new Color(0, 166, 23);
+            }
+            _gameEndUI.KillsCountText.text = Player.Instance.KilledEnemies.ToString();
+            _gameEndUI.LevelCountText.text = Player.Instance.CurrentLvl.ToString();
+            
+            _gameEndUI.gameObject.SetActive(true);
         }
 
         public void SwitchGameStateToGameplay()

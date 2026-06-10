@@ -22,6 +22,7 @@ namespace Code.GameLogic
         [SerializeField] private UpgradeMenuView _upgradeMenuView;
         [SerializeField] private LevelCountUI _levelCountUI;
         [SerializeField] private HUDView _hudView;
+        [SerializeField] private GameEndUI _gameEndUI;
         
         [Header("Data")]
         [SerializeField] private AllUpgradesSO _allUpgrades;
@@ -41,13 +42,15 @@ namespace Code.GameLogic
             Player.Instance.Initialize();
             _waveManager.OnWavesFinished += OnWavesFinishedListener;
             _levelManager.Initialize(_waveManager);
+            Player.Instance.OnDeath += _levelManager.EndGame;
 
             _upgradeManager = new UpgradeManager(_allUpgrades);
             
             _uiController = new UIController(_startLevelUI, _upgradeMenuView, _upgradeManager, _levelCountUI,
-                _hudView, Player.Instance);
+                _hudView, Player.Instance, _gameEndUI);
             _uiController.OnStartLevel += _levelManager.StartLevel;
             Player.Instance.OnLvlUp += _uiController.ShowUpgradeMenu;
+            _levelManager.OnGameEnd += _uiController.ShowGameOverMenu;
             
             GameState.SwitchGameState(GameStateType.Gameplay);
 

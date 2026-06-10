@@ -4,19 +4,18 @@ namespace Code.Items
 {
     public sealed class DropSystem
     {
-        private static readonly GameObject ItemsParent;
+        private static GameObject _itemsParent;
         private const float SpawnPositionOffset = 1f;
         
         private readonly DroppableItem[] _droppableItems;
         private readonly Transform _spawnPosition;
 
-        static DropSystem()
-        {
-            ItemsParent = new GameObject("[Items]");
-        }
-
         public DropSystem(DroppableItem[] droppableItems, Transform spawnPosition)
         {
+            if (_itemsParent == null)
+            {
+                _itemsParent = new GameObject("[Items]");
+            }
             _droppableItems = droppableItems;
             _spawnPosition = spawnPosition;
         }
@@ -32,7 +31,7 @@ namespace Code.Items
                     if (Random.Range(0f, 100f) <= item.DropRate)
                     {
                         Object.Instantiate(item.Config.ItemPrefab, GetSpawnPosition(_spawnPosition),
-                            Quaternion.identity, ItemsParent.transform);
+                            Quaternion.identity, _itemsParent.transform);
                     }
                 }
             }

@@ -44,6 +44,13 @@ namespace Code.GameLogic
                     InputManager.Instance.SwitchActiveMap("UpgradeMenu");
                     break;
                 }
+                case GameStateType.OtherMenu:
+                {
+                    Time.timeScale = 0;
+                    CursorShow();
+                    InputManager.Instance.DisableActiveMap();
+                    break;
+                }
                 case GameStateType.None:
                 {
                     CursorHide();

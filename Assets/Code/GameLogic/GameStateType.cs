@@ -6,6 +6,7 @@ namespace Code.GameLogic
         MainMenu,
         PauseMenu,
         UpgradeMenu,
+        OtherMenu,
         None
     }
 }
