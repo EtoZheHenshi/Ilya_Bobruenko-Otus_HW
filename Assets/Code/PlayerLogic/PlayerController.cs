@@ -1,3 +1,4 @@
+using Code.GameLogic;
 using Code.GeneralLogic;
 using Code.Guns;
 using Code.Input;
@@ -25,6 +26,7 @@ namespace Code.PlayerLogic
         private void Update()
         {
             if (!_isInitialized) return;
+            if(GameState.CurrentGameState != GameStateType.Gameplay) return;
             
             Move();
             SetDirectionToRotate();

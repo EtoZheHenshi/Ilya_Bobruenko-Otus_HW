@@ -235,7 +235,7 @@ namespace Code.Input
             ""id"": ""e4c10253-6bd2-4d18-85bc-2d6c4e0d2d78"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""CloseMenu"",
                     ""type"": ""Button"",
                     ""id"": ""daedfcb8-8537-4fdf-9f99-9a74f149e8fc"",
                     ""expectedControlType"": """",
@@ -248,11 +248,11 @@ namespace Code.Input
                 {
                     ""name"": """",
                     ""id"": ""65f46178-89ab-4448-a94e-74b253dfb85e"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""CloseMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -299,7 +299,7 @@ namespace Code.Input
             m_MainMenu_Newaction = m_MainMenu.FindAction("New action", throwIfNotFound: true);
             // PauseMenu
             m_PauseMenu = asset.FindActionMap("PauseMenu", throwIfNotFound: true);
-            m_PauseMenu_Newaction = m_PauseMenu.FindAction("New action", throwIfNotFound: true);
+            m_PauseMenu_CloseMenu = m_PauseMenu.FindAction("CloseMenu", throwIfNotFound: true);
             // UpgradeMenu
             m_UpgradeMenu = asset.FindActionMap("UpgradeMenu", throwIfNotFound: true);
             m_UpgradeMenu_Newaction = m_UpgradeMenu.FindAction("New action", throwIfNotFound: true);
@@ -600,7 +600,7 @@ namespace Code.Input
         // PauseMenu
         private readonly InputActionMap m_PauseMenu;
         private List<IPauseMenuActions> m_PauseMenuActionsCallbackInterfaces = new List<IPauseMenuActions>();
-        private readonly InputAction m_PauseMenu_Newaction;
+        private readonly InputAction m_PauseMenu_CloseMenu;
         /// <summary>
         /// Provides access to input actions defined in input action map "PauseMenu".
         /// </summary>
@@ -613,9 +613,9 @@ namespace Code.Input
             /// </summary>
             public PauseMenuActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
             /// <summary>
-            /// Provides access to the underlying input action "PauseMenu/Newaction".
+            /// Provides access to the underlying input action "PauseMenu/CloseMenu".
             /// </summary>
-            public InputAction @Newaction => m_Wrapper.m_PauseMenu_Newaction;
+            public InputAction @CloseMenu => m_Wrapper.m_PauseMenu_CloseMenu;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -642,9 +642,9 @@ namespace Code.Input
             {
                 if (instance == null || m_Wrapper.m_PauseMenuActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_PauseMenuActionsCallbackInterfaces.Add(instance);
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @CloseMenu.started += instance.OnCloseMenu;
+                @CloseMenu.performed += instance.OnCloseMenu;
+                @CloseMenu.canceled += instance.OnCloseMenu;
             }
 
             /// <summary>
@@ -656,9 +656,9 @@ namespace Code.Input
             /// <seealso cref="PauseMenuActions" />
             private void UnregisterCallbacks(IPauseMenuActions instance)
             {
-                @Newaction.started -= instance.OnNewaction;
-                @Newaction.performed -= instance.OnNewaction;
-                @Newaction.canceled -= instance.OnNewaction;
+                @CloseMenu.started -= instance.OnCloseMenu;
+                @CloseMenu.performed -= instance.OnCloseMenu;
+                @CloseMenu.canceled -= instance.OnCloseMenu;
             }
 
             /// <summary>
@@ -840,12 +840,12 @@ namespace Code.Input
         public interface IPauseMenuActions
         {
             /// <summary>
-            /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "CloseMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnNewaction(InputAction.CallbackContext context);
+            void OnCloseMenu(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UpgradeMenu" which allows adding and removing callbacks.

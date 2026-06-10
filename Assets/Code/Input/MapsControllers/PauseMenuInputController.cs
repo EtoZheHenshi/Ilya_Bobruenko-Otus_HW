@@ -5,16 +5,16 @@ namespace Code.Input.MapsControllers
 {
     public sealed class PauseMenuInputController
     {
-        public event Action<InputAction.CallbackContext> OnExit;
+        public event Action<InputAction.CallbackContext> OnCloseMenu;
 
         public PauseMenuInputController(PlayerInput.PauseMenuActions map)
         {
-            
+            map.CloseMenu.started += OnCloseMenuInvoke;
         }
 
-        private void OnExitInvoke(InputAction.CallbackContext ctx)
+        private void OnCloseMenuInvoke(InputAction.CallbackContext ctx)
         {
-            OnExit?.Invoke(ctx);
+            OnCloseMenu?.Invoke(ctx);
         }
     }
 }

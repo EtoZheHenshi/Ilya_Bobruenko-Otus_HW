@@ -23,6 +23,7 @@ namespace Code.GameLogic
         [SerializeField] private LevelCountUI _levelCountUI;
         [SerializeField] private HUDView _hudView;
         [SerializeField] private GameEndUI _gameEndUI;
+        [SerializeField] private PauseUI _pauseUI;
         
         [Header("Data")]
         [SerializeField] private AllUpgradesSO _allUpgrades;
@@ -47,7 +48,7 @@ namespace Code.GameLogic
             _upgradeManager = new UpgradeManager(_allUpgrades);
             
             _uiController = new UIController(_startLevelUI, _upgradeMenuView, _upgradeManager, _levelCountUI,
-                _hudView, Player.Instance, _gameEndUI);
+                _hudView, Player.Instance, _gameEndUI, _pauseUI);
             _uiController.OnStartLevel += _levelManager.StartLevel;
             Player.Instance.OnLvlUp += _uiController.ShowUpgradeMenu;
             _levelManager.OnGameEnd += _uiController.ShowGameOverMenu;
@@ -63,6 +64,7 @@ namespace Code.GameLogic
             _waveManager.OnWavesFinished -= OnWavesFinishedListener;
             _uiController.OnStartLevel -= _levelManager.StartLevel;
             Player.Instance.OnLvlUp -= _uiController.ShowUpgradeMenu;
+            _uiController.Dispose();
         }
 
         private void OnWavesFinishedListener()

@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using Code.GameLogic;
+using Code.Input;
 using Code.PlayerLogic;
 using Code.UI.HUD;
 using Code.UI.UpgradeMenu;
 using Code.Upgrades;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Code.UI
 {
@@ -16,6 +18,7 @@ namespace Code.UI
         private readonly LevelCountUI _levelCountUI;
         private readonly HUDModel _hudModel;
         private readonly GameEndUI _gameEndUI;
+        private readonly PauseUI _pauseUI;
         
         public event Action OnStartLevel
         {
@@ -24,7 +27,7 @@ namespace Code.UI
         }
 
         public UIController(StartLevelUI startLevelUI, UpgradeMenuView upgradeMenuView, UpgradeManager upgradeManager,
-            LevelCountUI levelCountUI, HUDView hudView, Player player, GameEndUI gameEndUI)
+            LevelCountUI levelCountUI, HUDView hudView, Player player, GameEndUI gameEndUI, PauseUI pauseUI)
         {
             _startLevelUI = startLevelUI;
             
@@ -38,6 +41,14 @@ namespace Code.UI
             _gameEndUI = gameEndUI;
             _gameEndUI.RestartButton.onClick.AddListener(GameSceneManager.RestartScene);
             _gameEndUI.ExitButton.onClick.AddListener(GameSceneManager.ExitGame);
+            
+            _pauseUI = pauseUI;
+            _pauseUI.ResumeButton.onClick.AddListener(HidePauseMenu);
+            _pauseUI.RestartButton.onClick.AddListener(GameSceneManager.RestartScene);
+            _pauseUI.ExitButton.onClick.AddListener(GameSceneManager.ExitGame);
+            
+            InputManager.Instance.Gameplay.OnPause += GameplayOnPauseListener;
+            InputManager.Instance.PauseMenu.OnCloseMenu += PauseMenuOnCloseMenuListener;
         }
 
         public IEnumerator StartLevel()
@@ -74,7 +85,7 @@ namespace Code.UI
             else
             {
                 _gameEndUI.GameOverText.text = "YOU WIN";
-                _gameEndUI.GameOverText.color = new Color(0, 166, 23);
+                _gameEndUI.GameOverText.color = new Color(0, 23, 166);
             }
             _gameEndUI.KillsCountText.text = Player.Instance.KilledEnemies.ToString();
             _gameEndUI.LevelCountText.text = Player.Instance.CurrentLvl.ToString();
@@ -82,7 +93,29 @@ namespace Code.UI
             _gameEndUI.gameObject.SetActive(true);
         }
 
-        public void SwitchGameStateToGameplay()
+        private void ShowPauseMenu()
+        {
+            GameState.SwitchGameState(GameStateType.PauseMenu);
+            _pauseUI.gameObject.SetActive(true);
+        }
+
+        private void HidePauseMenu()
+        {
+            GameState.SwitchGameState(GameStateType.Gameplay);
+            _pauseUI.gameObject.SetActive(false);
+        }
+
+        private void GameplayOnPauseListener(InputAction.CallbackContext ctx)
+        {
+            ShowPauseMenu();
+        }
+
+        private void PauseMenuOnCloseMenuListener(InputAction.CallbackContext ctx)
+        {
+            HidePauseMenu();
+        }
+
+        private void SwitchGameStateToGameplay()
         {
             GameState.SwitchGameState(GameStateType.Gameplay);
         }
@@ -90,6 +123,9 @@ namespace Code.UI
         public void Dispose()
         {
             _upgradeMenuModel.OnHide -= SwitchGameStateToGameplay;
+            
+            InputManager.Instance.Gameplay.OnPause -= GameplayOnPauseListener;
+            InputManager.Instance.PauseMenu.OnCloseMenu -= PauseMenuOnCloseMenuListener;
         }
     }
 }
