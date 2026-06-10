@@ -22,6 +22,11 @@ namespace Code.GeneralLogic
             _modifiers.Add(modifier);
         }
 
+        public void ClearModifiers()
+        {
+            _modifiers.Clear();
+        }
+
         private float GetValue()
         {
             float flatSum = 0f;

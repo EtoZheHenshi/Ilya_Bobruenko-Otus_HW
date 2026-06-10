@@ -20,7 +20,7 @@ namespace Code.Upgrades
 
         public override bool IsAvailable()
         {
-            return Stat.Value < Stat.MaxValue;
+            return Stat.Value < Stat.MaxValue && Stat.Value > Stat.MinValue;
         }
 
         private float GetValue()

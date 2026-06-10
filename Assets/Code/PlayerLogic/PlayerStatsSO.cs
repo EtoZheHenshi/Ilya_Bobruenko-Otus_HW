@@ -11,5 +11,11 @@ namespace Code.PlayerLogic
         
         public Stat MaxHealth => _maxHealth;
         public Stat MoveSpeed => _moveSpeed;
+
+        public void ClearStats()
+        {
+            _maxHealth.ClearModifiers();
+            _moveSpeed.ClearModifiers();
+        }
     }
 }

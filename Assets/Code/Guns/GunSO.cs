@@ -15,7 +15,7 @@ namespace Code.Guns
         public GameObject ModelPrefab;
         public Vector3 SpawnPoint;
         public Vector3 SpawnRotation;
-        public int Damage;
+        public GunStatsSO GunStats;
 
         public ShootConfigSO ShootConfig;
         public TrailConfigSO TrailConfig;
@@ -58,7 +58,7 @@ namespace Code.Guns
                         ShootSystem.transform.position,
                         shootDirection,
                         out RaycastHit hit,
-                        float.MaxValue,
+                        TrailConfig.MissDistance,
                         ShootConfig.HitMask
                     ))
                 {
@@ -112,7 +112,7 @@ namespace Code.Guns
             {
                 if (hit.collider.TryGetComponent(out Enemy enemy))
                 {
-                    enemy.TakeDamage(Damage);
+                    enemy.TakeDamage(GunStats.Damage.Value);
                 }
                 
                 // SurfaceManager.Instance.HandleImpact(

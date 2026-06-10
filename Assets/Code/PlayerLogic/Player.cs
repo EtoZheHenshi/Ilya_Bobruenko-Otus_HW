@@ -109,6 +109,11 @@ namespace Code.PlayerLogic
             _healthSystem.TakeDamage(damageAmount);
         }
 
+        private void RefreshAllStats()
+        {
+            _playerConfig.Stats.ClearStats();
+        }
+
         private void Death()
         {
             Debug.Log("Death");

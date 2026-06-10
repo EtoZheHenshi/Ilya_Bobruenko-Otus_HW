@@ -17,6 +17,6 @@ MonoBehaviour:
   ModelPrefab: {fileID: 4999585898870245143, guid: d28281b58d4787a459c82cc4dd920a70, type: 3}
   SpawnPoint: {x: 0, y: 0.216816, z: 0.32}
   SpawnRotation: {x: 0, y: 0, z: 0}
-  Damage: 2
+  GunStats: {fileID: 11400000, guid: cf506756221932a4389a110aeb515cc4, type: 2}
   ShootConfig: {fileID: 11400000, guid: e775cc2893785ef4e887c79f2981391d, type: 2}
   TrailConfig: {fileID: 11400000, guid: f1a7eab4d2782b6468801df9816bd3d8, type: 2}

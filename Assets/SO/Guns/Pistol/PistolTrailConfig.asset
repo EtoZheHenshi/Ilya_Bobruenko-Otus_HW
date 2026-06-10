@@ -69,5 +69,5 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  MissDistance: 50
   SimulationSpeed: 50
+  _gunStats: {fileID: 11400000, guid: cf506756221932a4389a110aeb515cc4, type: 2}

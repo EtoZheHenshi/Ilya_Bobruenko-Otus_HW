@@ -10,8 +10,9 @@ namespace Code.Guns
         public float Duration = 0.5f;
         public float MinVertexDistance = 0.1f;
         public Gradient Color;
-
-        public float MissDistance = 100f;
         public float SimulationSpeed = 100f;
+        [SerializeField] private GunStatsSO _gunStats;
+
+        public float MissDistance => _gunStats.Distance.Value;
     }
 }

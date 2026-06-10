@@ -324,7 +324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e14a152d935470faf36dc54b48c65c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.PlayerLogic.Player
-  _playerConfig: {fileID: 0}
+  _playerConfig: {fileID: 11400000, guid: 69088154933cafa46b619906f299b5ae, type: 2}
+  KilledEnemies: 0
 --- !u!114 &3979091019602771376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,9 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f258d36efd4b61bc02bd2587d03d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Player.PlayerController
-  _controller: {fileID: 0}
-  _crosshair: {fileID: 0}
-  _gunSelector: {fileID: 0}
+  _controller: {fileID: 7037464050921113582}
+  _crosshair: {fileID: 4395885870717124670}
+  _gunSelector: {fileID: 8379048743129536193}
 --- !u!114 &8379048743129536193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,8 +390,8 @@ CharacterController:
   serializedVersion: 3
   m_Height: 0.9
   m_Radius: 0.25
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 0
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.45, z: 0}
@@ -439,7 +440,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 2
@@ -466,7 +467,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.3
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5294383508015655067
 GameObject:

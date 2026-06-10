@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f8ad0e6146497f884d005db440c0d9, type: 3}
+  m_Name: GunSpreadUpgrade
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Upgrades.StatUpgrades.GunSpreadUpgradeSO
+  _title: Gun Spread Upgrade
+  _description: Decreases gun spread by 0.1 point
+  _statModifier:
+    Value: -0.1
+    Type: 0
+  _gunStats: {fileID: 11400000, guid: cf506756221932a4389a110aeb515cc4, type: 2}

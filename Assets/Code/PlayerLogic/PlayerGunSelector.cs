@@ -16,6 +16,8 @@ namespace Code.Guns
 
         public void Initialize()
         {
+            RefreshGunsStats();
+            
             GunSO gun = Guns.Find(gun => gun.Type == Gun);
 
             if (gun == null)
@@ -26,6 +28,14 @@ namespace Code.Guns
 
             ActiveGun = gun;
             gun.Spawn(GunParent, this);
+        }
+
+        private void RefreshGunsStats()
+        {
+            foreach (GunSO gunSO in Guns)
+            {
+                gunSO.GunStats.ClearStats();
+            }
         }
     }
 }
