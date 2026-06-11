@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 3979091019602771376}
   - component: {fileID: 8379048743129536193}
   - component: {fileID: 7075708918667113742}
+  - component: {fileID: 1053870904032103448}
   - component: {fileID: 7037464050921113582}
   - component: {fileID: 5178649890094174291}
   - component: {fileID: 1942323895671284365}
@@ -370,6 +371,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b424f5b57fa4f69a7b7cc4da8beb513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.GeneralLogic.HitFlash
+--- !u!114 &1053870904032103448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729705817563349332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640a3f14d3434b57995511d86c883841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.GeneralLogic.VignetteFlash
+  _volume: {fileID: 0}
 --- !u!143 &7037464050921113582
 CharacterController:
   m_ObjectHideFlags: 0

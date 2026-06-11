@@ -6,12 +6,10 @@ using UnityEngine;
 
 namespace Code.PlayerLogic
 {
-    [RequireComponent(
-        typeof(PlayerController),
-        typeof(PlayerGunSelector),
-        typeof(HitFlash)
-        )
-    ]
+    [RequireComponent(typeof(PlayerController))]
+    [RequireComponent(typeof(HitFlash))]
+    [RequireComponent(typeof(PlayerGunSelector))]
+    [RequireComponent(typeof(VignetteFlash))]
     public sealed class Player : SingletonMonoBehaviour<Player>
     {
         [SerializeField] private PlayerConfigSO _playerConfig;
@@ -48,6 +46,7 @@ namespace Code.PlayerLogic
         private PlayerController _playerController;
         private PlayerGunSelector _gunSelector;
         private HitFlash _hitFlash;
+        private VignetteFlash _vignetteFlash;
         
         private HealthSystem _healthSystem;
         private PlayerLvlSystem _playerLvlSystem;
@@ -61,6 +60,7 @@ namespace Code.PlayerLogic
             _playerController = GetComponent<PlayerController>();
             _gunSelector = GetComponent<PlayerGunSelector>();
             _hitFlash = GetComponent<HitFlash>();
+            _vignetteFlash = GetComponent<VignetteFlash>();
             
             _healthSystem = new HealthSystem(_playerConfig.Stats.MaxHealth);
             _playerLvlSystem = new PlayerLvlSystem(_playerConfig.LvlExpTable);
@@ -89,6 +89,7 @@ namespace Code.PlayerLogic
             _gunSelector.Initialize();
 
             _healthSystem.OnTakeDamage += _hitFlash.Flash;
+            _healthSystem.OnTakeDamage += _vignetteFlash.Flash;
             _healthSystem.OnDeath += Death;
             
             _isInitialized = true;
