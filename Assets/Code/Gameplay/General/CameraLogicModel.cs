@@ -1,4 +1,5 @@
 using Code.Core.Update;
+using Code.Infrastructure;
 using UnityEngine;
 
 namespace Code.Gameplay.General
@@ -18,6 +19,8 @@ namespace Code.Gameplay.General
             _camera = mainCamera;
             
             _halfCameraWidth = mainCamera.orthographicSize * mainCamera.aspect;
+            
+            PlayerPositionSaver.SetCameraAction = SetCamera;
         }
 
         public void LateTick(float deltaTime)
@@ -33,6 +36,20 @@ namespace Code.Gameplay.General
                     _characterStopCollider.transform.position.y,
                     _characterStopCollider.transform.position.z);
             }
+            
+            _camera.transform.position = position;
+        }
+
+        private void SetCamera()
+        {
+            Vector3 position = _camera.transform.position;
+            
+            position.x = _cameraTarget.position.x + _cameraOffset;
+                
+            _characterStopCollider.transform.position = new Vector3(
+                position.x - _halfCameraWidth,
+                _characterStopCollider.transform.position.y,
+                _characterStopCollider.transform.position.z);
             
             _camera.transform.position = position;
         }

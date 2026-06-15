@@ -120,6 +120,24 @@ namespace Code.Infrastructure.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Save"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b8c6f6e-47ad-4022-a0e2-f07c67107e57"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Load"",
+                    ""type"": ""Button"",
+                    ""id"": ""14d9c993-9af1-4926-8541-e4dee07ba79b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -199,6 +217,28 @@ namespace Code.Infrastructure.Input
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7bcda787-c267-45c0-9838-5d947f583f8e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8eb57979-3c9f-41e9-8b22-07abb4df21fd"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Load"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -210,6 +250,8 @@ namespace Code.Infrastructure.Input
             m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
             m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
             m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+            m_Gameplay_Save = m_Gameplay.FindAction("Save", throwIfNotFound: true);
+            m_Gameplay_Load = m_Gameplay.FindAction("Load", throwIfNotFound: true);
         }
 
         ~@PlayerInput()
@@ -293,6 +335,8 @@ namespace Code.Infrastructure.Input
         private readonly InputAction m_Gameplay_Move;
         private readonly InputAction m_Gameplay_Jump;
         private readonly InputAction m_Gameplay_Pause;
+        private readonly InputAction m_Gameplay_Save;
+        private readonly InputAction m_Gameplay_Load;
         /// <summary>
         /// Provides access to input actions defined in input action map "Gameplay".
         /// </summary>
@@ -316,6 +360,14 @@ namespace Code.Infrastructure.Input
             /// Provides access to the underlying input action "Gameplay/Pause".
             /// </summary>
             public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+            /// <summary>
+            /// Provides access to the underlying input action "Gameplay/Save".
+            /// </summary>
+            public InputAction @Save => m_Wrapper.m_Gameplay_Save;
+            /// <summary>
+            /// Provides access to the underlying input action "Gameplay/Load".
+            /// </summary>
+            public InputAction @Load => m_Wrapper.m_Gameplay_Load;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -351,6 +403,12 @@ namespace Code.Infrastructure.Input
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Save.started += instance.OnSave;
+                @Save.performed += instance.OnSave;
+                @Save.canceled += instance.OnSave;
+                @Load.started += instance.OnLoad;
+                @Load.performed += instance.OnLoad;
+                @Load.canceled += instance.OnLoad;
             }
 
             /// <summary>
@@ -371,6 +429,12 @@ namespace Code.Infrastructure.Input
                 @Pause.started -= instance.OnPause;
                 @Pause.performed -= instance.OnPause;
                 @Pause.canceled -= instance.OnPause;
+                @Save.started -= instance.OnSave;
+                @Save.performed -= instance.OnSave;
+                @Save.canceled -= instance.OnSave;
+                @Load.started -= instance.OnLoad;
+                @Load.performed -= instance.OnLoad;
+                @Load.canceled -= instance.OnLoad;
             }
 
             /// <summary>
@@ -432,6 +496,20 @@ namespace Code.Infrastructure.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnPause(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Save" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnSave(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Load" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnLoad(InputAction.CallbackContext context);
         }
     }
 }

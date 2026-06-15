@@ -1,5 +1,6 @@
 using Code.Core.Update;
 using Code.Gameplay.General;
+using Code.Infrastructure;
 using Code.Infrastructure.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -47,6 +48,8 @@ namespace Code.Gameplay.Character
             //Subscribing
             characterView.OnStomp += _stompModel.Stomp;
             
+            PlayerPositionSaver.SetCharacter(_characterView.gameObject);
+            
             updateManager.Register((ITickable)this);
             updateManager.Register((IFixedTickable)this);
             SetInputActions(inputService);
@@ -86,6 +89,9 @@ namespace Code.Gameplay.Character
             inputService.PlayerInput.Gameplay.Move.canceled += InputMoveAction;
 
             inputService.PlayerInput.Gameplay.Jump.started += InputJumpAction;
+
+            inputService.PlayerInput.Gameplay.Save.started += (ctx) => PlayerPositionSaver.SavePosition();
+            inputService.PlayerInput.Gameplay.Load.started += (ctx) => PlayerPositionSaver.LoadPosition();
         }
         
         
