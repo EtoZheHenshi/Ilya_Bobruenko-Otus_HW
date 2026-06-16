@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Code.Enemies.WaveSystem;
+using Code.Infrastructure;
 using Code.PlayerLogic;
 using Code.UI;
 using Code.UI.HUD;
@@ -52,6 +53,7 @@ namespace Code.GameLogic
             _uiController.OnStartLevel += _levelManager.StartLevel;
             Player.Instance.OnLvlUp += _uiController.ShowUpgradeMenu;
             _levelManager.OnGameEnd += _uiController.ShowGameOverMenu;
+            _levelManager.OnGameEnd += AppMetricaActivator.SendLevelResult;
             
             GameState.SwitchGameState(GameStateType.Gameplay);
 
@@ -64,6 +66,7 @@ namespace Code.GameLogic
             _waveManager.OnWavesFinished -= OnWavesFinishedListener;
             _uiController.OnStartLevel -= _levelManager.StartLevel;
             Player.Instance.OnLvlUp -= _uiController.ShowUpgradeMenu;
+            _levelManager.OnGameEnd -= AppMetricaActivator.SendLevelResult;
             _uiController.Dispose();
         }
 

@@ -85,7 +85,7 @@ namespace Code.UI
             else
             {
                 _gameEndUI.GameOverText.text = "YOU WIN";
-                _gameEndUI.GameOverText.color = new Color(0, 23, 166);
+                _gameEndUI.GameOverText.color = new Color(0, 166, 23);
             }
             _gameEndUI.KillsCountText.text = Player.Instance.KilledEnemies.ToString();
             _gameEndUI.LevelCountText.text = Player.Instance.CurrentLvl.ToString();
