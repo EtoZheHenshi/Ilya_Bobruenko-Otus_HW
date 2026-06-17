@@ -1,4 +1,5 @@
 using Game.Code.Infrastructure.Input;
+using Game.Code.Infrastructure.UpdateSystem;
 using Zenject;
 
 namespace Game.Code.Infrastructure.Installers
@@ -8,8 +9,24 @@ namespace Game.Code.Infrastructure.Installers
         public override void InstallBindings()
         {
             base.InstallBindings();
-            
-            Container.Bind<IInputService>().To<InputService>().AsSingle();
+
+            BindInputService();
+            BindUpdateService();
+        }
+
+        private void BindUpdateService()
+        {
+            Container
+                .Bind<UpdateService>()
+                .AsSingle();
+        }
+
+        private void BindInputService()
+        {
+            Container
+                .Bind<IInputService>()
+                .To<InputService>()
+                .AsSingle();
         }
     }
 }
