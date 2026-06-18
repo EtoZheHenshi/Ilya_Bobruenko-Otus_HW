@@ -1,6 +1,7 @@
 using Game.Code.Infrastructure.EventBusSystem;
 using Game.Code.Infrastructure.Input;
 using Game.Code.Infrastructure.UpdateSystem;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Code.Infrastructure.Installers
@@ -9,11 +10,20 @@ namespace Game.Code.Infrastructure.Installers
     {
         public override void InstallBindings()
         {
-            base.InstallBindings();
-
             BindInputService();
             BindUpdateService();
             BindEventBusService();
+            BindBootstrapInitializer();
+
+            Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindBootstrapInitializer()
+        {
+            Container
+                .BindInterfacesAndSelfTo<BootstrapInitializer>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindEventBusService()
