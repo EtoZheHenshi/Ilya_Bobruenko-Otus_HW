@@ -6,6 +6,7 @@ using Zenject;
 
 namespace Game.Code.Gameplay.Player.PlayerComponents
 {
+    [RequireComponent(typeof(HitFlash))]
     public sealed class PlayerHealth : MonoBehaviour, IDamageable
     {
         public event Action OnTakeDamage;
@@ -18,6 +19,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         private Stat _maxHealth;
         private float _currentHealth;
         private bool _isDead;
+        private HitFlash _hitFlash;
 
         [Inject]
         public void Construct()
@@ -25,11 +27,14 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             PlayerFacade playerFacade = GetComponent<PlayerFacade>();
             _maxHealth = new Stat(playerFacade.PlayerStats.MaxHealth);
             _currentHealth = _maxHealth.CurrentValue;
+            _hitFlash = GetComponent<HitFlash>();
         }
-        
+
         public void TakeDamage(float damage)
         {
             if (_isDead) return;
+            
+            _hitFlash.Flash();
             
             _currentHealth -= damage;
 
