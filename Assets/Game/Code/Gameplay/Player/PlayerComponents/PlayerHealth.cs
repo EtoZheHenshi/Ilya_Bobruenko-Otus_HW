@@ -4,7 +4,7 @@ using Game.Code.Gameplay.General.Stats;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Code.Gameplay.Player
+namespace Game.Code.Gameplay.Player.PlayerComponents
 {
     public sealed class PlayerHealth : MonoBehaviour, IDamageable
     {

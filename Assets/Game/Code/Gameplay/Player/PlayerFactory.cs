@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.Code.Gameplay.Player.PlayerSO;
 using UnityEngine;
 using Zenject;
 

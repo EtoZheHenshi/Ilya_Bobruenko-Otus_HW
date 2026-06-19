@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Code.Gameplay.Player
+namespace Game.Code.Gameplay.Player.PlayerSO
 {
     [CreateAssetMenu(fileName = "PlayerTypes", menuName = "SO/Player/Player Types")]
     public sealed class PlayerTypesSO : ScriptableObject

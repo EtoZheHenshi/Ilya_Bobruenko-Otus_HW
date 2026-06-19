@@ -1,3 +1,4 @@
+using Game.Code.Gameplay.Player.PlayerSO;
 using UnityEngine;
 
 namespace Game.Code.Gameplay.Player

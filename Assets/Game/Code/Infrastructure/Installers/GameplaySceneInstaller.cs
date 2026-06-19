@@ -1,4 +1,5 @@
 using Game.Code.Gameplay.Player;
+using Game.Code.Gameplay.Player.PlayerSO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;

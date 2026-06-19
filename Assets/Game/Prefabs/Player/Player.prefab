@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7570270494687644357}
   - component: {fileID: 3770773661114481182}
   - component: {fileID: 2540445555137579397}
+  - component: {fileID: 6770548074636418804}
   - component: {fileID: 448556925755246149}
   m_Layer: 0
   m_Name: Player
@@ -74,6 +75,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef3a4f5d7534820b7ba3f067f180242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerHealth
+--- !u!114 &6770548074636418804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319034576906238641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95bb33cb43a4f0f88c99ff4b2575e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerComponents.PlayerLevel
+  _playerLevelExpTable: {fileID: 11400000, guid: 99dbbdd4cd1d49a40a09af0213ce1d10, type: 2}
 --- !u!143 &448556925755246149
 CharacterController:
   m_ObjectHideFlags: 0

@@ -1,4 +1,3 @@
-using System;
 using Game.Code.Gameplay.General.Stats;
 using Game.Code.Infrastructure.Input;
 using Game.Code.Infrastructure.UpdateSystem;
@@ -6,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace Game.Code.Gameplay.Player
+namespace Game.Code.Gameplay.Player.PlayerComponents
 {
     [RequireComponent(typeof(CharacterController))]
     public sealed class PlayerMove : MonoBehaviour, IUpdatable
