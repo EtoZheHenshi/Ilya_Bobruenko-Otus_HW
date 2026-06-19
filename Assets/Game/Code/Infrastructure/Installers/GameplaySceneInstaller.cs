@@ -1,3 +1,4 @@
+using Game.Code.Gameplay.Items;
 using Game.Code.Gameplay.Player;
 using Game.Code.Gameplay.Player.PlayerSO;
 using UnityEngine;
@@ -14,13 +15,29 @@ namespace Game.Code.Infrastructure.Installers
         [Header("Types SO")] 
         [SerializeField] private PlayerTypesSO _playerTypes;
         
+        [Header("Object Roots")] 
+        [SerializeField] private Transform _itemsRoot;
+        
         public override void InstallBindings() 
         {
             BindGameplaySceneInitializer();
             BindPlayerFactory();
             BindTypesSO();
+            BindItemsFactory();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindItemsFactory()
+        {
+            Container
+                .Bind<ItemsRoot>()
+                .FromInstance(new ItemsRoot(_itemsRoot))
+                .AsSingle();
+            
+            Container
+                .Bind<ItemsFactory>()
+                .AsSingle();
         }
 
         private void BindTypesSO()

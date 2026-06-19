@@ -12,8 +12,11 @@ GameObject:
   - component: {fileID: 7570270494687644357}
   - component: {fileID: 3770773661114481182}
   - component: {fileID: 2540445555137579397}
+  - component: {fileID: 999648649748887751}
   - component: {fileID: 6770548074636418804}
+  - component: {fileID: 9189892433047715721}
   - component: {fileID: 448556925755246149}
+  - component: {fileID: 5421846388054279850}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -50,6 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerFacade
   _playerStats: {fileID: 11400000, guid: 6d0ab649cf889f940bdd5b54447ce5dd, type: 2}
+  _playerHealth: {fileID: 2540445555137579397}
+  _itemsPickuper: {fileID: 9189892433047715721}
+  _playerLevel: {fileID: 6770548074636418804}
+  _playerMove: {fileID: 3770773661114481182}
+  _hitFlash: {fileID: 999648649748887751}
 --- !u!114 &3770773661114481182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +83,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef3a4f5d7534820b7ba3f067f180242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerHealth
+--- !u!114 &999648649748887751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319034576906238641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135d5b9f862d4a31a0bd60604a68355d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.General.HitFlash
 --- !u!114 &6770548074636418804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +108,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerComponents.PlayerLevel
   _playerLevelExpTable: {fileID: 11400000, guid: 99dbbdd4cd1d49a40a09af0213ce1d10, type: 2}
+--- !u!114 &9189892433047715721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319034576906238641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68909e8ef484ce487a0acf71c1c846f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerComponents.PlayerItemsPickuper
 --- !u!143 &448556925755246149
 CharacterController:
   m_ObjectHideFlags: 0
@@ -113,6 +145,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!135 &5421846388054279850
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319034576906238641}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2995766531753756046
 PrefabInstance:
   m_ObjectHideFlags: 0
