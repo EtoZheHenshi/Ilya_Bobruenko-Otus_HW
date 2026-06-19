@@ -9,10 +9,10 @@ namespace Game.Code.Gameplay.Player
         private readonly DiContainer _container;
         private readonly List<PlayerType> _playerTypes;
         
-        public PlayerFactory(DiContainer container)
+        public PlayerFactory(DiContainer container, PlayerTypesSO playerTypesSO)
         {
             _container = container;
-            _playerTypes = Resources.Load<PlayerTypesSO>("PlayerTypesSO").PlayerTypes;
+            _playerTypes = playerTypesSO.PlayerTypes;
         }
 
         public void Create(int id, Vector3 position)

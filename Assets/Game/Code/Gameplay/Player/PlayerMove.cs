@@ -56,7 +56,7 @@ namespace Game.Code.Gameplay.Player
 
         private void OnDisable()
         {
-            _updateService.Remove(this);
+            _updateService.Unregister(this);
             
             _inputService.PlayerInput.Gameplay.Move.performed -= GameplayOnMoveListener;
             _inputService.PlayerInput.Gameplay.Move.canceled -= GameplayOnMoveListener;
@@ -94,7 +94,7 @@ namespace Game.Code.Gameplay.Player
             {
                 Quaternion targetRotation = Quaternion.LookRotation(_directionToRotate);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,
-                    deltaTime + _rotateSpeed);
+                    deltaTime * _rotateSpeed);
             }
         }
         

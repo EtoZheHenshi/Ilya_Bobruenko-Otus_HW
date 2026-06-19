@@ -61,7 +61,7 @@ namespace Game.Code.Gameplay.General.Stats
 
             if (result >= _maxValue)
             {
-                return _baseValue;
+                return _maxValue;
             }
 
             if (result <= _minValue)

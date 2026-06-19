@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Infrastructure.Installers.GameplaySceneInstaller
   _gameplaySceneInitializer: {fileID: 1354498357}
+  _playerTypes: {fileID: 11400000, guid: 08684b9b57ba7204cbe8fd611e8bdcf8, type: 2}
 --- !u!114 &1239372058
 MonoBehaviour:
   m_ObjectHideFlags: 0

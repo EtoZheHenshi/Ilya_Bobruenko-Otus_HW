@@ -43,30 +43,39 @@ namespace Game.Code.Infrastructure.UpdateSystem
 
         public void Register(IUpdatable updatable)
         {
+            if (_tickables.Contains(updatable)) 
+                return;
+            
             _tickables.Add(updatable);
         }
 
         public void Register(IFixedUpdatable fixedUpdatable)
         {
+            if (_fixedTickables.Contains(fixedUpdatable)) 
+                return;
+
             _fixedTickables.Add(fixedUpdatable);
         }
 
         public void Register(ILateUpdatable lateUpdatable)
         {
+            if (_lateTickables.Contains(lateUpdatable)) 
+                return;
+
             _lateTickables.Add(lateUpdatable);
         }
         
-        public void Remove(IUpdatable updatable)
+        public void Unregister(IUpdatable updatable)
         {
             _tickables.Remove(updatable);
         }
 
-        public void Remove(IFixedUpdatable fixedUpdatable)
+        public void Unregister(IFixedUpdatable fixedUpdatable)
         {
             _fixedTickables.Remove(fixedUpdatable);
         }
 
-        public void Remove(ILateUpdatable lateUpdatable)
+        public void Unregister(ILateUpdatable lateUpdatable)
         {
             _lateTickables.Remove(lateUpdatable);
         }
