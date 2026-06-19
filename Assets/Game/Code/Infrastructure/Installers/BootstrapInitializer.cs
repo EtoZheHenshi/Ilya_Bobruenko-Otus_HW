@@ -15,7 +15,7 @@ namespace Game.Code.Infrastructure.Installers
             
             SceneManager.LoadScene(_nextSceneIndex);
 
-            Debug.Log($"{this.GetType()} installed");
+            Debug.Log($"{this.GetType()} initialized");
         }
         
         public static bool CheckBootstrapStatus(Scene activeScene)

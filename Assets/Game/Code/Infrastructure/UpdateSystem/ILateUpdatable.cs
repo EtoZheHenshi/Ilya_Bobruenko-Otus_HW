@@ -1,6 +1,6 @@
 namespace Game.Code.Infrastructure.UpdateSystem
 {
-    public interface ILateTickable
+    public interface ILateUpdatable
     {
         public void LateTick(float deltaTime);
     }

@@ -1,72 +1,74 @@
 using System.Collections.Generic;
+using UnityEngine;
+using Zenject;
 
 namespace Game.Code.Infrastructure.UpdateSystem
 {
-    public sealed class UpdateService
+    public sealed class UpdateService : ITickable, IFixedTickable, ILateTickable
     {
-        private List<ITickable> _tickables;
-        private List<IFixedTickable> _fixedTickables;
-        private List<ILateTickable> _lateTickables;
+        private readonly List<IUpdatable> _tickables;
+        private readonly List<IFixedUpdatable> _fixedTickables;
+        private readonly List<ILateUpdatable> _lateTickables;
 
         public UpdateService()
         {
-            _tickables = new List<ITickable>();
-            _fixedTickables = new List<IFixedTickable>();
-            _lateTickables = new List<ILateTickable>();
+            _tickables = new List<IUpdatable>();
+            _fixedTickables = new List<IFixedUpdatable>();
+            _lateTickables = new List<ILateUpdatable>();
         }
 
-        public void Tick(float deltaTime)
+        public void Tick()
         {
             for (int i = 0; i < _tickables.Count; i++)
             {
-                _tickables[i]?.Tick(deltaTime);
+                _tickables[i]?.Tick(Time.deltaTime);
             }
         }
 
-        public void FixedTick(float fixedDeltaTime)
+        public void FixedTick()
         {
             for (int i = 0; i < _fixedTickables.Count; i++)
             {
-                _fixedTickables[i]?.FixedTick(fixedDeltaTime);
+                _fixedTickables[i]?.FixedTick(Time.fixedDeltaTime);
             }
         }
 
-        public void LateTick(float deltaTime)
+        public void LateTick()
         {
             for (int i = 0; i < _lateTickables.Count; i++)
             {
-                _lateTickables[i]?.LateTick(deltaTime);
+                _lateTickables[i]?.LateTick(Time.deltaTime);
             }
         }
 
-        public void Register(ITickable tickable)
+        public void Register(IUpdatable updatable)
         {
-            _tickables.Add(tickable);
+            _tickables.Add(updatable);
         }
 
-        public void Register(IFixedTickable fixedTickable)
+        public void Register(IFixedUpdatable fixedUpdatable)
         {
-            _fixedTickables.Add(fixedTickable);
+            _fixedTickables.Add(fixedUpdatable);
         }
 
-        public void Register(ILateTickable lateTickable)
+        public void Register(ILateUpdatable lateUpdatable)
         {
-            _lateTickables.Add(lateTickable);
+            _lateTickables.Add(lateUpdatable);
         }
         
-        public void Remove(ITickable tickable)
+        public void Remove(IUpdatable updatable)
         {
-            _tickables.Remove(tickable);
+            _tickables.Remove(updatable);
         }
 
-        public void Remove(IFixedTickable fixedTickable)
+        public void Remove(IFixedUpdatable fixedUpdatable)
         {
-            _fixedTickables.Remove(fixedTickable);
+            _fixedTickables.Remove(fixedUpdatable);
         }
 
-        public void Remove(ILateTickable lateTickable)
+        public void Remove(ILateUpdatable lateUpdatable)
         {
-            _lateTickables.Remove(lateTickable);
+            _lateTickables.Remove(lateUpdatable);
         }
     }
 }

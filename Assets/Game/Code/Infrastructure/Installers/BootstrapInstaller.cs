@@ -36,7 +36,7 @@ namespace Game.Code.Infrastructure.Installers
         private void BindUpdateService()
         {
             Container
-                .Bind<UpdateService>()
+                .BindInterfacesAndSelfTo<UpdateService>()
                 .AsSingle();
         }
 

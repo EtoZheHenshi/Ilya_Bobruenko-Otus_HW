@@ -32,7 +32,16 @@ namespace Game.Code.Infrastructure.EventBusSystem
 
             if (_events.TryGetValue(type, out Delegate action))
             {
-                _events[type] = Delegate.Remove(action, callback);
+                action = Delegate.Remove(action, callback);
+
+                if (action == null)
+                {
+                    _events.Remove(type);
+                }
+                else
+                {
+                    _events[type] = action;
+                }
             }
         }
 
