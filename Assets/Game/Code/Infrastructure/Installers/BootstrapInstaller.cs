@@ -1,4 +1,5 @@
 using Game.Code.Infrastructure.EventBusSystem;
+using Game.Code.Infrastructure.GameStateSystem;
 using Game.Code.Infrastructure.Input;
 using Game.Code.Infrastructure.UpdateSystem;
 using UnityEngine;
@@ -14,8 +15,16 @@ namespace Game.Code.Infrastructure.Installers
             BindUpdateService();
             BindEventBusService();
             BindBootstrapInitializer();
+            BindGameStateService();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindGameStateService()
+        {
+            Container
+                .Bind<GameStateService>()
+                .AsSingle();
         }
 
         private void BindBootstrapInitializer()

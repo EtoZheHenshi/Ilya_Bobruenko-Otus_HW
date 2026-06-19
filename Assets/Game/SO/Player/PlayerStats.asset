@@ -16,3 +16,7 @@ MonoBehaviour:
     _baseValue: 3
     _minValue: 1
     _maxValue: 5
+  _maxHealth:
+    _baseValue: 3
+    _minValue: 1
+    _maxValue: 5

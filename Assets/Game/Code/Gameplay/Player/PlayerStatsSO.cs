@@ -7,7 +7,9 @@ namespace Game.Code.Gameplay.Player
     public sealed class PlayerStatsSO : ScriptableObject
     {
         [SerializeField] private Stat _moveSpeed;
+        [SerializeField] private Stat _maxHealth;
         
         public Stat MoveSpeed => _moveSpeed;
+        public Stat MaxHealth => _maxHealth;
     }
 }

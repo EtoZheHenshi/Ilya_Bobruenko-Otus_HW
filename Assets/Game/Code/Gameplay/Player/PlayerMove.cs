@@ -52,10 +52,14 @@ namespace Game.Code.Gameplay.Player
             
             _inputService.PlayerInput.Gameplay.Move.performed += GameplayOnMoveListener;
             _inputService.PlayerInput.Gameplay.Move.canceled += GameplayOnMoveListener;
+            
+            _isActive = true;
         }
 
         private void OnDisable()
         {
+            _isActive = false;
+            
             _updateService.Unregister(this);
             
             _inputService.PlayerInput.Gameplay.Move.performed -= GameplayOnMoveListener;

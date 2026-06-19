@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7243809783141001519}
   - component: {fileID: 7570270494687644357}
   - component: {fileID: 3770773661114481182}
+  - component: {fileID: 2540445555137579397}
   - component: {fileID: 448556925755246149}
   m_Layer: 0
   m_Name: Player
@@ -61,6 +62,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerMove
   _rotateSpeed: 5
+--- !u!114 &2540445555137579397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319034576906238641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef3a4f5d7534820b7ba3f067f180242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerHealth
 --- !u!143 &448556925755246149
 CharacterController:
   m_ObjectHideFlags: 0
@@ -79,13 +92,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_Height: 0.9
+  m_Radius: 0.25
+  m_SlopeLimit: 0
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!1001 &2995766531753756046
 PrefabInstance:
   m_ObjectHideFlags: 0
