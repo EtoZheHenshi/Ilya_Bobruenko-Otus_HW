@@ -1,4 +1,3 @@
-using System;
 using Game.Code.Gameplay.Player.PlayerSO;
 using Game.Code.Infrastructure.EventBusSystem;
 using Game.Code.Infrastructure.EventBusSystem.Events;
@@ -64,7 +63,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             if (_currentExp < _expForNextLvl) 
                 return;
             
-            while (_currentExp >= _expForNextLvl)
+            while (_currentExp >= _expForNextLvl && _currentLvl < _maxLvl)
             {
                 LvlUp();
             }

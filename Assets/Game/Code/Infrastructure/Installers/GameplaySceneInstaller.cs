@@ -2,7 +2,6 @@ using Game.Code.Gameplay.Items;
 using Game.Code.Gameplay.Player;
 using Game.Code.Gameplay.Player.PlayerSO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Game.Code.Infrastructure.Installers

@@ -12,7 +12,7 @@ namespace Game.Code.Gameplay.Items
             _container = container;
         }
         
-        public void Create(Collider itemPrefab, Vector3 spawnPosition, Transform parent)
+        public void Create(ItemPickup itemPrefab, Vector3 spawnPosition, Transform parent)
         {
             _container.InstantiatePrefab(itemPrefab, spawnPosition, Quaternion.identity, parent);
         }
