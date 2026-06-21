@@ -8,13 +8,11 @@ namespace Game.Code.Gameplay.Items
         [SerializeField] private float _spawnPositionOffset = 1f;
         [SerializeField] private DroppableItemsSO _droppableItemsSO;
         
-        private ItemsRoot _itemsRoot;
         private ItemsFactory _itemsFactory;
 
         [Inject]
-        public void Construct(ItemsRoot itemsRoot, ItemsFactory itemsFactory)
+        public void Construct(ItemsFactory itemsFactory)
         {
-            _itemsRoot = itemsRoot;
             _itemsFactory = itemsFactory;
         }
 
@@ -30,7 +28,7 @@ namespace Game.Code.Gameplay.Items
                 {
                     if (Random.Range(0f, 100f) <= item.DropRate)
                     {
-                        _itemsFactory.Create(item.Config.ItemPrefab ,GetSpawnPosition(transform), _itemsRoot.Transform);
+                        _itemsFactory.Create(item.Config.ItemPrefab ,GetSpawnPosition(transform));
                     }
                 }
             }

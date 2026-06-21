@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9dc37b50b46444f8301d0041ca045fc, type: 3}
-  m_Name: HealConfig
+  m_Name: SkeletonExpConfig
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Items.ItemConfigSO
-  _itemPrefab: {fileID: 5323015314072279145, guid: 66b77c2f8f4ed8d42b3488f2c1f7dcde, type: 3}
-  _itemEffect: {fileID: 11400000, guid: 8bd3b7cfcaf9dcc4c917656d9c8de71f, type: 2}
+  _itemPrefab: {fileID: 1085842455570518987, guid: 5c1153faa2ce31c4b997ba0321e6210f, type: 3}
+  _itemEffect: {fileID: 11400000, guid: 4dd2e5a8a923048439b06f7ad785a6d5, type: 2}
   _lifeTime: 10

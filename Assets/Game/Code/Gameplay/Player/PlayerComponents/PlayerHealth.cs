@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Game.Code.Gameplay.General;
 using Game.Code.Gameplay.General.Stats;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
     [RequireComponent(typeof(HitFlash))]
     public sealed class PlayerHealth : MonoBehaviour, IDamageable
     {
+        private const float InvincibleDuration = 1f;
+        
         public event Action OnTakeDamage;
         public event Action OnDeath;
         public event Action OnHeal;
@@ -20,6 +23,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         private float _currentHealth;
         private bool _isDead;
         private HitFlash _hitFlash;
+        private bool _isInvincible;
 
         [Inject]
         public void Construct()
@@ -32,11 +36,14 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
 
         public void TakeDamage(float damage)
         {
-            if (_isDead) return;
+            if (_isInvincible || _isDead) return;
+            
+            StartCoroutine(InvincibleTime());
             
             _hitFlash.Flash();
             
             _currentHealth -= damage;
+            Debug.Log($"HP : {_currentHealth}");
 
             if (_currentHealth > 0)
             {
@@ -57,6 +64,13 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
                 _currentHealth = _maxHealth.CurrentValue;
             }
             OnHeal?.Invoke();
+        }
+
+        private IEnumerator InvincibleTime()
+        {
+            _isInvincible = true;
+            yield return new WaitForSeconds(InvincibleDuration);
+            _isInvincible = false;
         }
     }
 }

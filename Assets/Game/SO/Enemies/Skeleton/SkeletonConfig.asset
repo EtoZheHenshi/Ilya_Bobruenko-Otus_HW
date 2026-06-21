@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6b9d63181a439faec50d0210f52717, type: 3}
+  m_Name: SkeletonConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.EnemyConfigSO
+  _enemyStats: {fileID: 11400000, guid: 1cade233329299447897d684e96b5067, type: 2}
+  _spawnTags:
+  - {fileID: 11400000, guid: 986ead8f3fc153c4bb36bb17731db106, type: 2}
+  _enemyPrefab: {fileID: 4675884689790198414, guid: ab2893385f77f0f4981bd2f1c56769ce, type: 3}
+  _droppableItems: {fileID: 11400000, guid: 2158b21f44f767c46981435f20a4b03a, type: 2}

@@ -16,10 +16,10 @@ namespace Game.Code.Gameplay.Player
             _playerTypes = playerTypesSO.PlayerTypes;
         }
 
-        public void Create(int id, Vector3 position)
+        public GameObject Create(int id, Vector3 position)
         {
             PlayerType player = _playerTypes[id];
-            _container.InstantiatePrefab(player.PlayerPrefab, position, Quaternion.identity, null);
+            return _container.InstantiatePrefab(player.PlayerPrefab, position, Quaternion.identity, null);
         }
     }
 }
