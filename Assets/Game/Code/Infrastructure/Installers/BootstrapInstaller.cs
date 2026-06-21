@@ -16,8 +16,19 @@ namespace Game.Code.Infrastructure.Installers
             BindEventBusService();
             BindBootstrapInitializer();
             BindGameStateService();
+            BindCoroutineRunner();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindCoroutineRunner()
+        {
+            Container
+                .Bind<CoroutineRunner>()
+                .FromNewComponentOnNewGameObject()
+                .WithGameObjectName("[CoroutineRunner]")
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindGameStateService()

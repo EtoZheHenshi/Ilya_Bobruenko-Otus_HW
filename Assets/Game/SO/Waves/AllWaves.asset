@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e8629350a54959abb7b63aeb4007ef, type: 3}
+  m_Name: AllWaves
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.WaveSystem.AllWavesSO
+  _waveConfigs:
+  - {fileID: 11400000, guid: b0ed54e6164570542a67f698cea095b0, type: 2}
+  - {fileID: 11400000, guid: fc1f4d8d99a18c948a15accb866b58df, type: 2}

@@ -14,9 +14,9 @@ namespace Game.Code.Gameplay.Enemies
             _enemiesRoot = enemiesRoot;
         }
         
-        public void Create(EnemyConfigSO enemyConfig, Vector3 position)
+        public GameObject Create(EnemyConfigSO enemyConfig, Vector3 position)
         {
-            _container.InstantiatePrefab(enemyConfig.Prefab, position, Quaternion.identity, _enemiesRoot.Transform);
+            return _container.InstantiatePrefab(enemyConfig.Prefab, position, Quaternion.identity, _enemiesRoot.Transform);
         }
     }
 }

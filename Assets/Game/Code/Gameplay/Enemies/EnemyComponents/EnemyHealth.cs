@@ -47,7 +47,14 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
             {
                 _isDead = true;
                 OnDeath?.Invoke();
+                Destroy(gameObject);
             }
+        }
+
+        private void OnDestroy()
+        {
+            OnTakeDamage = null;
+            OnDeath = null;
         }
     }
 }

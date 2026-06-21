@@ -1,5 +1,7 @@
 using Game.Code.Gameplay.Enemies;
 using Game.Code.Gameplay.Player;
+using Game.Code.Infrastructure.EventBusSystem;
+using Game.Code.Infrastructure.EventBusSystem.Events;
 using Game.Code.Infrastructure.GameStateSystem;
 using UnityEngine;
 using Zenject;
@@ -13,13 +15,13 @@ namespace Game.Code.Infrastructure.Installers
         private PlayerFactory _playerFactory;
         private GameStateService _gameStateService;
         private PlayerRegistry _playerRegistry;
-        private EnemyFactory _enemyFactory;
+        private EventBusService _eventBusService;
 
         [Inject]
         public void Construct(PlayerFactory playerFactory, GameStateService gameStateService,
-            PlayerRegistry playerRegistry, EnemyFactory enemyFactory)
+            PlayerRegistry playerRegistry, EventBusService eventBusService)
         {
-            _enemyFactory = enemyFactory;
+            _eventBusService = eventBusService;
             _playerFactory = playerFactory;
             _gameStateService = gameStateService;
             _playerRegistry = playerRegistry;
@@ -32,9 +34,9 @@ namespace Game.Code.Infrastructure.Installers
             GameObject player = _playerFactory.Create(0, _playerStartPosition.position);
             _playerRegistry.Register(player.GetComponent<PlayerFacade>());
             
-            _enemyFactory.Create(_skeleton, new Vector3(5, 0, -4));
-            
             _gameStateService.SwitchGameState(GameStateType.Gameplay);
+            
+            _eventBusService.Publish(new WaveStartEvent());
             
             IsInitialized = true;
 

@@ -1,4 +1,6 @@
 using Game.Code.Gameplay.Enemies;
+using Game.Code.Gameplay.Enemies.SpawnerSystem;
+using Game.Code.Gameplay.Enemies.WaveSystem;
 using Game.Code.Gameplay.Items;
 using Game.Code.Gameplay.Player;
 using Game.Code.Gameplay.Player.PlayerSO;
@@ -20,6 +22,10 @@ namespace Game.Code.Infrastructure.Installers
         [SerializeField] private Transform _itemsRoot;
         [SerializeField] private Transform _enemyRoot;
         
+        [Header("Other")] 
+        [SerializeField] private EnemySpawnerSystem _enemySpawnerSystem;
+        [SerializeField] private AllWavesSO _allWaves;
+        
         public override void InstallBindings() 
         {
             BindGameplaySceneInitializer();
@@ -28,8 +34,35 @@ namespace Game.Code.Infrastructure.Installers
             BindEnemyFactory();
             BindItemsFactory();
             BindPlayerRegistry();
+            BindEnemySpawnerSystem();
+            BindWaveSwitcher();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindWaveSwitcher()
+        {
+            Container
+                .Bind<AllWavesSO>()
+                .FromInstance(_allWaves)
+                .AsSingle();
+            
+            Container
+                .Bind<WaveHandler>()
+                .AsSingle();
+            
+            Container
+                .Bind<WaveSwitcher>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindEnemySpawnerSystem()
+        {
+            Container
+                .Bind<EnemySpawnerSystem>()
+                .FromInstance(_enemySpawnerSystem)
+                .AsSingle();
         }
 
         private void BindPlayerRegistry()
