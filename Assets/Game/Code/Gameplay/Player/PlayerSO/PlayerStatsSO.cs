@@ -9,7 +9,7 @@ namespace Game.Code.Gameplay.Player.PlayerSO
         [SerializeField] private Stat _moveSpeed;
         [SerializeField] private Stat _maxHealth;
         
-        public Stat MoveSpeed => _moveSpeed;
-        public Stat MaxHealth => _maxHealth;
+        public Stat MoveSpeed => new Stat(_moveSpeed);
+        public Stat MaxHealth => new Stat(_maxHealth);
     }
 }

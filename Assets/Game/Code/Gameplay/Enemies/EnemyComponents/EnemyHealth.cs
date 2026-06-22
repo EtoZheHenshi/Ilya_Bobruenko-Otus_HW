@@ -26,9 +26,9 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
         public void Construct()
         {
             _enemyFacade = GetComponent<EnemyFacade>();
-            _maxHealth = new Stat(_enemyFacade.Stats.MaxHealth);
+            _hitFlash = _enemyFacade.HitFlash;
+            _maxHealth = _enemyFacade.Stats.MaxHealth;
             _currentHealth = _maxHealth.CurrentValue;
-            _hitFlash = GetComponent<HitFlash>();
         }
         
         public void TakeDamage(float damage)

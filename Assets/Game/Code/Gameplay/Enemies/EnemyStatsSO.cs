@@ -8,7 +8,7 @@ namespace Game.Code.Gameplay.Enemies
         [SerializeField] private Stat _maxHealth;
         [SerializeField] private Stat _speed;
         
-        public Stat MaxHealth => _maxHealth;
-        public Stat Speed => _speed;
+        public Stat MaxHealth => new Stat(_maxHealth);
+        public Stat Speed => new Stat(_speed);
     }
 }

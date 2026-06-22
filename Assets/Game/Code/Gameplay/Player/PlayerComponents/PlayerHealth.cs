@@ -29,7 +29,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         public void Construct()
         {
             PlayerFacade playerFacade = GetComponent<PlayerFacade>();
-            _maxHealth = new Stat(playerFacade.PlayerStats.MaxHealth);
+            _maxHealth = playerFacade.PlayerStats.MaxHealth;
             _currentHealth = _maxHealth.CurrentValue;
             _hitFlash = GetComponent<HitFlash>();
         }

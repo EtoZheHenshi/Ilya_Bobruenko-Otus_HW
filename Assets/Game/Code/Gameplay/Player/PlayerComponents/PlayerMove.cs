@@ -29,7 +29,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         {
             _controller = GetComponent<CharacterController>();
             PlayerFacade playerFacade = GetComponent<PlayerFacade>();
-            _moveSpeed = new Stat(playerFacade.PlayerStats.MoveSpeed);
+            _moveSpeed = playerFacade.PlayerStats.MoveSpeed;
             _camera = Camera.main;
             _updateService = updateService;
             _inputService = inputService;

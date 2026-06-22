@@ -12,7 +12,6 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private readonly EventBusService _eventBusService;
 
         private int _waveCount;
-        private bool _canStartWave;
 
         public WaveSwitcher(WaveHandler waveHandler, AllWavesSO allWaves, CoroutineRunner coroutineRunner,
             EventBusService eventBusService)
