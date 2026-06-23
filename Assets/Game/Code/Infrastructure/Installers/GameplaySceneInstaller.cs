@@ -1,3 +1,5 @@
+using Game.Code.Gameplay.Bullets;
+using Game.Code.Gameplay.Bullets.BulletEffects;
 using Game.Code.Gameplay.Enemies;
 using Game.Code.Gameplay.Enemies.SpawnerSystem;
 using Game.Code.Gameplay.Enemies.WaveSystem;
@@ -21,23 +23,37 @@ namespace Game.Code.Infrastructure.Installers
         [Header("Object Roots")] 
         [SerializeField] private Transform _itemsRoot;
         [SerializeField] private Transform _enemyRoot;
+        [SerializeField] private Transform _bulletsRoot;
         
         [Header("Other")] 
         [SerializeField] private EnemySpawnerSystem _enemySpawnerSystem;
         [SerializeField] private AllWavesSO _allWaves;
+        [SerializeField] private BulletConfigSO _bulletConfig;
         
         public override void InstallBindings() 
         {
             BindGameplaySceneInitializer();
+            
             BindTypesSO();
+            
             BindPlayerFactory();
             BindEnemyFactory();
             BindItemsFactory();
+            BindBulletFactory();
+            
             BindPlayerRegistry();
+
+            BindBulletEffectsCollection();
+            
             BindEnemySpawnerSystem();
             BindWaveSwitcher();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindBulletEffectsCollection()
+        {
+            Container.Bind<BulletEffectsCollection>().AsSingle();
         }
 
         private void BindWaveSwitcher()
@@ -93,6 +109,23 @@ namespace Game.Code.Infrastructure.Installers
             
             Container
                 .Bind<EnemyFactory>()
+                .AsSingle();
+        }
+        
+        private void BindBulletFactory()
+        {
+            Container
+                .Bind<BulletConfigSO>()
+                .FromInstance(_bulletConfig)
+                .AsSingle();
+            
+            Container
+                .Bind<BulletsRoot>()
+                .FromInstance(new BulletsRoot(_bulletsRoot))
+                .AsSingle();
+            
+            Container
+                .Bind<BulletFactory>()
                 .AsSingle();
         }
 

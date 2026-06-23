@@ -9,6 +9,14 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects
         private List<IBulletHitEffect> _bulletHitEffects;
         private List<IBulletDestroyEffect> _bulletDestroyEffects;
 
+        public BulletEffectsCollection()
+        {
+            _bulletSpawnEffects = new List<IBulletSpawnEffect>();
+            _bulletUpdateEffects = new List<IBulletUpdateEffect>();
+            _bulletHitEffects = new List<IBulletHitEffect>();
+            _bulletDestroyEffects = new List<IBulletDestroyEffect>();
+        }
+
         public void OnSpawn(Bullet bullet)
         {
             foreach (var effect in _bulletSpawnEffects)

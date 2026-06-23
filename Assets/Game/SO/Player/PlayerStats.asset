@@ -20,3 +20,7 @@ MonoBehaviour:
     _baseValue: 3
     _minValue: 1
     _maxValue: 5
+  _fireRate:
+    _baseValue: 0.6
+    _minValue: 0.1
+    _maxValue: 2

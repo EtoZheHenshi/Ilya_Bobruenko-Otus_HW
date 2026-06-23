@@ -1,5 +1,7 @@
 using System;
 using Game.Code.Gameplay.Bullets.BulletEffects;
+using Game.Code.Gameplay.General;
+using Game.Code.Gameplay.General.Stats;
 using Game.Code.Infrastructure.UpdateSystem;
 using UnityEngine;
 using Zenject;
@@ -12,12 +14,28 @@ namespace Game.Code.Gameplay.Bullets
         
         private BulletEffectsCollection _bulletEffectsCollection;
         private UpdateService _updateService;
+        private BulletMove _move;
+        private Stat _damage;
+        
+        public RaycastHit[] Hits => _move.Hits;
+        public Stat Damage => _damage;
 
         [Inject]
         public void Construct(BulletEffectsCollection bulletEffectsCollection, UpdateService updateService)
         {
             _bulletEffectsCollection = bulletEffectsCollection;
             _updateService = updateService;
+            
+            _move = new BulletMove(
+                _bulletConfig.BulletStats.Speed,
+                _bulletConfig.BulletStats.Radius,
+                _bulletConfig.BulletStats.Distance,
+                _bulletConfig.HitMask,
+                transform,
+                OnHit);
+            _move.OnEndDistance += Death;
+            
+            _damage = _bulletConfig.BulletStats.Damage;
         }
 
         private void Start()
@@ -28,6 +46,7 @@ namespace Game.Code.Gameplay.Bullets
         public void Tick(float deltaTime)
         {
             _bulletEffectsCollection.OnUpdate(this);
+            _move.Tick(deltaTime);
         }
 
         private void OnEnable()
@@ -42,23 +61,39 @@ namespace Game.Code.Gameplay.Bullets
 
         public void OnHit()
         {
+            SortHitsByDistance();
             _bulletEffectsCollection.OnHit(this);
+            BaseHit();
         }
 
         public void OnDestroy()
         {
             _bulletEffectsCollection.OnDestroy(this);
+            _move.OnEndDistance -= Death;
         }
-    }
 
-    public sealed class BulletConfigSO : ScriptableObject
-    {
-        [SerializeField] private BulletStatsSO _bulletStats;
-        [SerializeField] private GameObject _bulletPrefab;
-        
-    }
+        private void BaseHit()
+        {
+            if (Hits[0].transform.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(_damage.CurrentValue);
+            }
+            Death();
+        }
 
-    public sealed class BulletStatsSO : ScriptableObject
-    {
+        private void Death()
+        {
+            Destroy(gameObject);
+        }
+
+        private void SortHitsByDistance()
+        {
+            Array.Sort(Hits, CompareHits);
+        }
+
+        private static int CompareHits(RaycastHit a, RaycastHit b)
+        {
+            return a.distance.CompareTo(b.distance);
+        }
     }
 }
