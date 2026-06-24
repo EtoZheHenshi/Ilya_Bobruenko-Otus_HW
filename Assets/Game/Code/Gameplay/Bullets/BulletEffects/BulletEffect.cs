@@ -5,7 +5,7 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects
         protected const int MaxLevel = 5;
         private int _currentLevel = 1;
 
-        public int CurrentLevel { get; }
+        public int CurrentLevel => _currentLevel;
 
         public virtual void UpdateEffect()
         {

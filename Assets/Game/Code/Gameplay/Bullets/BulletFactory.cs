@@ -16,10 +16,9 @@ namespace Game.Code.Gameplay.Bullets
             _bulletPrefab = bulletConfig.BulletPrefab;
         }
 
-        public void Create(Transform spawnPosition)
+        public void Create(Vector3 position, Quaternion rotation)
         {
-            _container.InstantiatePrefab(_bulletPrefab, spawnPosition.position, 
-                spawnPosition.rotation, _bulletsRoot.Transform);
+            _container.InstantiatePrefab(_bulletPrefab, position, rotation, _bulletsRoot.Transform);
         }
     }
 }

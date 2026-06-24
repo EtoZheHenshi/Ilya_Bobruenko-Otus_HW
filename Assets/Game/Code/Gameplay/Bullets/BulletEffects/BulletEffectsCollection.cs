@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Game.Code.Gameplay.Bullets.BulletEffects
 {
@@ -15,6 +16,23 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects
             _bulletUpdateEffects = new List<IBulletUpdateEffect>();
             _bulletHitEffects = new List<IBulletHitEffect>();
             _bulletDestroyEffects = new List<IBulletDestroyEffect>();
+        }
+
+        private BulletEffectsCollection(BulletEffectsCollection old)
+        {
+            _bulletSpawnEffects = old._bulletSpawnEffects.Select(
+                ef => (IBulletSpawnEffect)ef.Clone()).ToList();
+            _bulletUpdateEffects = old._bulletUpdateEffects.Select(
+                ef => (IBulletUpdateEffect)ef.Clone()).ToList();
+            _bulletHitEffects = old._bulletHitEffects.Select(
+                ef => (IBulletHitEffect)ef.Clone()).ToList();
+            _bulletDestroyEffects = old._bulletDestroyEffects.Select(
+                ef => (IBulletDestroyEffect)ef.Clone()).ToList();
+        }
+
+        public BulletEffectsCollection Clone()
+        {
+            return new BulletEffectsCollection(this);
         }
 
         public void OnSpawn(Bullet bullet)

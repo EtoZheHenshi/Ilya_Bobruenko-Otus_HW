@@ -61,7 +61,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
                 if (Time.time > _lastShotTime + _fireRate.CurrentValue)
                 {
                     _lastShotTime = Time.time;
-                    _bulletFactory.Create(_bulletSpawnPosition);
+                    _bulletFactory.Create(_bulletSpawnPosition.position, _bulletSpawnPosition.rotation);
                 }
             }
         }

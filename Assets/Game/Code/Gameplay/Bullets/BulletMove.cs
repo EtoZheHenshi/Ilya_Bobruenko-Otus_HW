@@ -64,11 +64,22 @@ namespace Game.Code.Gameplay.Bullets
 
             if (_hits.Length > 0)
             {
+                SortHitsByDistance();
                 _onHitAction?.Invoke();
                 return;
             }
             
             _bullet.position = _endFramePosition;
+        }
+        
+        private void SortHitsByDistance()
+        {
+            Array.Sort(Hits, CompareHits);
+        }
+
+        private static int CompareHits(RaycastHit a, RaycastHit b)
+        {
+            return a.distance.CompareTo(b.distance);
         }
     }
 }

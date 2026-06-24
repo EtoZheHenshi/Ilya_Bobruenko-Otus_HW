@@ -23,7 +23,7 @@ namespace Game.Code.Gameplay.Bullets
         [Inject]
         public void Construct(BulletEffectsCollection bulletEffectsCollection, UpdateService updateService)
         {
-            _bulletEffectsCollection = bulletEffectsCollection;
+            _bulletEffectsCollection = bulletEffectsCollection.Clone();
             _updateService = updateService;
             
             _move = new BulletMove(
@@ -61,7 +61,6 @@ namespace Game.Code.Gameplay.Bullets
 
         public void OnHit()
         {
-            SortHitsByDistance();
             _bulletEffectsCollection.OnHit(this);
             BaseHit();
         }
@@ -84,16 +83,6 @@ namespace Game.Code.Gameplay.Bullets
         private void Death()
         {
             Destroy(gameObject);
-        }
-
-        private void SortHitsByDistance()
-        {
-            Array.Sort(Hits, CompareHits);
-        }
-
-        private static int CompareHits(RaycastHit a, RaycastHit b)
-        {
-            return a.distance.CompareTo(b.distance);
         }
     }
 }
