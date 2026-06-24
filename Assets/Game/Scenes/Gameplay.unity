@@ -528,6 +528,7 @@ MonoBehaviour:
   _enemySpawnerSystem: {fileID: 200436227}
   _allWaves: {fileID: 11400000, guid: f8224884e87a4da419e047ca08336071, type: 2}
   _bulletConfig: {fileID: 11400000, guid: 0af4efbe93a37f24ba07fb8688b9d0f4, type: 2}
+  _bulletStats: {fileID: 11400000, guid: afc252bc001a056458cc44bfbe8af060, type: 2}
   _startTimerWndView: {fileID: 2056098040}
   _middleScreenTextWndView: {fileID: 1815806969}
   _upgradeMenuWndView: {fileID: 350441813}

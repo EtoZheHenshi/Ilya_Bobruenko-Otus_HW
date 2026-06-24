@@ -21,21 +21,22 @@ namespace Game.Code.Gameplay.Bullets
         public Stat Damage => _damage;
 
         [Inject]
-        public void Construct(BulletEffectsCollection bulletEffectsCollection, UpdateService updateService)
+        public void Construct(BulletEffectsCollection bulletEffectsCollection, UpdateService updateService,
+            BulletStats bulletStats)
         {
             _bulletEffectsCollection = bulletEffectsCollection.Clone();
             _updateService = updateService;
             
             _move = new BulletMove(
-                _bulletConfig.BulletStats.Speed,
-                _bulletConfig.BulletStats.Radius,
-                _bulletConfig.BulletStats.Distance,
+                new Stat(bulletStats.Speed),
+                new Stat(bulletStats.Radius),
+                new Stat(bulletStats.Distance),
                 _bulletConfig.HitMask,
                 transform,
                 OnHit);
             _move.OnEndDistance += Death;
             
-            _damage = _bulletConfig.BulletStats.Damage;
+            _damage = new Stat(bulletStats.Damage);
         }
 
         private void Start()

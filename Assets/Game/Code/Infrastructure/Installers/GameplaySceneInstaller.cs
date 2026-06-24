@@ -35,6 +35,7 @@ namespace Game.Code.Infrastructure.Installers
         [SerializeField] private EnemySpawnerSystem _enemySpawnerSystem;
         [SerializeField] private AllWavesSO _allWaves;
         [SerializeField] private BulletConfigSO _bulletConfig;
+        [SerializeField] private BulletStatsSO _bulletStats;
         
         [Header ("UI")] 
         [SerializeField] private StartTimerWndView _startTimerWndView;
@@ -188,6 +189,11 @@ namespace Game.Code.Infrastructure.Installers
                 .Bind<BulletConfigSO>()
                 .FromInstance(_bulletConfig)
                 .AsSingle();
+            
+            Container
+                .Bind<BulletStats>()
+                .AsSingle()
+                .WithArguments(_bulletStats);
             
             Container
                 .Bind<BulletsRoot>()
