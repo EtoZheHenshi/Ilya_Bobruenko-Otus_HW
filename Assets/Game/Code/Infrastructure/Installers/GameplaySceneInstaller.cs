@@ -6,6 +6,9 @@ using Game.Code.Gameplay.Enemies.WaveSystem;
 using Game.Code.Gameplay.Items;
 using Game.Code.Gameplay.Player;
 using Game.Code.Gameplay.Player.PlayerSO;
+using Game.Code.Gameplay.UI;
+using Game.Code.Gameplay.UI.MiddleScreenTextWnd;
+using Game.Code.Gameplay.UI.StartTimerWnd;
 using UnityEngine;
 using Zenject;
 
@@ -30,6 +33,10 @@ namespace Game.Code.Infrastructure.Installers
         [SerializeField] private AllWavesSO _allWaves;
         [SerializeField] private BulletConfigSO _bulletConfig;
         
+        [Header ("UI")] 
+        [SerializeField] private StartTimerWndView _startTimerWndView;
+        [SerializeField] private MiddleScreenTextWndView _middleScreenTextWndView;
+        
         public override void InstallBindings() 
         {
             BindGameplaySceneInitializer();
@@ -47,8 +54,32 @@ namespace Game.Code.Infrastructure.Installers
             
             BindEnemySpawnerSystem();
             BindWaveSwitcher();
+            
+            BindUiController();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindUiController()
+        {
+            BindUiModels();
+
+            Container
+                .BindInterfacesAndSelfTo<UiController>()
+                .AsSingle();
+        }
+
+        private void BindUiModels()
+        {
+            Container
+                .Bind<StartTimerWndModel>()
+                .AsSingle()
+                .WithArguments(_startTimerWndView);
+            
+            Container
+                .Bind<MiddleScreenTextWndModel>()
+                .AsSingle()
+                .WithArguments(_middleScreenTextWndView);
         }
 
         private void BindBulletEffectsCollection()
@@ -68,7 +99,7 @@ namespace Game.Code.Infrastructure.Installers
                 .AsSingle();
             
             Container
-                .Bind<WaveSwitcher>()
+                .BindInterfacesAndSelfTo<WaveSwitcher>()
                 .AsSingle()
                 .NonLazy();
         }

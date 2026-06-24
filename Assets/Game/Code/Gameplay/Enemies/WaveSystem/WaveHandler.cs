@@ -1,26 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Code.Gameplay.Enemies.SpawnerSystem;
 using Game.Code.Infrastructure;
-using Game.Code.Infrastructure.EventBusSystem;
-using Game.Code.Infrastructure.EventBusSystem.Events;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Code.Gameplay.Enemies.WaveSystem
 {
     public sealed class WaveHandler
     {
+        public Action OnWaveEndAction;
+        
         private readonly CoroutineRunner _coroutineRunner;
-        private readonly EventBusService _eventBusService;
         private readonly EnemySpawnerSystem _enemySpawnerSystem;
         private readonly Dictionary<WaveEntry, List<EnemySpawner>> _waveEntries;
         private int _countOfAllEnemiesInWaves;
 
-        public WaveHandler(CoroutineRunner coroutineRunner, EventBusService eventBusService,
-            EnemySpawnerSystem enemySpawnerSystem)
+        public WaveHandler(CoroutineRunner coroutineRunner, EnemySpawnerSystem enemySpawnerSystem)
         {
             _coroutineRunner = coroutineRunner;
-            _eventBusService = eventBusService;
             _enemySpawnerSystem = enemySpawnerSystem;
             _waveEntries = new Dictionary<WaveEntry, List<EnemySpawner>>();
         }
@@ -49,7 +48,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
 
             yield return new WaitUntil(() => _countOfAllEnemiesInWaves == 0);
             
-            _eventBusService.Publish(new WaveFinishEvent());
+            OnWaveEndAction?.Invoke();
         }
 
         private IEnumerator StartWaveEntry(WaveEntry waveEntry, List<EnemySpawner> supportedSpawners)

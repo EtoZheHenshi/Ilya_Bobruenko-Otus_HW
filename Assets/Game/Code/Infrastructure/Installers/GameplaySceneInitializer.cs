@@ -1,5 +1,6 @@
 using Game.Code.Gameplay.Enemies;
 using Game.Code.Gameplay.Player;
+using Game.Code.Gameplay.UI;
 using Game.Code.Infrastructure.EventBusSystem;
 using Game.Code.Infrastructure.EventBusSystem.Events;
 using Game.Code.Infrastructure.GameStateSystem;
@@ -16,15 +17,17 @@ namespace Game.Code.Infrastructure.Installers
         private GameStateService _gameStateService;
         private PlayerRegistry _playerRegistry;
         private EventBusService _eventBusService;
+        private UiController _uiController;
 
         [Inject]
         public void Construct(PlayerFactory playerFactory, GameStateService gameStateService,
-            PlayerRegistry playerRegistry, EventBusService eventBusService)
+            PlayerRegistry playerRegistry, EventBusService eventBusService, UiController uiController)
         {
-            _eventBusService = eventBusService;
             _playerFactory = playerFactory;
             _gameStateService = gameStateService;
             _playerRegistry = playerRegistry;
+            _eventBusService = eventBusService;
+            _uiController = uiController;
         }
         
         public bool IsInitialized { get; private set; }
@@ -35,8 +38,8 @@ namespace Game.Code.Infrastructure.Installers
             _playerRegistry.Register(player.GetComponent<PlayerFacade>());
             
             _gameStateService.SwitchGameState(GameStateType.Gameplay);
-            
-            _eventBusService.Publish(new WaveStartEvent());
+
+            StartCoroutine(_uiController.PlayStartWaveTimer());
             
             IsInitialized = true;
 

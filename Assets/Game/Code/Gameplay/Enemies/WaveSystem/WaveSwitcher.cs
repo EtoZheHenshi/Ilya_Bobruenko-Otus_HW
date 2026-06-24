@@ -1,10 +1,11 @@
+using System;
 using Game.Code.Infrastructure;
 using Game.Code.Infrastructure.EventBusSystem;
 using Game.Code.Infrastructure.EventBusSystem.Events;
 
 namespace Game.Code.Gameplay.Enemies.WaveSystem
 {
-    public sealed class WaveSwitcher
+    public sealed class WaveSwitcher : IDisposable
     {
         private readonly AllWavesSO _allWaves;
         private readonly WaveHandler _waveHandler;
@@ -20,13 +21,14 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
             _waveHandler = waveHandler;
             _coroutineRunner = coroutineRunner;
             _eventBusService = eventBusService;
-            _waveCount = -1;
+            _waveCount = 0;
             _eventBusService.Subscribe<WaveStartEvent>(SetNextWave);
+            
+            _waveHandler.OnWaveEndAction = WaveEndAction;
         }
 
         private void SetNextWave(WaveStartEvent waveStartEvent)
         {
-            _waveCount++;
             if (CheckForWave())
             {
                 StartWave();
@@ -46,6 +48,24 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private bool CheckForWave()
         {
             return _waveCount < _allWaves.WaveConfigs.Length;
+        }
+
+        private void WaveEndAction()
+        {
+            _waveCount++;
+            if (CheckForWave())
+            {
+                _eventBusService.Publish(new WaveFinishEvent(_waveCount + 1));
+            }
+            else
+            {
+                _eventBusService.Publish(new GameEndEvent());
+            }
+        }
+
+        public void Dispose()
+        {
+            _eventBusService.Unsubscribe<WaveStartEvent>(SetNextWave);
         }
     }
 }
