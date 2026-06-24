@@ -9,6 +9,8 @@ using Game.Code.Gameplay.Player.PlayerSO;
 using Game.Code.Gameplay.UI;
 using Game.Code.Gameplay.UI.MiddleScreenTextWnd;
 using Game.Code.Gameplay.UI.StartTimerWnd;
+using Game.Code.Gameplay.UI.UpgradeMenuWnd;
+using Game.Code.Gameplay.Upgrades;
 using UnityEngine;
 using Zenject;
 
@@ -19,9 +21,10 @@ namespace Game.Code.Infrastructure.Installers
         [Header("SceneInitializer")]
         [SerializeField] private GameplaySceneInitializer _gameplaySceneInitializer;
         
-        [Header("Types SO")] 
+        [Header("Object Collections SO")] 
         [SerializeField] private PlayerTypesSO _playerTypes;
         [SerializeField] private EnemyTypesSO _enemyTypes;
+        [SerializeField] private AllUpgradesSO _allUpgrades;
         
         [Header("Object Roots")] 
         [SerializeField] private Transform _itemsRoot;
@@ -36,28 +39,53 @@ namespace Game.Code.Infrastructure.Installers
         [Header ("UI")] 
         [SerializeField] private StartTimerWndView _startTimerWndView;
         [SerializeField] private MiddleScreenTextWndView _middleScreenTextWndView;
+        [SerializeField] private UpgradeMenuWndView _upgradeMenuWndView;
         
         public override void InstallBindings() 
         {
             BindGameplaySceneInitializer();
             
-            BindTypesSO();
-            
             BindPlayerFactory();
             BindEnemyFactory();
             BindItemsFactory();
             BindBulletFactory();
+            BindUpgradeFactory();
             
             BindPlayerRegistry();
 
             BindBulletEffectsCollection();
+            BindAllUpgrades();
             
             BindEnemySpawnerSystem();
             BindWaveSwitcher();
+            BindItemDropperService();
             
             BindUiController();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindItemDropperService()
+        {
+            Container
+                .BindInterfacesAndSelfTo<ItemDropperService>()
+                .AsSingle();
+        }
+
+        private void BindAllUpgrades()
+        {
+            Container
+                .Bind<AllUpgrades>()
+                .AsSingle()
+                .WithArguments(_allUpgrades)
+                .NonLazy();
+        }
+
+        private void BindUpgradeFactory()
+        {
+            Container
+                .Bind<UpgradeFactory>()
+                .AsSingle();
         }
 
         private void BindUiController()
@@ -72,7 +100,7 @@ namespace Game.Code.Infrastructure.Installers
         private void BindUiModels()
         {
             Container
-                .Bind<StartTimerWndModel>()
+                .BindInterfacesAndSelfTo<StartTimerWndModel>()
                 .AsSingle()
                 .WithArguments(_startTimerWndView);
             
@@ -80,6 +108,12 @@ namespace Game.Code.Infrastructure.Installers
                 .Bind<MiddleScreenTextWndModel>()
                 .AsSingle()
                 .WithArguments(_middleScreenTextWndView);
+            
+            Container
+                .BindInterfacesAndSelfTo<UpgradeMenuWndModel>()
+                .AsSingle()
+                .WithArguments(_upgradeMenuWndView)
+                .NonLazy();
         }
 
         private void BindBulletEffectsCollection()
@@ -134,6 +168,11 @@ namespace Game.Code.Infrastructure.Installers
         private void BindEnemyFactory()
         {
             Container
+                .Bind<EnemyTypesSO>()
+                .FromInstance(_enemyTypes)
+                .AsSingle();
+            
+            Container
                 .Bind<EnemiesRoot>()
                 .FromInstance(new EnemiesRoot(_enemyRoot))
                 .AsSingle();
@@ -160,21 +199,13 @@ namespace Game.Code.Infrastructure.Installers
                 .AsSingle();
         }
 
-        private void BindTypesSO()
+        private void BindPlayerFactory()
         {
             Container
                 .Bind<PlayerTypesSO>()
                 .FromInstance(_playerTypes)
                 .AsSingle();
             
-            Container
-                .Bind<EnemyTypesSO>()
-                .FromInstance(_enemyTypes)
-                .AsSingle();
-        }
-
-        private void BindPlayerFactory()
-        {
             Container
                 .Bind<PlayerFactory>()
                 .AsSingle();

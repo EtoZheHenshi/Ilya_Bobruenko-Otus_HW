@@ -1,6 +1,8 @@
 using System;
 using Game.Code.Gameplay.General;
 using Game.Code.Gameplay.General.Stats;
+using Game.Code.Infrastructure.EventBusSystem;
+using Game.Code.Infrastructure.EventBusSystem.Events;
 using UnityEngine;
 using Zenject;
 
@@ -14,17 +16,20 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
 
         private EnemyFacade _enemyFacade;
         private HitFlash _hitFlash;
+        private EventBusService _eventBusService;
         
         private Stat _maxHealth;
         private float _currentHealth;
         private bool _isDead;
-        
+
         public Stat MaxHealth => _maxHealth;
         public float CurrentHealth => _currentHealth;
 
         [Inject]
-        public void Construct()
+        public void Construct(EventBusService eventBusService)
         {
+            _eventBusService = eventBusService;
+            
             _enemyFacade = GetComponent<EnemyFacade>();
             _hitFlash = _enemyFacade.HitFlash;
             _maxHealth = _enemyFacade.Stats.MaxHealth;
@@ -46,6 +51,7 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
             else
             {
                 _isDead = true;
+                _eventBusService.Publish(new DropItemsEvent(_enemyFacade.Config.DroppableItems, transform));
                 OnDeath?.Invoke();
                 Destroy(gameObject);
             }

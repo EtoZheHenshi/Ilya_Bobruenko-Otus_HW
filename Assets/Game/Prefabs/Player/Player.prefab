@@ -91,7 +91,7 @@ MonoBehaviour:
   _playerLevel: {fileID: 6770548074636418804}
   _playerMove: {fileID: 3770773661114481182}
   _hitFlash: {fileID: 999648649748887751}
-  _playerShoot: {fileID: 0}
+  _playerShoot: {fileID: 947129595694970432}
 --- !u!114 &3770773661114481182
 MonoBehaviour:
   m_ObjectHideFlags: 0

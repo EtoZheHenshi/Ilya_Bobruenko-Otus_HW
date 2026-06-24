@@ -4,6 +4,7 @@ namespace Game.Code.Infrastructure.GameStateSystem
     {
         MainMenu,
         Gameplay,
-        Pause
+        Pause,
+        Upgrade
     }
 }

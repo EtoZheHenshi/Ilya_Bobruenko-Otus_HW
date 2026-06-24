@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 6411411548447623729}
   - component: {fileID: 6743937755735476051}
   - component: {fileID: 2302770489776920102}
+  - component: {fileID: 6183842206614149081}
   m_Layer: 0
   m_Name: UpgradeCard_BodyBtn
   m_TagString: Untagged
@@ -396,3 +397,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6183842206614149081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144989407882577290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aacddf5716a49398e77181ca47782ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.UI.UpgradeMenuWnd.UpgradeCardView
+  _title: {fileID: 391495836965366065}
+  _description: {fileID: 6564223281674423477}
+  _button: {fileID: 2302770489776920102}

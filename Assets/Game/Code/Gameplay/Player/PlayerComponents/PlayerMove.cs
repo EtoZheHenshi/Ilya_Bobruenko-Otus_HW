@@ -23,6 +23,8 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         private Camera _camera;
         //private bool _isShooting;
         private bool _isActive;
+        
+        public Stat MoveSpeed => _moveSpeed;
 
         [Inject]
         public void Construct(UpdateService updateService, IInputService inputService)

@@ -21,6 +21,8 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
 
         private float _lastShotTime;
         private bool _isShooting;
+        
+        public Stat FireRate => _fireRate;
 
         [Inject]
         public void Construct(IInputService inputService, BulletFactory bulletFactory, UpdateService updateService)

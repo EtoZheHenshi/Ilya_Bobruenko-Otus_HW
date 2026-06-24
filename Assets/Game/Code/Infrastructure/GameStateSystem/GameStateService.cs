@@ -47,6 +47,14 @@ namespace Game.Code.Infrastructure.GameStateSystem
                     CurrentGameState = GameStateType.Pause;
                     break;
                 }
+                case GameStateType.Upgrade:
+                {
+                    Time.timeScale = 0;
+                    Cursor.visible = true;
+                    _inputService.SetMap("Pause");
+                    CurrentGameState = GameStateType.Upgrade;
+                    break;
+                }
             }
         }
     }
