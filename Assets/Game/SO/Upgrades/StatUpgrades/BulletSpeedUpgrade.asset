@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e365463ae84090911a7c280c1f0924, type: 3}
   m_Name: BulletSpeedUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Upgrades.StatUpgrades.BulletSpeedUpgradeSO
-  _title: 
-  _description: 
+  _title: Bullet Speed Upgrade
+  _description: Increases bullet speed by {0}%
   _statModifier:
-    Value: 0
-    Type: 0
+    Value: 0.25
+    Type: 1

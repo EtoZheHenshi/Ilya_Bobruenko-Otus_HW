@@ -5,10 +5,10 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects
 {
     public sealed class BulletEffectsCollection
     {
-        private List<IBulletSpawnEffect> _bulletSpawnEffects;
-        private List<IBulletUpdateEffect> _bulletUpdateEffects;
-        private List<IBulletHitEffect> _bulletHitEffects;
-        private List<IBulletDestroyEffect> _bulletDestroyEffects;
+        private readonly List<IBulletSpawnEffect> _bulletSpawnEffects;
+        private readonly List<IBulletUpdateEffect> _bulletUpdateEffects;
+        private readonly List<IBulletHitEffect> _bulletHitEffects;
+        private readonly List<IBulletDestroyEffect> _bulletDestroyEffects;
 
         public BulletEffectsCollection()
         {
@@ -66,45 +66,76 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects
                 effect.OnDestroy(bullet);
             }
         }
-        
-        public void AddEffect(IBulletSpawnEffect effect)
+
+        public void Add(BulletEffect effect)
         {
-            _bulletSpawnEffects.Add(effect);
+            if (effect is IBulletSpawnEffect spawn)
+            {
+                _bulletSpawnEffects.Add(spawn);
+            }
+
+            if (effect is IBulletUpdateEffect update)
+            {
+                _bulletUpdateEffects.Add(update);
+            }
+
+            if (effect is IBulletHitEffect hit)
+            {
+                _bulletHitEffects.Add(hit);
+            }
+
+            if (effect is IBulletDestroyEffect destroy)
+            {
+                _bulletDestroyEffects.Add(destroy);
+            }
         }
 
-        public void AddEffect(IBulletUpdateEffect effect)
+        public void Remove(BulletEffect effect)
         {
-            _bulletUpdateEffects.Add(effect);
+            if (effect is IBulletSpawnEffect spawn)
+            {
+                _bulletSpawnEffects.Remove(spawn);
+            }
+
+            if (effect is IBulletUpdateEffect update)
+            {
+                _bulletUpdateEffects.Remove(update);
+            }
+
+            if (effect is IBulletHitEffect hit)
+            {
+                _bulletHitEffects.Remove(hit);
+            }
+
+            if (effect is IBulletDestroyEffect destroy)
+            {
+                _bulletDestroyEffects.Remove(destroy);
+            }
         }
 
-        public void AddEffect(IBulletHitEffect effect)
+        public bool Contains(BulletEffect effect)
         {
-            _bulletHitEffects.Add(effect);
-        }
+            if (effect is IBulletSpawnEffect spawn)
+            {
+                return _bulletSpawnEffects.Contains(spawn);
+            }
 
-        public void AddEffect(IBulletDestroyEffect effect)
-        {
-            _bulletDestroyEffects.Add(effect);
-        }
+            if (effect is IBulletUpdateEffect update)
+            {
+                return _bulletUpdateEffects.Contains(update);
+            }
 
-        public void RemoveEffect(IBulletSpawnEffect effect)
-        {
-            _bulletSpawnEffects.Remove(effect);
-        }
+            if (effect is IBulletHitEffect hit)
+            {
+                return _bulletHitEffects.Contains(hit);
+            }
 
-        public void RemoveEffect(IBulletUpdateEffect effect)
-        {
-            _bulletUpdateEffects.Remove(effect);
-        }
-
-        public void RemoveEffect(IBulletHitEffect effect)
-        {
-            _bulletHitEffects.Remove(effect);
-        }
-
-        public void RemoveEffect(IBulletDestroyEffect effect)
-        {
-            _bulletDestroyEffects.Remove(effect);
+            if (effect is IBulletDestroyEffect destroy)
+            {
+                return _bulletDestroyEffects.Contains(destroy);
+            }
+            
+            return false;
         }
     }
 }

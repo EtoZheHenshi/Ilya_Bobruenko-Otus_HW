@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4e71915e91441ab7b8b67484f15f8d, type: 3}
   m_Name: PlayerSpeedUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Upgrades.StatUpgrades.PlayerSpeedUpgradeSO
-  _title: Speed Upgrade
+  _title: Move Speed Upgrade
   _description: Increases move speed by {0}%
   _statModifier:
     Value: 0.1

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fee4ec44ffd4d49ab73ff24bb94b174, type: 3}
   m_Name: BulletDistanceUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Upgrades.StatUpgrades.BulletDistanceUpgradeSO
-  _title: 
-  _description: 
+  _title: Bullet Distance Upgrade
+  _description: Increases bullet max distance by {0} point
   _statModifier:
-    Value: 0
+    Value: 1
     Type: 0

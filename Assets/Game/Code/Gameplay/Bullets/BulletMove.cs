@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Game.Code.Gameplay.General.Stats;
 using Game.Code.Infrastructure.UpdateSystem;
 using UnityEngine;
@@ -19,11 +20,18 @@ namespace Game.Code.Gameplay.Bullets
         private Vector3 _startFramePosition;
         private Vector3 _endFramePosition;
         private RaycastHit[] _hits;
+        private int _hitCount;
         private float _currentDistance;
+        private float _moveDistance;
         
         public Vector3 StartFramePosition => _startFramePosition;
         public Vector3 EndFramePosition => _endFramePosition;
+        public float MoveDistance => _moveDistance;
         public RaycastHit[] Hits => _hits;
+        public int HitCount => _hitCount;
+        public Stat Speed => _speed;
+        public Stat Radius => _radius;
+        public Stat MaxDistance => _maxDistance;
         
 
         public BulletMove(Stat speed, Stat radius, Stat maxDistance, LayerMask hitMask, Transform bullet, Action onHitAction)
@@ -34,6 +42,8 @@ namespace Game.Code.Gameplay.Bullets
             _hitMask = hitMask;
             _bullet = bullet;
             _onHitAction = onHitAction;
+            
+            _hits = new RaycastHit[32];
         }
 
         public void Tick(float deltaTime)
@@ -49,20 +59,21 @@ namespace Game.Code.Gameplay.Bullets
                 return;
             }
             
-            float moveDistance = _speed.CurrentValue * deltaTime;
-            _currentDistance += moveDistance;
+            _moveDistance = _speed.CurrentValue * deltaTime;
+            _currentDistance += _moveDistance;
             
             _startFramePosition = _bullet.position;
-            _endFramePosition = _bullet.position + _bullet.forward * moveDistance;
+            _endFramePosition = _bullet.position + _bullet.forward * _moveDistance;
             
-            _hits = Physics.SphereCastAll(
+            _hitCount = Physics.SphereCastNonAlloc(
                 _bullet.position,
                 _radius.CurrentValue,
                 _bullet.forward,
-                moveDistance,
+                _hits,
+                _moveDistance,
                 _hitMask);
 
-            if (_hits.Length > 0)
+            if (_hitCount > 0)
             {
                 SortHitsByDistance();
                 _onHitAction?.Invoke();
@@ -74,7 +85,7 @@ namespace Game.Code.Gameplay.Bullets
         
         private void SortHitsByDistance()
         {
-            Array.Sort(Hits, CompareHits);
+            Array.Sort(_hits, 0, _hitCount, Comparer<RaycastHit>.Create(CompareHits));
         }
 
         private static int CompareHits(RaycastHit a, RaycastHit b)

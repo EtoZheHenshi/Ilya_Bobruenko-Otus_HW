@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d580491161546bdbb098befe3deb95d, type: 3}
   m_Name: BulletSizeUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Upgrades.StatUpgrades.BulletSizeUpgradeSO
-  _title: 
-  _description: 
+  _title: Bullet Size Upgrade
+  _description: Increases bullet size
   _statModifier:
-    Value: 0
+    Value: 0.05
     Type: 0

@@ -11,6 +11,8 @@ namespace Game.Code.Gameplay.Bullets
     public sealed class Bullet : MonoBehaviour, IUpdatable
     {
         [SerializeField] private BulletConfigSO _bulletConfig;
+
+        public const float Skin = 0.02f;
         
         private BulletEffectsCollection _bulletEffectsCollection;
         private UpdateService _updateService;
@@ -19,6 +21,9 @@ namespace Game.Code.Gameplay.Bullets
         
         public RaycastHit[] Hits => _move.Hits;
         public Stat Damage => _damage;
+        public BulletMove Move => _move;
+        public bool ActivateBaseHit { get; set; }
+        public bool ActivateDeath { get; set; }
 
         [Inject]
         public void Construct(BulletEffectsCollection bulletEffectsCollection, UpdateService updateService,
@@ -62,8 +67,13 @@ namespace Game.Code.Gameplay.Bullets
 
         public void OnHit()
         {
+            ActivateBaseHit = true;
+            ActivateDeath = true;
             _bulletEffectsCollection.OnHit(this);
-            BaseHit();
+            if (ActivateBaseHit)
+            {
+                BaseHit();
+            }
         }
 
         public void OnDestroy()
@@ -78,7 +88,11 @@ namespace Game.Code.Gameplay.Bullets
             {
                 damageable.TakeDamage(_damage.CurrentValue);
             }
-            Death();
+
+            if (ActivateDeath)
+            {
+                Death();
+            }
         }
 
         private void Death()

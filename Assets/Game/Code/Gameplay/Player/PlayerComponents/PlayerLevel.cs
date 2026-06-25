@@ -54,7 +54,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             {
                 _expForNextLvl = _lvlExpTable[_currentLvl - 1];
             }
-            Debug.Log($"Publish lvl {_currentLvl}");
+            
             _eventBus.Publish(new PlayerLevelUpEvent(_currentLvl));
         }
         

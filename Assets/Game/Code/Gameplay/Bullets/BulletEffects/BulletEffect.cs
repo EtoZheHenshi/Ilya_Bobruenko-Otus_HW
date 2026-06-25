@@ -2,14 +2,28 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects
 {
     public abstract class BulletEffect
     {
-        protected const int MaxLevel = 5;
+        private readonly int _maxLevel;
         private int _currentLevel = 1;
 
+        public int MaxLevel => _maxLevel;
         public int CurrentLevel => _currentLevel;
 
-        public virtual void UpdateEffect()
+        public BulletEffect(int maxLevel)
         {
-            _currentLevel++;
+            _maxLevel = maxLevel;
+        }
+
+        public virtual void UpgradeEffect()
+        {
+            if (CurrentLevel < _maxLevel)
+            {
+                _currentLevel++;
+            }
+        }
+
+        public bool CanUpgrade()
+        {
+            return CurrentLevel < _maxLevel;
         }
     }
 }
