@@ -65,7 +65,6 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             
             while (_currentExp >= _expForNextLvl && _currentLvl < _maxLvl)
             {
-                Debug.Log($"lvlUp");
                 LvlUp();
             }
         }

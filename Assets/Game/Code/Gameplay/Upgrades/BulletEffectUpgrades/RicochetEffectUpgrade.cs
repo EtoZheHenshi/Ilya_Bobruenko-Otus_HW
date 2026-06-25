@@ -6,6 +6,7 @@ namespace Game.Code.Gameplay.Upgrades.BulletEffectUpgrades
     public sealed class RicochetEffectUpgrade : BulletEffectUpgrade
     {
         private readonly RicochetEffect _ricochetEffect;
+        
         public override BulletEffect BulletEffect => _ricochetEffect;
 
         public RicochetEffectUpgrade(BulletEffectsCollection bulletEffectsCollection,

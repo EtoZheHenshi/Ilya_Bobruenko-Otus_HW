@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda1ddea0b2644829b656caa9d205e34, type: 3}
   m_Name: RicochetUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Upgrades.BulletEffectUpgrades.RicochetEffectUpgradeSO
-  _title: 
-  _description: 
-  _maxLevel: 0
-  _maxRicochetAmount: 0
+  _title: Ricochet Upgrade
+  _description: Add +1 ricochet to bullet
+  _maxLevel: 5
+  _maxRicochetAmount: 1

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -72,6 +73,7 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects
             if (effect is IBulletSpawnEffect spawn)
             {
                 _bulletSpawnEffects.Add(spawn);
+                _bulletSpawnEffects.Sort(CompareEffects);
             }
 
             if (effect is IBulletUpdateEffect update)
@@ -136,6 +138,11 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects
             }
             
             return false;
+        }
+
+        private int CompareEffects(IBulletEffect a, IBulletEffect b)
+        {
+            return b.Priority.CompareTo(a.Priority);
         }
     }
 }

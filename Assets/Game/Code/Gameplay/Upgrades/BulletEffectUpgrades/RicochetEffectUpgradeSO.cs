@@ -1,10 +1,9 @@
-using Game.Code.Gameplay.Bullets.BulletEffects.BulletEffectTypes;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Code.Gameplay.Upgrades.BulletEffectUpgrades
 {
-    [CreateAssetMenu(fileName = "RicochetUpgrade", menuName = "SO/Upgrades/Ricochet Upgrade")]
+    [CreateAssetMenu(fileName = "RicochetUpgrade", menuName = "SO/Upgrades/Bullet Effects/Ricochet Upgrade")]
     public sealed class RicochetEffectUpgradeSO : BulletEffectUpgradeSO
     {
         [SerializeField] private int _maxRicochetAmount;

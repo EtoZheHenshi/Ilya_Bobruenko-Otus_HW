@@ -9,6 +9,8 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects.BulletEffectTypes
         
         private Collider _lastRicochetCollider;
 
+        public int Priority => 5;
+
         public RicochetEffect(int maxLevel, int maxRicochetAmount) : base(maxLevel)
         {
             _maxRicochetAmount = maxRicochetAmount;
@@ -16,7 +18,7 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects.BulletEffectTypes
         
         public void OnHit(Bullet bullet)
         {
-            if (_currentRicochetAmount >= _maxRicochetAmount) 
+            if (_currentRicochetAmount >= _maxRicochetAmount || !bullet.IsHitLastTarget) 
                 return;
 
             if (bullet.Hits[0].collider == _lastRicochetCollider)

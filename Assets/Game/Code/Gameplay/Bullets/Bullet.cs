@@ -22,6 +22,7 @@ namespace Game.Code.Gameplay.Bullets
         public RaycastHit[] Hits => _move.Hits;
         public Stat Damage => _damage;
         public BulletMove Move => _move;
+        public bool IsHitLastTarget { get; set; }
         public bool ActivateBaseHit { get; set; }
         public bool ActivateDeath { get; set; }
 
@@ -67,6 +68,7 @@ namespace Game.Code.Gameplay.Bullets
 
         public void OnHit()
         {
+            IsHitLastTarget = true;
             ActivateBaseHit = true;
             ActivateDeath = true;
             _bulletEffectsCollection.OnHit(this);

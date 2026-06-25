@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Game.Code.Gameplay.Upgrades.StatUpgrades
 {
-    [CreateAssetMenu(fileName = "BulletSpeedUpgrade", menuName = "SO/Upgrades/Bullet Speed Upgrade")]
+    [CreateAssetMenu(fileName = "BulletSpeedUpgrade", menuName = "SO/Upgrades/Stat Upgrades/Bullet Speed Upgrade")]
     public sealed class BulletSpeedUpgradeSO : StatUpgradeSO
     {
         public override Upgrade CreateUpgrade(DiContainer container)

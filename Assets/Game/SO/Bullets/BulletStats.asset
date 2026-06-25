@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: BulletStats
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Bullets.BulletStatsSO
   _speed:
-    _baseValue: 4
+    _baseValue: 7
     _minValue: 4
-    _maxValue: 7
+    _maxValue: 10
   _radius:
     _baseValue: 0.05
     _minValue: 0.01
     _maxValue: 0.5
   _distance:
-    _baseValue: 3
+    _baseValue: 6
     _minValue: 1
-    _maxValue: 5
+    _maxValue: 10
   _damage:
     _baseValue: 1
     _minValue: 1
