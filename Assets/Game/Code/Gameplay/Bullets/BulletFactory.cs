@@ -16,9 +16,19 @@ namespace Game.Code.Gameplay.Bullets
             _bulletPrefab = bulletConfig.BulletPrefab;
         }
 
-        public void Create(Vector3 position, Quaternion rotation)
+        public Bullet Create(Vector3 position, Quaternion rotation)
         {
-            _container.InstantiatePrefab(_bulletPrefab, position, rotation, _bulletsRoot.Transform);
+            GameObject obj = _container.InstantiatePrefab(_bulletPrefab, position, rotation, _bulletsRoot.Transform);
+            Bullet bullet = obj.GetComponent<Bullet>();
+            bullet.Spawn();
+            return bullet;
+        }
+
+        public Bullet CreateDuplicate(Vector3 position, Quaternion rotation)
+        {
+            GameObject obj = _container.InstantiatePrefab(_bulletPrefab, position, rotation, _bulletsRoot.Transform);
+            Bullet bullet = obj.GetComponent<Bullet>();
+            return bullet;
         }
     }
 }

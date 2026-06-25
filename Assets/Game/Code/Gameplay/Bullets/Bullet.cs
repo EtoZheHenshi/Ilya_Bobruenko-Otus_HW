@@ -18,13 +18,12 @@ namespace Game.Code.Gameplay.Bullets
         private UpdateService _updateService;
         private BulletMove _move;
         private Stat _damage;
+        private BulletHitContext _hitContext;
         
         public RaycastHit[] Hits => _move.Hits;
         public Stat Damage => _damage;
         public BulletMove Move => _move;
-        public bool IsHitLastTarget { get; set; }
-        public bool ActivateBaseHit { get; set; }
-        public bool ActivateDeath { get; set; }
+        public BulletHitContext HitContext => _hitContext;
 
         [Inject]
         public void Construct(BulletEffectsCollection bulletEffectsCollection, UpdateService updateService,
@@ -43,11 +42,7 @@ namespace Game.Code.Gameplay.Bullets
             _move.OnEndDistance += Death;
             
             _damage = new Stat(bulletStats.Damage);
-        }
-
-        private void Start()
-        {
-            _bulletEffectsCollection.OnSpawn(this);
+            _hitContext = new BulletHitContext();
         }
 
         public void Tick(float deltaTime)
@@ -66,13 +61,16 @@ namespace Game.Code.Gameplay.Bullets
             _updateService.Unregister(this);
         }
 
+        public void Spawn()
+        {
+            _bulletEffectsCollection.OnSpawn(this);
+        }
+
         public void OnHit()
         {
-            IsHitLastTarget = true;
-            ActivateBaseHit = true;
-            ActivateDeath = true;
+            _hitContext.Reset();
             _bulletEffectsCollection.OnHit(this);
-            if (ActivateBaseHit)
+            if (_hitContext.ActivateBaseHit)
             {
                 BaseHit();
             }
@@ -91,7 +89,7 @@ namespace Game.Code.Gameplay.Bullets
                 damageable.TakeDamage(_damage.CurrentValue);
             }
 
-            if (ActivateDeath)
+            if (_hitContext.ActivateDeath)
             {
                 Death();
             }

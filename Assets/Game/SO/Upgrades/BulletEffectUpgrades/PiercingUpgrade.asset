@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bcfa4a83f047a598f641d0ebd3aa93, type: 3}
   m_Name: PiercingUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Upgrades.BulletEffectUpgrades.PiercingEffectUpgradeSO
-  _title: 
-  _description: 
-  _maxLevel: 0
-  _maxPiercingAmount: 0
+  _title: Piercing Upgrade
+  _description: Add +1 piercing to bullet
+  _maxLevel: 5
+  _maxPiercingAmount: 1

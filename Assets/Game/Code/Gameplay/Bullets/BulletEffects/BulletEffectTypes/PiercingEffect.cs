@@ -52,8 +52,8 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects.BulletEffectTypes
             if (_currentPiercingAmount > _maxPiercingAmount)
                 return;
 
-            bullet.IsHitLastTarget = false;
-            bullet.ActivateBaseHit = false;
+            bullet.HitContext.IsHitLastTarget = false;
+            bullet.HitContext.ActivateBaseHit = false;
             bullet.transform.position = bullet.Move.EndFramePosition;
         }
 

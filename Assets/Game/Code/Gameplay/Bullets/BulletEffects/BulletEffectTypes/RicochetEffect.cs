@@ -18,7 +18,7 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects.BulletEffectTypes
         
         public void OnHit(Bullet bullet)
         {
-            if (_currentRicochetAmount >= _maxRicochetAmount || !bullet.IsHitLastTarget) 
+            if (_currentRicochetAmount >= _maxRicochetAmount || !bullet.HitContext.IsHitLastTarget) 
                 return;
 
             if (bullet.Hits[0].collider == _lastRicochetCollider)
@@ -29,7 +29,7 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects.BulletEffectTypes
                 }
                 else
                 {
-                    bullet.ActivateBaseHit = false;
+                    bullet.HitContext.ActivateBaseHit = false;
                     return;
                 }
             }
@@ -51,7 +51,7 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects.BulletEffectTypes
             
             bullet.transform.position = newPosition;
             
-            bullet.ActivateDeath = false;
+            bullet.HitContext.ActivateDeath = false;
             _lastRicochetCollider = hit.collider;
             _currentRicochetAmount++;
         }
