@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f223ee11aeb42cb9be2f5544e99286e, type: 3}
   m_Name: DuplicateUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Upgrades.BulletEffectUpgrades.DuplicateEffectUpgradeSO
-  _title: 
-  _description: 
-  _maxLevel: 0
-  _maxDuplicateAmount: 0
+  _title: Duplicate Upgrade
+  _description: Add +1 bullet duplicate each shot
+  _maxLevel: 10
+  _maxDuplicateAmount: 1

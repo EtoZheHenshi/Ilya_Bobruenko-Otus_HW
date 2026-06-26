@@ -2,6 +2,7 @@ using System;
 using Game.Code.Infrastructure;
 using Game.Code.Infrastructure.EventBusSystem;
 using Game.Code.Infrastructure.EventBusSystem.Events;
+using UnityEngine;
 
 namespace Game.Code.Gameplay.Enemies.WaveSystem
 {
@@ -11,6 +12,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private readonly WaveHandler _waveHandler;
         private readonly CoroutineRunner _coroutineRunner;
         private readonly EventBusService _eventBusService;
+        private Coroutine _startWaveCoroutine;
 
         private int _waveCount;
 
@@ -42,7 +44,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private void StartWave()
         {
             _waveHandler.FillWaveEntries(_allWaves.WaveConfigs[_waveCount]);
-            _coroutineRunner.Run(_waveHandler.StartWave());
+            _startWaveCoroutine = _coroutineRunner.Run(_waveHandler.StartWave());
         }
 
         private bool CheckForWave()
@@ -66,6 +68,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         public void Dispose()
         {
             _eventBusService.Unsubscribe<WaveStartEvent>(SetNextWave);
+            _coroutineRunner.Stop(_startWaveCoroutine);
         }
     }
 }

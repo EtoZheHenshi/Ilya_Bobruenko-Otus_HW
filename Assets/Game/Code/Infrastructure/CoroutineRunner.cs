@@ -16,5 +16,13 @@ namespace Game.Code.Infrastructure
         {
             return StartCoroutine(coroutine);
         }
+
+        public void Stop(Coroutine coroutine)
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+        }
     }
 }

@@ -23,9 +23,6 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects.BulletEffectTypes
         {
             if (bullet.HitContext.IsItDuplicate) return;
             
-            {
-                
-            }
             for (int i = 0; i < _maxDuplicateAmount; i++)
             {
                 Bullet duplicate = _bulletFactory.CreateDuplicate(bullet.transform.position, bullet.transform.rotation);

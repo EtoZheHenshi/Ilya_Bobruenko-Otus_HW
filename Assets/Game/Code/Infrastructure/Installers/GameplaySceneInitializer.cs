@@ -37,6 +37,8 @@ namespace Game.Code.Infrastructure.Installers
             GameObject player = _playerFactory.Create(0, _playerStartPosition.position);
             _playerRegistry.Register(player.GetComponent<PlayerFacade>());
             
+            _uiController.Initialize();
+            
             _gameStateService.SwitchGameState(GameStateType.Gameplay);
 
             StartCoroutine(_uiController.PlayStartWaveTimer());

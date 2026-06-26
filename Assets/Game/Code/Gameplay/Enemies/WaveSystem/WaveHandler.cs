@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Game.Code.Gameplay.Enemies.WaveSystem
 {
-    public sealed class WaveHandler
+    public sealed class WaveHandler : IDisposable
     {
         public Action OnWaveEndAction;
         
@@ -16,12 +16,14 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private readonly EnemySpawnerSystem _enemySpawnerSystem;
         private readonly Dictionary<WaveEntry, List<EnemySpawner>> _waveEntries;
         private int _countOfAllEnemiesInWaves;
+        private List<Coroutine> _coroutines;
 
         public WaveHandler(CoroutineRunner coroutineRunner, EnemySpawnerSystem enemySpawnerSystem)
         {
             _coroutineRunner = coroutineRunner;
             _enemySpawnerSystem = enemySpawnerSystem;
             _waveEntries = new Dictionary<WaveEntry, List<EnemySpawner>>();
+            _coroutines = new List<Coroutine>();
         }
 
         public void FillWaveEntries(WaveConfigSO waveConfig)
@@ -43,7 +45,8 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         {
             foreach (KeyValuePair<WaveEntry, List<EnemySpawner>> waveEntry in _waveEntries)
             {
-                _coroutineRunner.Run(StartWaveEntry(waveEntry.Key, waveEntry.Value));
+                Coroutine coroutine = _coroutineRunner.Run(StartWaveEntry(waveEntry.Key, waveEntry.Value));
+                _coroutines.Add(coroutine);
             }
 
             yield return new WaitUntil(() => _countOfAllEnemiesInWaves == 0);
@@ -68,6 +71,14 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private void HandleEnemyDeath()
         {
             _countOfAllEnemiesInWaves--;
+        }
+
+        public void Dispose()
+        {
+            foreach (Coroutine coroutine in _coroutines)
+            {
+                _coroutineRunner.Stop(coroutine);
+            }
         }
     }
 }

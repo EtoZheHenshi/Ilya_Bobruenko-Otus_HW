@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Game.Code.Gameplay.UI.HUD;
 using Game.Code.Gameplay.UI.MiddleScreenTextWnd;
 using Game.Code.Gameplay.UI.StartTimerWnd;
 using Game.Code.Infrastructure;
@@ -16,20 +17,27 @@ namespace Game.Code.Gameplay.UI
 
         private readonly StartTimerWndModel _startTimer;
         private readonly MiddleScreenTextWndModel _middleScreenText;
+        private readonly HudModel _hudModel;
 
         private int _currentWaveNumber;
 
         public UiController(EventBusService eventBusService, CoroutineRunner coroutineRunner, 
-            StartTimerWndModel startTimer, MiddleScreenTextWndModel middleScreenText)
+            StartTimerWndModel startTimer, MiddleScreenTextWndModel middleScreenText, HudModel hudModel)
         {
             _eventBusService = eventBusService;
             _coroutineRunner = coroutineRunner;
 
             _startTimer = startTimer;
             _middleScreenText = middleScreenText;
+            _hudModel = hudModel;
 
             _currentWaveNumber = 1;
             _eventBusService.Subscribe<WaveFinishEvent>(WaveFinishAction);
+        }
+
+        public void Initialize()
+        {
+            _hudModel.Initialize();
         }
 
         public IEnumerator PlayStartWaveTimer()

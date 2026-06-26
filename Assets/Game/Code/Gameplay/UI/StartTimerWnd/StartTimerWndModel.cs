@@ -26,7 +26,6 @@ namespace Game.Code.Gameplay.UI.StartTimerWnd
             
             _view.OnEnableEvent += OnEnable;
             _view.OnDisableEvent += OnDisable;
-            _view.OnDestroyEvent += Dispose;
         }
 
         public void Tick(float deltaTime)
@@ -86,9 +85,9 @@ namespace Game.Code.Gameplay.UI.StartTimerWnd
         
         public void Dispose()
         {
+            _updateService.Unregister(this);
             _view.OnEnableEvent -= OnEnable;
             _view.OnDisableEvent -= OnDisable;
-            _view.OnDestroyEvent -= Dispose;
         }
     }
 }

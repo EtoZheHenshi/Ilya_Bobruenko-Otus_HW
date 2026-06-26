@@ -19,6 +19,8 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         private int _currentExp;
         private int _expForNextLvl;
         private int _currentLvl;
+        
+        public int CurrentLevel => _currentLvl;
 
         [Inject]
         public void Construct(EventBusService eventBus)

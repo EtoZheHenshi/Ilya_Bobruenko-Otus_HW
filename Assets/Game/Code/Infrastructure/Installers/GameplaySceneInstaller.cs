@@ -7,7 +7,11 @@ using Game.Code.Gameplay.Items;
 using Game.Code.Gameplay.Player;
 using Game.Code.Gameplay.Player.PlayerSO;
 using Game.Code.Gameplay.UI;
+using Game.Code.Gameplay.UI.HUD;
+using Game.Code.Gameplay.UI.HUD.HP;
+using Game.Code.Gameplay.UI.HUD.Level;
 using Game.Code.Gameplay.UI.MiddleScreenTextWnd;
+using Game.Code.Gameplay.UI.PauseWnd;
 using Game.Code.Gameplay.UI.StartTimerWnd;
 using Game.Code.Gameplay.UI.UpgradeMenuWnd;
 using Game.Code.Gameplay.Upgrades;
@@ -41,6 +45,9 @@ namespace Game.Code.Infrastructure.Installers
         [SerializeField] private StartTimerWndView _startTimerWndView;
         [SerializeField] private MiddleScreenTextWndView _middleScreenTextWndView;
         [SerializeField] private UpgradeMenuWndView _upgradeMenuWndView;
+        [SerializeField] private HpGroupView _hpGroupView;
+        [SerializeField] private LevelTextView _levelTextView;
+        [SerializeField] private PauseWndView _pauseWndView;
         
         public override void InstallBindings() 
         {
@@ -100,6 +107,8 @@ namespace Game.Code.Infrastructure.Installers
 
         private void BindUiModels()
         {
+            BindHUD();
+            
             Container
                 .BindInterfacesAndSelfTo<StartTimerWndModel>()
                 .AsSingle()
@@ -111,10 +120,32 @@ namespace Game.Code.Infrastructure.Installers
                 .WithArguments(_middleScreenTextWndView);
             
             Container
+                .BindInterfacesAndSelfTo<PauseWndModel>()
+                .AsSingle()
+                .WithArguments(_pauseWndView);
+            
+            Container
                 .BindInterfacesAndSelfTo<UpgradeMenuWndModel>()
                 .AsSingle()
                 .WithArguments(_upgradeMenuWndView)
                 .NonLazy();
+        }
+
+        private void BindHUD()
+        {
+            Container
+                .BindInterfacesAndSelfTo<HpGroupModel>()
+                .AsSingle()
+                .WithArguments(_hpGroupView);
+
+            Container
+                .BindInterfacesAndSelfTo<LevelTextModel>()
+                .AsSingle()
+                .WithArguments(_levelTextView);
+
+            Container
+                .Bind<HudModel>()
+                .AsSingle();
         }
 
         private void BindBulletEffectsCollection()
@@ -130,7 +161,7 @@ namespace Game.Code.Infrastructure.Installers
                 .AsSingle();
             
             Container
-                .Bind<WaveHandler>()
+                .BindInterfacesAndSelfTo<WaveHandler>()
                 .AsSingle();
             
             Container
