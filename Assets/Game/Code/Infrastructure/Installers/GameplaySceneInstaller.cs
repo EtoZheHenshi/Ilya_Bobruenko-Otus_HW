@@ -3,6 +3,7 @@ using Game.Code.Gameplay.Bullets.BulletEffects;
 using Game.Code.Gameplay.Enemies;
 using Game.Code.Gameplay.Enemies.SpawnerSystem;
 using Game.Code.Gameplay.Enemies.WaveSystem;
+using Game.Code.Gameplay.General;
 using Game.Code.Gameplay.Items;
 using Game.Code.Gameplay.Player;
 using Game.Code.Gameplay.Player.PlayerSO;
@@ -40,6 +41,7 @@ namespace Game.Code.Infrastructure.Installers
         [SerializeField] private AllWavesSO _allWaves;
         [SerializeField] private BulletConfigSO _bulletConfig;
         [SerializeField] private BulletStatsSO _bulletStats;
+        [SerializeField] private CameraMovement _cameraMovement;
         
         [Header ("UI")] 
         [SerializeField] private StartTimerWndView _startTimerWndView;
@@ -67,10 +69,19 @@ namespace Game.Code.Infrastructure.Installers
             BindEnemySpawnerSystem();
             BindWaveSwitcher();
             BindItemDropperService();
+            BindCameraMovement();
             
             BindUiController();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindCameraMovement()
+        {
+            Container
+                .Bind<CameraMovement>()
+                .FromInstance(_cameraMovement)
+                .AsSingle();
         }
 
         private void BindItemDropperService()

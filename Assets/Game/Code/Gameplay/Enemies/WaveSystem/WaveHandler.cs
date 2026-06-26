@@ -16,7 +16,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private readonly EnemySpawnerSystem _enemySpawnerSystem;
         private readonly Dictionary<WaveEntry, List<EnemySpawner>> _waveEntries;
         private int _countOfAllEnemiesInWaves;
-        private List<Coroutine> _coroutines;
+        private readonly List<Coroutine> _coroutines;
 
         public WaveHandler(CoroutineRunner coroutineRunner, EnemySpawnerSystem enemySpawnerSystem)
         {
@@ -75,9 +75,12 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
 
         public void Dispose()
         {
-            foreach (Coroutine coroutine in _coroutines)
+            if (_coroutineRunner != null)
             {
-                _coroutineRunner.Stop(coroutine);
+                foreach (Coroutine coroutine in _coroutines)
+                {
+                    _coroutineRunner.Stop(coroutine);
+                }
             }
         }
     }

@@ -68,7 +68,11 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         public void Dispose()
         {
             _eventBusService.Unsubscribe<WaveStartEvent>(SetNextWave);
-            _coroutineRunner.Stop(_startWaveCoroutine);
+
+            if (_coroutineRunner != null)
+            {
+                _coroutineRunner.Stop(_startWaveCoroutine);
+            }
         }
     }
 }
