@@ -7,10 +7,10 @@ namespace Game.Code.Gameplay.UI.PauseWnd
     {
         [SerializeField] private Button _resumeBtn;
         [SerializeField] private Button _restartBtn;
-        [SerializeField] private Button _exitBtn;
+        [SerializeField] private Button _mainMenuBtn;
         
         public Button ResumeBtn => _resumeBtn;
         public Button RestartBtn => _restartBtn;
-        public Button ExitBtn => _exitBtn;
+        public Button MainMenuBtn => _mainMenuBtn;
     }
 }

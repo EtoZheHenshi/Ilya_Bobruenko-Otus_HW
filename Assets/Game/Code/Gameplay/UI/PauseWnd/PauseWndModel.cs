@@ -22,7 +22,7 @@ namespace Game.Code.Gameplay.UI.PauseWnd
             
             _view.ResumeBtn.onClick.AddListener(Resume);
             _view.RestartBtn.onClick.AddListener(Restart);
-            _view.ExitBtn.onClick.AddListener(Exit);
+            _view.MainMenuBtn.onClick.AddListener(MainMenu);
             
             _inputService.PlayerInput.Gameplay.Pause.started += GameplayOnPauseListener;
             _inputService.PlayerInput.Pause.Close.started += PauseOnCloseListener;
@@ -38,12 +38,9 @@ namespace Game.Code.Gameplay.UI.PauseWnd
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        private void Exit()
+        private void MainMenu()
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
-            Application.Quit();
+            SceneManager.LoadScene("MainMenu");
         }
 
         private void Show()
@@ -72,7 +69,7 @@ namespace Game.Code.Gameplay.UI.PauseWnd
         {
             _view.ResumeBtn.onClick.RemoveListener(Resume);
             _view.RestartBtn.onClick.RemoveListener(Restart);
-            _view.ExitBtn.onClick.RemoveListener(Exit);
+            _view.MainMenuBtn.onClick.RemoveListener(MainMenu);
             
             _inputService.PlayerInput.Gameplay.Pause.started -= GameplayOnPauseListener;
             _inputService.PlayerInput.Pause.Close.started -= PauseOnCloseListener;

@@ -3,6 +3,12 @@
     "name": "PlayerInput",
     "maps": [
         {
+            "name": "MainMenu",
+            "id": "4bf94881-bb18-42fd-acfd-252d245488e6",
+            "actions": [],
+            "bindings": []
+        },
+        {
             "name": "Gameplay",
             "id": "7c178ad8-71c9-451c-8a14-3b50eca83e24",
             "actions": [

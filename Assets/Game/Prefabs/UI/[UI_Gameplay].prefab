@@ -852,7 +852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3906225582358075674}
   m_Layer: 0
-  m_Name: '[UI]'
+  m_Name: '[UI_Gameplay]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2000,7 +2000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.UI.PauseWnd.PauseWndView
   _resumeBtn: {fileID: 8755383578889119853}
   _restartBtn: {fileID: 5343813553929829597}
-  _exitBtn: {fileID: 2246457712393635436}
+  _mainMenuBtn: {fileID: 2246457712393635436}
 --- !u!1 &7631459138330028826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3466,7 +3466,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5145628675438292267, guid: 2899e5066badabe459094b731f91af47, type: 3}
       propertyPath: m_Name
-      value: ExitButtonText
+      value: MainMenuButtonText
       objectReference: {fileID: 0}
     - target: {fileID: 6528069961867203329, guid: 2899e5066badabe459094b731f91af47, type: 3}
       propertyPath: m_Pivot.x
@@ -3550,7 +3550,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280020721680937558, guid: 2899e5066badabe459094b731f91af47, type: 3}
       propertyPath: m_Name
-      value: ExitButton
+      value: MainMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838421863513195322, guid: 2899e5066badabe459094b731f91af47, type: 3}
+      propertyPath: m_text
+      value: MAIN MENU
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

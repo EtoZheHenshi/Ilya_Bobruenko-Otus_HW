@@ -27,7 +27,7 @@ namespace Game.Code.Infrastructure.GameStateSystem
                 {
                     Time.timeScale = 0;
                     Cursor.visible = true;
-                    _inputService.SetMap("Pause");
+                    _inputService.SetMap("MainMenu");
                     CurrentGameState = GameStateType.MainMenu;
                     break;
                 }
@@ -51,7 +51,7 @@ namespace Game.Code.Infrastructure.GameStateSystem
                 {
                     Time.timeScale = 0;
                     Cursor.visible = true;
-                    _inputService.SetMap("Pause");
+                    _inputService.CurrentMap.Disable();
                     CurrentGameState = GameStateType.Upgrade;
                     break;
                 }
