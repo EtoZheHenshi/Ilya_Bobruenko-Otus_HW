@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4854956141060559786}
   - component: {fileID: 3747322772345921866}
   - component: {fileID: 5904000277755394092}
+  - component: {fileID: 4973443004004511944}
   - component: {fileID: 8108505961825382173}
   - component: {fileID: 89502626366675385}
   m_Layer: 9
@@ -56,6 +57,7 @@ MonoBehaviour:
   _hitFlash: {fileID: 4854956141060559786}
   _enemyMove: {fileID: 1013542654157627694}
   _touchAttack: {fileID: 5904000277755394092}
+  _animator: {fileID: 4973443004004511944}
 --- !u!114 &1013542654157627694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +107,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.EnemyComponents.TouchAttack
   _damage: 1
+--- !u!114 &4973443004004511944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487605210271239711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c12031396e24caf8611757fc29e1fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.EnemyComponents.EnemyAnimator
+  _animator: {fileID: 7921590492458556741}
+  _dieAnimationHandler: {fileID: 7260018407207906523}
 --- !u!195 &8108505961825382173
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -229,10 +245,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cbfe6619769c4546a6242501537fd45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7921590492458556741}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cbfe6619769c4546a6242501537fd45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7260018407207906523}
   m_SourcePrefab: {fileID: 100100000, guid: 8cbfe6619769c4546a6242501537fd45, type: 3}
 --- !u!4 &2598098513317040089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8cbfe6619769c4546a6242501537fd45, type: 3}
   m_PrefabInstance: {fileID: 2559440591750883378}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3406300739818739043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cbfe6619769c4546a6242501537fd45, type: 3}
+  m_PrefabInstance: {fileID: 2559440591750883378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7921590492458556741
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406300739818739043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cbd17784d5c85654784d525431006fe7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7260018407207906523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406300739818739043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8127e8759ac49f894723f6e530af9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.EnemyComponents.DieAnimationHandler

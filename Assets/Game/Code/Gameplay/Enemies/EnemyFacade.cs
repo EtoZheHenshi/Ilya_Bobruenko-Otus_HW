@@ -14,6 +14,7 @@ namespace Game.Code.Gameplay.Enemies
         [SerializeField] private HitFlash _hitFlash;
         [SerializeField] private EnemyMove _enemyMove;
         [SerializeField] private TouchAttack _touchAttack;
+        [SerializeField] private EnemyAnimator _animator;
 
         public EnemyConfigSO Config => _enemyConfig;
         public EnemyStatsSO Stats => _enemyConfig.Stats;
@@ -21,5 +22,6 @@ namespace Game.Code.Gameplay.Enemies
         public HitFlash HitFlash => _hitFlash;
         public EnemyMove EnemyMove => _enemyMove;
         public TouchAttack TouchAttack => _touchAttack;
+        public EnemyAnimator Animator => _animator;
     }
 }

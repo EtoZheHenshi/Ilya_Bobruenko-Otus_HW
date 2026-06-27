@@ -78,7 +78,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         {
             _controller.Move(new Vector3(_directionToMove.x, 0, _directionToMove.y) 
                              * (_moveSpeed.CurrentValue * deltaTime));
-            _animator.SetMove(Mathf.Abs(_directionToMove.magnitude));
+            _animator.SetMove(Mathf.Abs(_directionToMove.sqrMagnitude));
         }
 
         private void SetDirectionToRotate()

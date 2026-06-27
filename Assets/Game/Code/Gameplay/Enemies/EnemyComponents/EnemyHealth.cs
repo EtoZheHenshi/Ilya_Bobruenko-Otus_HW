@@ -17,6 +17,7 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
         private EnemyFacade _enemyFacade;
         private HitFlash _hitFlash;
         private EventBusService _eventBusService;
+        private EnemyAnimator _animator;
         
         private Stat _maxHealth;
         private float _currentHealth;
@@ -34,6 +35,8 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
             _hitFlash = _enemyFacade.HitFlash;
             _maxHealth = _enemyFacade.Stats.MaxHealth;
             _currentHealth = _maxHealth.CurrentValue;
+            _animator = _enemyFacade.Animator;
+            _animator.OnDieAnimation += () => Destroy(gameObject);
         }
         
         public void TakeDamage(float damage)
@@ -53,7 +56,7 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
                 _isDead = true;
                 _eventBusService.Publish(new DropItemsEvent(_enemyFacade.Config.DroppableItems, transform));
                 OnDeath?.Invoke();
-                Destroy(gameObject);
+                _animator.DieAnimation();
             }
         }
 

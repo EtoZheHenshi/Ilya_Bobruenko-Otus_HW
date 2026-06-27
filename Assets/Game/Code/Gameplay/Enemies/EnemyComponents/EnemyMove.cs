@@ -12,6 +12,7 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
     public sealed class EnemyMove : MonoBehaviour, IUpdatable
     {
         private UpdateService _updateService;
+        private EnemyAnimator _animator;
         
         private NavMeshAgent _agent;
         private Transform _target;
@@ -25,6 +26,7 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
             _target = player.Transform;
             EnemyFacade enemy = GetComponent<EnemyFacade>();
             _speed = enemy.Stats.Speed;
+            _animator = enemy.Animator;
         }
         
         public void Tick(float deltaTime)
@@ -46,6 +48,7 @@ namespace Game.Code.Gameplay.Enemies.EnemyComponents
         {
             _agent.speed = _speed.CurrentValue;
             _agent.SetDestination(_target.position);
+            _animator.SetMove(Mathf.Abs(_agent.velocity.sqrMagnitude));
         }
     }
 }
