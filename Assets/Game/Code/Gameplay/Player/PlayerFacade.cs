@@ -17,6 +17,7 @@ namespace Game.Code.Gameplay.Player
         [SerializeField] private PlayerMove _playerMove;
         [SerializeField] private HitFlash _hitFlash;
         [SerializeField] private PlayerShoot _playerShoot;
+        [SerializeField] private PlayerAnimator _playerAnimator;
         
         public PlayerStatsSO PlayerStats => _playerStats;
         public PlayerHealth PlayerHealth => _playerHealth;
@@ -25,5 +26,6 @@ namespace Game.Code.Gameplay.Player
         public PlayerMove PlayerMove => _playerMove;
         public HitFlash HitFlash => _hitFlash;
         public PlayerShoot PlayerShoot => _playerShoot;
+        public PlayerAnimator PlayerAnimator => _playerAnimator;
     }
 }

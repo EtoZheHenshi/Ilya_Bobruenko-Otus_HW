@@ -12,10 +12,12 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
     public sealed class PlayerShoot : MonoBehaviour, IUpdatable
     {
         [SerializeField] private Transform _bulletSpawnPosition;
+        [SerializeField] private ParticleSystem _particleSystem;
         
         private IInputService _inputService;
         private BulletFactory _bulletFactory;
         private UpdateService _updateService;
+        private PlayerAnimator _animator;
 
         private Stat _fireRate;
 
@@ -33,6 +35,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             
             PlayerFacade playerFacade = GetComponent<PlayerFacade>();
             _fireRate = playerFacade.PlayerStats.FireRate;
+            _animator = playerFacade.PlayerAnimator;
         }
         
         public void Tick(float deltaTime)
@@ -64,6 +67,8 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
                 {
                     _lastShotTime = Time.time;
                     _bulletFactory.Create(_bulletSpawnPosition.position, _bulletSpawnPosition.rotation);
+                    _particleSystem.Play();
+                    _animator.Shot();
                 }
             }
         }

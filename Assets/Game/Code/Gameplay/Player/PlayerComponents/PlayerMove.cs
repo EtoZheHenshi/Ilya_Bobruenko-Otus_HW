@@ -15,6 +15,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         private CharacterController _controller;
         private UpdateService _updateService;
         private IInputService _inputService;
+        private PlayerAnimator _animator;
         
         private Stat _moveSpeed;
         private Vector2 _directionToMove;
@@ -32,6 +33,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             _controller = GetComponent<CharacterController>();
             PlayerFacade playerFacade = GetComponent<PlayerFacade>();
             _moveSpeed = playerFacade.PlayerStats.MoveSpeed;
+            _animator = playerFacade.PlayerAnimator;
             _camera = Camera.main;
             _updateService = updateService;
             _inputService = inputService;
@@ -76,6 +78,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         {
             _controller.Move(new Vector3(_directionToMove.x, 0, _directionToMove.y) 
                              * (_moveSpeed.CurrentValue * deltaTime));
+            _animator.SetMove(Mathf.Abs(_directionToMove.magnitude));
         }
 
         private void SetDirectionToRotate()
