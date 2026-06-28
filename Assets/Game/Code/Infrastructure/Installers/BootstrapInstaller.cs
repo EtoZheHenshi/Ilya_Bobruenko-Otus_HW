@@ -1,3 +1,4 @@
+using Game.Code.Infrastructure.Audio;
 using Game.Code.Infrastructure.EventBusSystem;
 using Game.Code.Infrastructure.GameStateSystem;
 using Game.Code.Infrastructure.Input;
@@ -9,16 +10,30 @@ namespace Game.Code.Infrastructure.Installers
 {
     public sealed class BootstrapInstaller :MonoInstaller
     {
+        [SerializeField] private AudioService _audioService;
+        
         public override void InstallBindings()
         {
+            BindBootstrapInitializer();
+            
             BindInputService();
             BindUpdateService();
             BindEventBusService();
-            BindBootstrapInitializer();
             BindGameStateService();
             BindCoroutineRunner();
+            BindAudioService();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindAudioService()
+        {
+            Container
+                .BindInterfacesAndSelfTo<AudioService>()
+                .FromComponentInNewPrefab(_audioService)
+                .WithGameObjectName("[AudioService]")
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindCoroutineRunner()

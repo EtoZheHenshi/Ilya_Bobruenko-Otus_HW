@@ -74,3 +74,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 600bedb6c4f94bcd9b0e2d24b16cfa5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Infrastructure.Installers.BootstrapInstaller
+  _audioService: {fileID: 2798904511082377354, guid: 8ddaa13eee924024bac467912c9837b3, type: 3}

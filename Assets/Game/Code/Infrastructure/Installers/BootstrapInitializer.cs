@@ -6,7 +6,7 @@ namespace Game.Code.Infrastructure.Installers
 {
     public sealed class BootstrapInitializer : IInitializable
     {
-        private static int _nextSceneIndex = 1;
+        private const int NextSceneIndex = 1;
         
         public void Initialize()
         {
@@ -24,7 +24,7 @@ namespace Game.Code.Infrastructure.Installers
             }
 #endif
             
-            SceneManager.LoadScene(_nextSceneIndex);
+            SceneManager.LoadScene(NextSceneIndex);
 
             Debug.Log($"{this.GetType()} initialized");
         }
