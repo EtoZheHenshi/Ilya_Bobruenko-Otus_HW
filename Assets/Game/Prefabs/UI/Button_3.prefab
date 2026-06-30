@@ -147,6 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6528069961867203329}
   - component: {fileID: 7016040274946898197}
+  - component: {fileID: 2070259043988537385}
   - component: {fileID: 3872786937725146177}
   - component: {fileID: 5491057492042490991}
   m_Layer: 0
@@ -184,6 +185,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7280020721680937558}
   m_CullTransparentMesh: 1
+--- !u!114 &2070259043988537385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280020721680937558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cddce6ae158e46fb9d96a21ca9143d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.UI.ButtonSound
+  _buttonClickSound: {fileID: 11400000, guid: 782560a49e4c2584d8a804d5161dc8f7, type: 2}
 --- !u!114 &3872786937725146177
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -54,6 +54,15 @@ namespace Game.Code.Infrastructure.Audio
             source.Play();
         }
 
+        public void PlayNotKillable(SoundId soundId)
+        {
+            if (!ConfigAudioSource(soundId, out var source)) return;
+            
+            source.Play();
+            
+            StartCoroutine(ReturnToPool(source, source.clip.length));
+        }
+
         public void StopLoop(SoundId soundId)
         {
             if (_activeLoopAudioSource.TryGetValue(soundId, out var source))

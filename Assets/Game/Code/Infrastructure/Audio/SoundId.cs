@@ -20,6 +20,7 @@ namespace Game.Code.Infrastructure.Audio
         GameplayTheme,
         WinSound,
         LoseSound,
+        WaveEnd,
         
         //UI
         ButtonClick,

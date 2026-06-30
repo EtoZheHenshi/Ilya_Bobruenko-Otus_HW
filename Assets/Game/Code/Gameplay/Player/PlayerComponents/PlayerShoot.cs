@@ -1,6 +1,7 @@
 using System;
 using Game.Code.Gameplay.Bullets;
 using Game.Code.Gameplay.General.Stats;
+using Game.Code.Infrastructure.Audio;
 using Game.Code.Infrastructure.Input;
 using Game.Code.Infrastructure.UpdateSystem;
 using UnityEngine;
@@ -23,12 +24,15 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
 
         private float _lastShotTime;
         private bool _isShooting;
-        
+        private AudioService _audioService;
+
         public Stat FireRate => _fireRate;
 
         [Inject]
-        public void Construct(IInputService inputService, BulletFactory bulletFactory, UpdateService updateService)
+        public void Construct(IInputService inputService, BulletFactory bulletFactory, UpdateService updateService,
+            AudioService audioService)
         {
+            _audioService = audioService;
             _bulletFactory = bulletFactory;
             _inputService = inputService;   
             _updateService = updateService;
@@ -65,6 +69,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             {
                 if (Time.time > _lastShotTime + _fireRate.CurrentValue)
                 {
+                    _audioService.Play(SoundId.PlayerShot);
                     _lastShotTime = Time.time;
                     _bulletFactory.Create(_bulletSpawnPosition.position, _bulletSpawnPosition.rotation);
                     _particleSystem.Play();

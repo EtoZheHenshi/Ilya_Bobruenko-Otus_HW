@@ -1,5 +1,6 @@
 using System;
 using Game.Code.Infrastructure;
+using Game.Code.Infrastructure.Audio;
 using Game.Code.Infrastructure.EventBusSystem;
 using Game.Code.Infrastructure.EventBusSystem.Events;
 using UnityEngine;
@@ -13,18 +14,20 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private readonly CoroutineRunner _coroutineRunner;
         private readonly EventBusService _eventBusService;
         private readonly WaveTimer _waveTimer;
+        private readonly AudioService _audioService;
         private Coroutine _startWaveCoroutine;
 
         private int _waveCount;
 
         public WaveSwitcher(WaveHandler waveHandler, AllWavesSO allWaves, CoroutineRunner coroutineRunner,
-            EventBusService eventBusService, WaveTimer waveTimer)
+            EventBusService eventBusService, WaveTimer waveTimer, AudioService audioService)
         {
             _allWaves = allWaves;
             _waveHandler = waveHandler;
             _coroutineRunner = coroutineRunner;
             _eventBusService = eventBusService;
             _waveTimer = waveTimer;
+            _audioService = audioService;
             _waveCount = 0;
             _eventBusService.Subscribe<WaveStartEvent>(SetNextWave);
             
@@ -61,6 +64,8 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
             StopCoroutine();
             
             _waveHandler.ClearWave();
+            
+            _audioService.Play(SoundId.WaveEnd);
             
             _waveCount++;
             if (CheckForWave())

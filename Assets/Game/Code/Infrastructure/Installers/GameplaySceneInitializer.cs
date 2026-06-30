@@ -47,6 +47,8 @@ namespace Game.Code.Infrastructure.Installers
             _uiController.Initialize();
             
             _gameStateService.SwitchGameState(GameStateType.Gameplay);
+            
+            _audioService.PlayLoop(SoundId.GameplayTheme);
 
             StartCoroutine(_uiController.PlayStartWaveTimer());
             

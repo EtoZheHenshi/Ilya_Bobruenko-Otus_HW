@@ -1,4 +1,5 @@
 using Game.Code.Gameplay.Player.PlayerSO;
+using Game.Code.Infrastructure.Audio;
 using Game.Code.Infrastructure.EventBusSystem;
 using Game.Code.Infrastructure.EventBusSystem.Events;
 using UnityEngine;
@@ -19,12 +20,14 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         private int _currentExp;
         private int _expForNextLvl;
         private int _currentLvl;
-        
+        private AudioService _audioService;
+
         public int CurrentLevel => _currentLvl;
 
         [Inject]
-        public void Construct(EventBusService eventBus)
+        public void Construct(EventBusService eventBus, AudioService audioService)
         {
+            _audioService = audioService;
             _eventBus = eventBus;
             
             _lvlExpTable = _playerLevelExpTable.LvlExpTable;
@@ -46,6 +49,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         
         private void LvlUp()
         {
+            _audioService.Play(SoundId.PlayerLvlUp);
             _currentLvl++;
             _currentExp -= _expForNextLvl;
             if (_currentLvl > _lvlExpTable.Length)

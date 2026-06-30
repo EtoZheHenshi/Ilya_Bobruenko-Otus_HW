@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: AllSounds
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Infrastructure.Audio.AllSoundsSO
   _sounds:
-  - {fileID: 11400000, guid: 2694b5ee85a110046a1e32dfa14d67ec, type: 2}
+  - {fileID: 11400000, guid: 782560a49e4c2584d8a804d5161dc8f7, type: 2}
+  - {fileID: 11400000, guid: 3b5a476777d45f840a8973983b90a3cc, type: 2}
+  - {fileID: 11400000, guid: d2da49e98d2e2a545881405d60f52842, type: 2}
+  - {fileID: 11400000, guid: 368297ed6c9816b4e8f1aefe05bdadfe, type: 2}
   - {fileID: 11400000, guid: 786f8e8eee613b2498c5c2a80c833696, type: 2}
+  - {fileID: 11400000, guid: 2694b5ee85a110046a1e32dfa14d67ec, type: 2}
+  - {fileID: 11400000, guid: 5855e808f2317a9439b542712e4b016f, type: 2}
+  - {fileID: 11400000, guid: d1c89e3b24a425c4b8ef8caa4e94d31b, type: 2}
+  - {fileID: 11400000, guid: 027ee7c0a054a604c9aaf87e6835dd81, type: 2}

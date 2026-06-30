@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Game.Code.Gameplay.General;
 using Game.Code.Gameplay.General.Stats;
+using Game.Code.Infrastructure.Audio;
 using Game.Code.Infrastructure.EventBusSystem;
 using Game.Code.Infrastructure.EventBusSystem.Events;
 using UnityEngine;
@@ -27,10 +28,12 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         private HitFlash _hitFlash;
         private bool _isInvincible;
         private EventBusService _eventBusService;
+        private AudioService _audioService;
 
         [Inject]
-        public void Construct(EventBusService eventBusService)
+        public void Construct(EventBusService eventBusService, AudioService audioService)
         {
+            _audioService = audioService;
             _eventBusService = eventBusService;
             PlayerFacade playerFacade = GetComponent<PlayerFacade>();
             _maxHealth = playerFacade.PlayerStats.MaxHealth;
@@ -43,6 +46,8 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             if (_isInvincible || _isDead) return;
             
             StartCoroutine(InvincibleTime());
+            
+            _audioService.Play(SoundId.PlayerGetDamage);
             
             _hitFlash.Flash();
             
@@ -62,6 +67,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         
         public void Heal(float healAmount)
         {
+            _audioService.Play(SoundId.PlayerGetHealth);
             _currentHealth += healAmount;
             if (_currentHealth > _maxHealth.CurrentValue)
             {

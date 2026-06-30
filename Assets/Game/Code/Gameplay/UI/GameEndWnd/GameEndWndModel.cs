@@ -33,6 +33,7 @@ namespace Game.Code.Gameplay.UI.GameEndWnd
         private void Show(GameEndEvent gameEndEvent)
         {
             _gameStateService.SwitchGameState(GameStateType.GameEnd);
+            _audioService.StopLoop(SoundId.GameplayTheme);
             
             if (gameEndEvent.IsWinning)
             {
