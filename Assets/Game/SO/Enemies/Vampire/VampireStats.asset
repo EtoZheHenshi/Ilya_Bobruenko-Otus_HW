@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VampireStats
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.EnemyTypes.Vampire.VampireStatsSO
   _maxHealth:
-    _baseValue: 50
+    _baseValue: 100
     _minValue: 30
     _maxValue: 100
   _speed:

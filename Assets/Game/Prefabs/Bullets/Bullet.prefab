@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Bullets.Bullet
   _bulletConfig: {fileID: 11400000, guid: 0af4efbe93a37f24ba07fb8688b9d0f4, type: 2}
+  _bulletModel: {fileID: 3599922369494663429}
 --- !u!1 &6699786104937861246
 GameObject:
   m_ObjectHideFlags: 0

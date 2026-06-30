@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ZombieStats
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.EnemyTypes.Zombie.ZombieStatsSO
   _maxHealth:
-    _baseValue: 15
+    _baseValue: 20
     _minValue: 5
     _maxValue: 20
   _speed:

@@ -15,5 +15,5 @@ MonoBehaviour:
   _title: Bullet Size Upgrade
   _description: Increases bullet size
   _statModifier:
-    Value: 0.05
+    Value: 0.025
     Type: 0

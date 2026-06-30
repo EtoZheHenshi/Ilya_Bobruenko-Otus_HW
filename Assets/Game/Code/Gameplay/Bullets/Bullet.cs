@@ -11,6 +11,7 @@ namespace Game.Code.Gameplay.Bullets
     public sealed class Bullet : MonoBehaviour, IUpdatable
     {
         [SerializeField] private BulletConfigSO _bulletConfig;
+        [SerializeField] private Transform _bulletModel;
 
         public const float Skin = 0.02f;
         
@@ -43,6 +44,9 @@ namespace Game.Code.Gameplay.Bullets
             
             _damage = new Stat(bulletStats.Damage);
             _hitContext = new BulletHitContext();
+            
+            float bulletSize = bulletStats.Radius.CurrentValue * 2;
+            _bulletModel.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
         }
 
         public void Tick(float deltaTime)

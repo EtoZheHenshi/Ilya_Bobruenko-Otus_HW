@@ -16,3 +16,12 @@ MonoBehaviour:
   - Config: {fileID: 11400000, guid: 1c35e17e318634748bb3b85703a8d13d, type: 2}
     Amount: 1
     DropRate: 100
+  - Config: {fileID: 11400000, guid: 1c35e17e318634748bb3b85703a8d13d, type: 2}
+    Amount: 1
+    DropRate: 10
+  - Config: {fileID: 11400000, guid: 1c35e17e318634748bb3b85703a8d13d, type: 2}
+    Amount: 1
+    DropRate: 2
+  - Config: {fileID: 11400000, guid: 565ccf0c3cd0d7846b25a2639e2e21d3, type: 2}
+    Amount: 1
+    DropRate: 5
