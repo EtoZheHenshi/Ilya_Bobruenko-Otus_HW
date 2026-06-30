@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd43f044bdb47149a1062d20f1b3133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Items.ItemPickup
-  _itemConfig: {fileID: 0}
+  _itemConfig: {fileID: 11400000, guid: 91f5ed4aa93f1e242aac89ebd87c0f13, type: 2}
 --- !u!135 &7555878568681548610
 SphereCollider:
   m_ObjectHideFlags: 0

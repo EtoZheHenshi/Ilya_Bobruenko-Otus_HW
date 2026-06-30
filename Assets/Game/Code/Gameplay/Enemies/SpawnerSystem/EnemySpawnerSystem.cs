@@ -12,7 +12,7 @@ namespace Game.Code.Gameplay.Enemies.SpawnerSystem
         [Inject]
         public void Construct()
         {
-            _spawners = GetComponentsInChildren<EnemySpawner>();
+            _spawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None);
         }
         
         public List<EnemySpawner> GetSupportedSpawners(EnemyConfigSO enemyConfig)

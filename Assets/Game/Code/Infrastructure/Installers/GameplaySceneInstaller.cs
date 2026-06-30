@@ -8,6 +8,7 @@ using Game.Code.Gameplay.Items;
 using Game.Code.Gameplay.Player;
 using Game.Code.Gameplay.Player.PlayerSO;
 using Game.Code.Gameplay.UI;
+using Game.Code.Gameplay.UI.GameEndWnd;
 using Game.Code.Gameplay.UI.HUD;
 using Game.Code.Gameplay.UI.HUD.HP;
 using Game.Code.Gameplay.UI.HUD.Level;
@@ -50,6 +51,7 @@ namespace Game.Code.Infrastructure.Installers
         [SerializeField] private HpGroupView _hpGroupView;
         [SerializeField] private LevelTextView _levelTextView;
         [SerializeField] private PauseWndView _pauseWndView;
+        [SerializeField] private GameEndWndView _gameEndWndView;
         
         public override void InstallBindings() 
         {
@@ -70,10 +72,18 @@ namespace Game.Code.Infrastructure.Installers
             BindWaveSwitcher();
             BindItemDropperService();
             BindCameraMovement();
+            BindRunStatus();
             
             BindUiController();
 
             Debug.Log($"{this.GetType()} installed");
+        }
+
+        private void BindRunStatus()
+        {
+            Container
+                .BindInterfacesAndSelfTo<RunStatus>()
+                .AsSingle();
         }
 
         private void BindCameraMovement()
@@ -140,6 +150,11 @@ namespace Game.Code.Infrastructure.Installers
                 .AsSingle()
                 .WithArguments(_upgradeMenuWndView)
                 .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<GameEndWndModel>()
+                .AsSingle()
+                .WithArguments(_gameEndWndView);
         }
 
         private void BindHUD()

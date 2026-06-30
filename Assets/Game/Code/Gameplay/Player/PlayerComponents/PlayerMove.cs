@@ -21,6 +21,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         private Vector2 _directionToMove;
         private Vector3 _directionToRotate;
         private Vector3 _lookPoint;
+        private float _fixedY;
         private Camera _camera;
         //private bool _isShooting;
         private bool _isActive;
@@ -37,6 +38,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             _camera = Camera.main;
             _updateService = updateService;
             _inputService = inputService;
+            _fixedY = transform.position.y;
         }
         
         public void Tick(float deltaTime)
@@ -78,6 +80,11 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         {
             _controller.Move(new Vector3(_directionToMove.x, 0, _directionToMove.y) 
                              * (_moveSpeed.CurrentValue * deltaTime));
+            
+            Vector3 pos = transform.position;
+            pos.y = _fixedY;
+            transform.position = pos;
+            
             _animator.SetMove(Mathf.Abs(_directionToMove.sqrMagnitude));
         }
 

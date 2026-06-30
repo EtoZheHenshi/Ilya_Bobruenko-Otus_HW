@@ -55,6 +55,14 @@ namespace Game.Code.Infrastructure.GameStateSystem
                     CurrentGameState = GameStateType.Upgrade;
                     break;
                 }
+                case GameStateType.GameEnd:
+                {
+                    Time.timeScale = 0;
+                    Cursor.visible = true;
+                    _inputService.CurrentMap.Disable();
+                    CurrentGameState = GameStateType.GameEnd;
+                    break;
+                }
             }
         }
     }

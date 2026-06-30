@@ -22,6 +22,7 @@ namespace Game.Code.Infrastructure.Audio
         LoseSound,
         
         //UI
-        ButtonClick
+        ButtonClick,
+        TimerSound
     }
 }

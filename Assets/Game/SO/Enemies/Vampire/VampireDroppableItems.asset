@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f857aaf1c7048978a065c551159ee54, type: 3}
+  m_Name: VampireDroppableItems
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Items.DroppableItemsSO
+  _droppableItems:
+  - Config: {fileID: 11400000, guid: 552b76f6009f8904e8e0b48377516b69, type: 2}
+    Amount: 1
+    DropRate: 100

@@ -33,3 +33,23 @@ MonoBehaviour:
     Count: 20
     SpawnInterval: 2
     TimeToStartWave: 1
+  - EnemyConfigSO: {fileID: 11400000, guid: 6465eb909d8ce5848806a2dec9adcb40, type: 2}
+    Count: 30
+    SpawnInterval: 2
+    TimeToStartWave: 1
+  - EnemyConfigSO: {fileID: 11400000, guid: 6465eb909d8ce5848806a2dec9adcb40, type: 2}
+    Count: 30
+    SpawnInterval: 2
+    TimeToStartWave: 1
+  - EnemyConfigSO: {fileID: 11400000, guid: 16ecd476950dc994eb9f55405d5a7419, type: 2}
+    Count: 10
+    SpawnInterval: 5
+    TimeToStartWave: 10
+  - EnemyConfigSO: {fileID: 11400000, guid: 16ecd476950dc994eb9f55405d5a7419, type: 2}
+    Count: 10
+    SpawnInterval: 5
+    TimeToStartWave: 10
+  - EnemyConfigSO: {fileID: 11400000, guid: 81a9d969437faf9439bff001df92be63, type: 2}
+    Count: 2
+    SpawnInterval: 20
+    TimeToStartWave: 10

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Code.Gameplay.Enemies.SpawnerSystem;
+using Game.Code.Gameplay.General;
 using Game.Code.Infrastructure;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,14 +15,16 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         
         private readonly CoroutineRunner _coroutineRunner;
         private readonly EnemySpawnerSystem _enemySpawnerSystem;
+        private readonly RunStatus _runStatus;
         private readonly Dictionary<WaveEntry, List<EnemySpawner>> _waveEntries;
         private int _countOfAllEnemiesInWaves;
         private readonly List<Coroutine> _coroutines;
 
-        public WaveHandler(CoroutineRunner coroutineRunner, EnemySpawnerSystem enemySpawnerSystem)
+        public WaveHandler(CoroutineRunner coroutineRunner, EnemySpawnerSystem enemySpawnerSystem, RunStatus runStatus)
         {
             _coroutineRunner = coroutineRunner;
             _enemySpawnerSystem = enemySpawnerSystem;
+            _runStatus = runStatus;
             _waveEntries = new Dictionary<WaveEntry, List<EnemySpawner>>();
             _coroutines = new List<Coroutine>();
         }
@@ -71,6 +74,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private void HandleEnemyDeath()
         {
             _countOfAllEnemiesInWaves--;
+            _runStatus.AddKill();
         }
 
         public void Dispose()

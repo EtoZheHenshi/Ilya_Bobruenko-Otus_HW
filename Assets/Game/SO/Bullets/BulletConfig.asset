@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6048c6f1a4388b076145f612709e5, type: 3}
   m_Name: BulletConfig
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Bullets.BulletConfigSO
-  _bulletStats: {fileID: 11400000, guid: afc252bc001a056458cc44bfbe8af060, type: 2}
   _bulletPrefab: {fileID: 2973755802496419039, guid: 9b3ff2b0f151d20408fbe4396694dcc3, type: 3}
   _hitMask:
     serializedVersion: 2
-    m_Bits: 960
+    m_Bits: 3008

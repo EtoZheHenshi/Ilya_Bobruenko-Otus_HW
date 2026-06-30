@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Infrastructure.Audio.AllSoundsSO
   _sounds:
   - {fileID: 11400000, guid: 2694b5ee85a110046a1e32dfa14d67ec, type: 2}
+  - {fileID: 11400000, guid: 786f8e8eee613b2498c5c2a80c833696, type: 2}

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using Game.Code.Gameplay.General;
 using Game.Code.Gameplay.General.Stats;
+using Game.Code.Infrastructure.EventBusSystem;
+using Game.Code.Infrastructure.EventBusSystem.Events;
 using UnityEngine;
 using Zenject;
 
@@ -24,10 +26,12 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
         private bool _isDead;
         private HitFlash _hitFlash;
         private bool _isInvincible;
+        private EventBusService _eventBusService;
 
         [Inject]
-        public void Construct()
+        public void Construct(EventBusService eventBusService)
         {
+            _eventBusService = eventBusService;
             PlayerFacade playerFacade = GetComponent<PlayerFacade>();
             _maxHealth = playerFacade.PlayerStats.MaxHealth;
             _currentHealth = _maxHealth.CurrentValue;
@@ -53,6 +57,7 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             {
                 _isDead = true;
                 OnDeath?.Invoke();
+                _eventBusService.Publish(new GameEndEvent(false));
             }
         }
         

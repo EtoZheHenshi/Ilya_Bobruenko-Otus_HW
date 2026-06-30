@@ -84,7 +84,7 @@ namespace Game.Code.Infrastructure.Audio
 
         private bool ConfigAudioSource(SoundId soundId, out AudioSource source)
         {
-            SoundConfigSO sound = _allSounds.Sounds.First(s => s.SoundId == soundId);
+            SoundConfigSO sound = _allSounds.Sounds.FirstOrDefault(s => s.SoundId == soundId);
             if (sound == null)
             {
                 Debug.Log($"Sound {soundId} not found");

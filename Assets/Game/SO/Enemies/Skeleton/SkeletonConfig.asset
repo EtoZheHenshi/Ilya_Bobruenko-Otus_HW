@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.EnemyConfigSO
   _enemyStats: {fileID: 11400000, guid: 1cade233329299447897d684e96b5067, type: 2}
   _spawnTags:
-  - {fileID: 11400000, guid: 986ead8f3fc153c4bb36bb17731db106, type: 2}
+  - {fileID: 11400000, guid: 1b78037707215b44189d43a7009b14be, type: 2}
   _enemyPrefab: {fileID: 4675884689790198414, guid: ab2893385f77f0f4981bd2f1c56769ce, type: 3}
   _droppableItems: {fileID: 11400000, guid: 2158b21f44f767c46981435f20a4b03a, type: 2}

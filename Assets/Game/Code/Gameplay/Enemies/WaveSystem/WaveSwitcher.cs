@@ -37,7 +37,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
             }
             else
             {
-                _eventBusService.Publish(new GameEndEvent());
+                _eventBusService.Publish(new GameEndEvent(true));
             }
         }
 
@@ -61,7 +61,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
             }
             else
             {
-                _eventBusService.Publish(new GameEndEvent());
+                _eventBusService.Publish(new GameEndEvent(true));
             }
         }
 

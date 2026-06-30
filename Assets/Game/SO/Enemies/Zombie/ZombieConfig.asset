@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6b9d63181a439faec50d0210f52717, type: 3}
+  m_Name: ZombieConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.EnemyConfigSO
+  _enemyStats: {fileID: 11400000, guid: 41eb0e89705c7384ebc5b38db8f3f88b, type: 2}
+  _spawnTags:
+  - {fileID: 11400000, guid: a68ab4b962aa3214380eccdf9449e944, type: 2}
+  _enemyPrefab: {fileID: 8374805751075229456, guid: 4e23164a3f55d9f4c832a41498ca2e78, type: 3}
+  _droppableItems: {fileID: 11400000, guid: 832c9197f0a730348a0eadd21e0d5cb3, type: 2}

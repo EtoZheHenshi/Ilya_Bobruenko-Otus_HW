@@ -5,6 +5,7 @@ namespace Game.Code.Infrastructure.GameStateSystem
         MainMenu,
         Gameplay,
         Pause,
-        Upgrade
+        Upgrade,
+        GameEnd
     }
 }
