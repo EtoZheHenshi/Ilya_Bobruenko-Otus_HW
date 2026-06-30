@@ -12,6 +12,7 @@ using Game.Code.Gameplay.UI.GameEndWnd;
 using Game.Code.Gameplay.UI.HUD;
 using Game.Code.Gameplay.UI.HUD.HP;
 using Game.Code.Gameplay.UI.HUD.Level;
+using Game.Code.Gameplay.UI.HUD.WaveTimerUI;
 using Game.Code.Gameplay.UI.MiddleScreenTextWnd;
 using Game.Code.Gameplay.UI.PauseWnd;
 using Game.Code.Gameplay.UI.StartTimerWnd;
@@ -52,6 +53,7 @@ namespace Game.Code.Infrastructure.Installers
         [SerializeField] private LevelTextView _levelTextView;
         [SerializeField] private PauseWndView _pauseWndView;
         [SerializeField] private GameEndWndView _gameEndWndView;
+        [SerializeField] private WaveTimerUiView _waveTimerUiView;
         
         public override void InstallBindings() 
         {
@@ -168,6 +170,11 @@ namespace Game.Code.Infrastructure.Installers
                 .BindInterfacesAndSelfTo<LevelTextModel>()
                 .AsSingle()
                 .WithArguments(_levelTextView);
+            
+            Container
+                .BindInterfacesAndSelfTo<WaveTimerUiModel>()
+                .AsSingle()
+                .WithArguments(_waveTimerUiView);
 
             Container
                 .Bind<HudModel>()
@@ -188,6 +195,10 @@ namespace Game.Code.Infrastructure.Installers
             
             Container
                 .BindInterfacesAndSelfTo<WaveHandler>()
+                .AsSingle();
+            
+            Container
+                .BindInterfacesAndSelfTo<WaveTimer>()
                 .AsSingle();
             
             Container

@@ -13882,6 +13882,7 @@ MonoBehaviour:
   _levelTextView: {fileID: 2101210500}
   _pauseWndView: {fileID: 5751059856587445195}
   _gameEndWndView: {fileID: 5751059856587445196}
+  _waveTimerUiView: {fileID: 5751059856587445197}
 --- !u!114 &1239372058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24273,6 +24274,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69515d5de114b52a24e18ab2c1d4ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.UI.GameEndWnd.GameEndWndView
+--- !u!114 &5751059856587445197 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3339187085784367792, guid: c2ee99082e0dae948aacf6dd954b6185, type: 3}
+  m_PrefabInstance: {fileID: 5751059856587445194}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b91debb2404ce49aef5e08d6976f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.UI.HUD.WaveTimerUI.WaveTimerUiView
 --- !u!1001 &5779263751914433434
 PrefabInstance:
   m_ObjectHideFlags: 0

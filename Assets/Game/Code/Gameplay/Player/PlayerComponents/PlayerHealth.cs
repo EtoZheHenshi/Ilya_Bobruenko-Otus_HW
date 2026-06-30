@@ -47,7 +47,6 @@ namespace Game.Code.Gameplay.Player.PlayerComponents
             _hitFlash.Flash();
             
             _currentHealth -= damage;
-            Debug.Log($"HP : {_currentHealth}");
 
             if (_currentHealth > 0)
             {

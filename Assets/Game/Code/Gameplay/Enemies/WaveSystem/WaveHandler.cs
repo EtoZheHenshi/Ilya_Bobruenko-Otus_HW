@@ -19,6 +19,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private readonly Dictionary<WaveEntry, List<EnemySpawner>> _waveEntries;
         private int _countOfAllEnemiesInWaves;
         private readonly List<Coroutine> _coroutines;
+        private readonly List<EnemyFacade> _aliveEnemies;
 
         public WaveHandler(CoroutineRunner coroutineRunner, EnemySpawnerSystem enemySpawnerSystem, RunStatus runStatus)
         {
@@ -27,6 +28,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
             _runStatus = runStatus;
             _waveEntries = new Dictionary<WaveEntry, List<EnemySpawner>>();
             _coroutines = new List<Coroutine>();
+            _aliveEnemies = new List<EnemyFacade>();
         }
 
         public void FillWaveEntries(WaveConfigSO waveConfig)
@@ -57,6 +59,22 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
             OnWaveEndAction?.Invoke();
         }
 
+        public void ClearWave()
+        {
+            StopCoroutines();
+            
+            for (int i = 0; i < _aliveEnemies.Count; i++)
+            {
+                if (_aliveEnemies[i] != null)
+                {
+                    _aliveEnemies[i].EnemyHealth.OnDeath -= HandleEnemyDeath;
+                    GameObject.Destroy(_aliveEnemies[i].gameObject);
+                }
+            }
+            
+            _aliveEnemies.Clear();
+        }
+
         private IEnumerator StartWaveEntry(WaveEntry waveEntry, List<EnemySpawner> supportedSpawners)
         {
             yield return new WaitForSeconds(waveEntry.TimeToStartWave);
@@ -66,6 +84,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
                 EnemyFacade enemy = supportedSpawners[Random.Range(0, supportedSpawners.Count)]
                     .Spawn(waveEntry.EnemyConfigSO);
                 enemy.EnemyHealth.OnDeath += HandleEnemyDeath;
+                _aliveEnemies.Add(enemy);
                 
                 yield return new WaitForSeconds(waveEntry.SpawnInterval);
             }
@@ -77,7 +96,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
             _runStatus.AddKill();
         }
 
-        public void Dispose()
+        private void StopCoroutines()
         {
             if (_coroutineRunner != null)
             {
@@ -86,6 +105,11 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
                     _coroutineRunner.Stop(coroutine);
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            StopCoroutines();
         }
     }
 }

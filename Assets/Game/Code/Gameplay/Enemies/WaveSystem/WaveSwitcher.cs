@@ -12,20 +12,23 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private readonly WaveHandler _waveHandler;
         private readonly CoroutineRunner _coroutineRunner;
         private readonly EventBusService _eventBusService;
+        private readonly WaveTimer _waveTimer;
         private Coroutine _startWaveCoroutine;
 
         private int _waveCount;
 
         public WaveSwitcher(WaveHandler waveHandler, AllWavesSO allWaves, CoroutineRunner coroutineRunner,
-            EventBusService eventBusService)
+            EventBusService eventBusService, WaveTimer waveTimer)
         {
             _allWaves = allWaves;
             _waveHandler = waveHandler;
             _coroutineRunner = coroutineRunner;
             _eventBusService = eventBusService;
+            _waveTimer = waveTimer;
             _waveCount = 0;
             _eventBusService.Subscribe<WaveStartEvent>(SetNextWave);
             
+            _waveTimer.OnTimerEnd += WaveEndAction;
             _waveHandler.OnWaveEndAction = WaveEndAction;
         }
 
@@ -44,6 +47,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
         private void StartWave()
         {
             _waveHandler.FillWaveEntries(_allWaves.WaveConfigs[_waveCount]);
+            _waveTimer.StartTimer();
             _startWaveCoroutine = _coroutineRunner.Run(_waveHandler.StartWave());
         }
 
@@ -54,6 +58,10 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
 
         private void WaveEndAction()
         {
+            StopCoroutine();
+            
+            _waveHandler.ClearWave();
+            
             _waveCount++;
             if (CheckForWave())
             {
@@ -65,14 +73,20 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
             }
         }
 
-        public void Dispose()
+        private void StopCoroutine()
         {
-            _eventBusService.Unsubscribe<WaveStartEvent>(SetNextWave);
-
             if (_coroutineRunner != null)
             {
                 _coroutineRunner.Stop(_startWaveCoroutine);
             }
+        }
+
+        public void Dispose()
+        {
+            _eventBusService.Unsubscribe<WaveStartEvent>(SetNextWave);
+            _waveTimer.OnTimerEnd -= WaveEndAction;
+
+            StopCoroutine();
         }
     }
 }
