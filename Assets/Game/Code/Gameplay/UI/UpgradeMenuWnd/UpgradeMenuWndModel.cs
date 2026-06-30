@@ -46,8 +46,17 @@ namespace Game.Code.Gameplay.UI.UpgradeMenuWnd
 
         private void ShowNextUpgrade()
         {
-            List<Upgrade> availableUpgrades = _allUpgrades.GetAvailableUpgrades();
+            List<Upgrade> availableUpgrades = _allUpgrades.GetAvailableUpgrades(out bool haveBulletEffect);
             int amount = availableUpgrades.Count > 3 ? 3 : availableUpgrades.Count;
+
+            if (haveBulletEffect)
+            {
+                Upgrade upgrade = availableUpgrades[^1];
+                availableUpgrades.Remove(upgrade);
+                _upgradeCards[amount - 1].SetUpgradeInfo(upgrade);
+                _upgradeCards[amount - 1].Show();
+                amount--;
+            }
 
             for (int i = 0; i < amount; i++)
             {

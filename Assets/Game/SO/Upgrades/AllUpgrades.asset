@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a56178deecd4f979dc061c83c2b2d4a, type: 3}
   m_Name: AllUpgrades
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Upgrades.AllUpgradesSO
-  _allUpgradesSO:
-  - {fileID: 11400000, guid: cf1694599dcade7468038546e5ab4608, type: 2}
-  - {fileID: 11400000, guid: eca660b812d7ee44eb6c005ec454ae60, type: 2}
-  - {fileID: 11400000, guid: 8509ed7c7a170d4438994e2ab09fbc2a, type: 2}
+  _allStatUpgradesSO:
   - {fileID: 11400000, guid: 50c89a89e78a55d4f9593431c82c6500, type: 2}
   - {fileID: 11400000, guid: 7c45524ae717dff46acb0f9b62ffd728, type: 2}
   - {fileID: 11400000, guid: 4854b87a253a35444b944ca30c8beab3, type: 2}
   - {fileID: 11400000, guid: 331acefaff9206d4b95713d82ae36448, type: 2}
-  - {fileID: 11400000, guid: 3efc963623f7a534185846a0adbcf039, type: 2}
-  - {fileID: 11400000, guid: 61acb1b46e60ef346a6ec9dc76ea6313, type: 2}
+  - {fileID: 11400000, guid: cf1694599dcade7468038546e5ab4608, type: 2}
+  - {fileID: 11400000, guid: eca660b812d7ee44eb6c005ec454ae60, type: 2}
+  - {fileID: 11400000, guid: 8509ed7c7a170d4438994e2ab09fbc2a, type: 2}
+  _allBulletEffectUpgradesSO:
   - {fileID: 11400000, guid: e939644390df4e24483d27a734c1f958, type: 2}
+  - {fileID: 11400000, guid: 61acb1b46e60ef346a6ec9dc76ea6313, type: 2}
+  - {fileID: 11400000, guid: 3efc963623f7a534185846a0adbcf039, type: 2}

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Upgrades.BulletEffectUpgrades.DuplicateEffectUpgradeSO
   _title: Duplicate Upgrade
   _description: Add +1 bullet duplicate each shot
-  _maxLevel: 10
+  _maxLevel: 5
   _maxDuplicateAmount: 1

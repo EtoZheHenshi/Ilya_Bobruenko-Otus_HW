@@ -140,6 +140,17 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects
             return false;
         }
 
+        public int GetEffectCount()
+        {
+            int count = 0;
+            count += _bulletSpawnEffects.Count;
+            count += _bulletUpdateEffects.Count;
+            count += _bulletHitEffects.Count;
+            count += _bulletDestroyEffects.Count;
+            
+            return count;
+        }
+
         private int CompareEffects(IBulletEffect a, IBulletEffect b)
         {
             return b.Priority.CompareTo(a.Priority);

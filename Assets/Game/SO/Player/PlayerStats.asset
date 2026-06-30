@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerStatsSO
   _moveSpeed:
-    _baseValue: 5
+    _baseValue: 4
     _minValue: 1
-    _maxValue: 5
+    _maxValue: 10
   _maxHealth:
     _baseValue: 3
     _minValue: 1
     _maxValue: 7
   _fireRate:
-    _baseValue: 0.3
-    _minValue: 0.3
+    _baseValue: 0.6
+    _minValue: 0.1
     _maxValue: 2
