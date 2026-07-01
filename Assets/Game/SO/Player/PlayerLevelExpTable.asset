@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a226ac07de54df39ddb876b38a71e1c, type: 3}
   m_Name: PlayerLevelExpTable
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Player.PlayerSO.PlayerLevelExpTableSO
-  _maxLvl: 50
-  _expIncreaseForHighLvl: 50
-  _lvlExpTable: 32000000
+  _maxLvl: 75
+  _expIncreaseForHighLvl: 30
+  _lvlExpTable: 1e000000

@@ -34,7 +34,7 @@ namespace Game.Code.Infrastructure.GameStateSystem
                 case GameStateType.Gameplay:
                 {
                     Time.timeScale = 1;
-                    Cursor.visible = true;
+                    Cursor.visible = false;
                     _inputService.SetMap("Gameplay");
                     CurrentGameState = GameStateType.Gameplay;
                     break;
@@ -42,7 +42,7 @@ namespace Game.Code.Infrastructure.GameStateSystem
                 case GameStateType.Pause:
                 {
                     Time.timeScale = 0;
-                    Cursor.visible = true;
+                    Cursor.visible = false;
                     _inputService.SetMap("Pause");
                     CurrentGameState = GameStateType.Pause;
                     break;
@@ -50,7 +50,7 @@ namespace Game.Code.Infrastructure.GameStateSystem
                 case GameStateType.Upgrade:
                 {
                     Time.timeScale = 0;
-                    Cursor.visible = true;
+                    Cursor.visible = false;
                     _inputService.CurrentMap.Disable();
                     CurrentGameState = GameStateType.Upgrade;
                     break;
@@ -58,7 +58,7 @@ namespace Game.Code.Infrastructure.GameStateSystem
                 case GameStateType.GameEnd:
                 {
                     Time.timeScale = 0;
-                    Cursor.visible = true;
+                    Cursor.visible = false;
                     _inputService.CurrentMap.Disable();
                     CurrentGameState = GameStateType.GameEnd;
                     break;

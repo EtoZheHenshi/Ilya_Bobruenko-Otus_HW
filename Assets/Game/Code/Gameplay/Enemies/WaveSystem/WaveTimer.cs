@@ -7,7 +7,7 @@ namespace Game.Code.Gameplay.Enemies.WaveSystem
 {
     public sealed class WaveTimer : IUpdatable, IDisposable
     {
-        private const float StartWaveTime = 180f;
+        private const float StartWaveTime = 120f;
 
         public event Action OnTickEvent;
         public event Action OnTimerEnd;

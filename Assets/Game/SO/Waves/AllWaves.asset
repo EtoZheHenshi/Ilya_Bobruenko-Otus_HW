@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.WaveSystem.AllWavesSO
   _waveConfigs:
   - {fileID: 11400000, guid: b0ed54e6164570542a67f698cea095b0, type: 2}
-  - {fileID: 11400000, guid: fc1f4d8d99a18c948a15accb866b58df, type: 2}
+  - {fileID: 11400000, guid: aae29bf4dab23fb469f495084af084c2, type: 2}
+  - {fileID: 11400000, guid: a85bcd8d413394840afa405a27efe5f9, type: 2}
+  - {fileID: 11400000, guid: b9815e95fbe6a8a4ca25a400e1308d12, type: 2}
+  - {fileID: 11400000, guid: 68fdda52d0802b44b924150849e2be90, type: 2}

@@ -10,24 +10,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b40a726e767347bfb696ea0af91003ae, type: 3}
-  m_Name: Wave_2
+  m_Name: Wave_4
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Enemies.WaveSystem.WaveConfigSO
   _waveEntries:
   - EnemyConfigSO: {fileID: 11400000, guid: 6e892999660209442a5f1f157bd98bfc, type: 2}
     Count: 100
-    SpawnInterval: 3
+    SpawnInterval: 2
     TimeToStartWave: 0
   - EnemyConfigSO: {fileID: 11400000, guid: 6e892999660209442a5f1f157bd98bfc, type: 2}
     Count: 100
-    SpawnInterval: 3
+    SpawnInterval: 2
     TimeToStartWave: 0
   - EnemyConfigSO: {fileID: 11400000, guid: 6e892999660209442a5f1f157bd98bfc, type: 2}
     Count: 100
-    SpawnInterval: 3
+    SpawnInterval: 2
     TimeToStartWave: 0
   - EnemyConfigSO: {fileID: 11400000, guid: 6e892999660209442a5f1f157bd98bfc, type: 2}
     Count: 100
-    SpawnInterval: 3
+    SpawnInterval: 2
+    TimeToStartWave: 0
+  - EnemyConfigSO: {fileID: 11400000, guid: 6e892999660209442a5f1f157bd98bfc, type: 2}
+    Count: 100
+    SpawnInterval: 2
+    TimeToStartWave: 0
+  - EnemyConfigSO: {fileID: 11400000, guid: 6e892999660209442a5f1f157bd98bfc, type: 2}
+    Count: 100
+    SpawnInterval: 2
+    TimeToStartWave: 0
+  - EnemyConfigSO: {fileID: 11400000, guid: 6465eb909d8ce5848806a2dec9adcb40, type: 2}
+    Count: 100
+    SpawnInterval: 2
+    TimeToStartWave: 0
+  - EnemyConfigSO: {fileID: 11400000, guid: 6465eb909d8ce5848806a2dec9adcb40, type: 2}
+    Count: 100
+    SpawnInterval: 2
+    TimeToStartWave: 0
+  - EnemyConfigSO: {fileID: 11400000, guid: 6465eb909d8ce5848806a2dec9adcb40, type: 2}
+    Count: 100
+    SpawnInterval: 2
     TimeToStartWave: 0
   - EnemyConfigSO: {fileID: 11400000, guid: 6465eb909d8ce5848806a2dec9adcb40, type: 2}
     Count: 100
@@ -50,22 +70,34 @@ MonoBehaviour:
     SpawnInterval: 2
     TimeToStartWave: 0
   - EnemyConfigSO: {fileID: 11400000, guid: 16ecd476950dc994eb9f55405d5a7419, type: 2}
-    Count: 20
-    SpawnInterval: 10
-    TimeToStartWave: 30
+    Count: 100
+    SpawnInterval: 6
+    TimeToStartWave: 15
   - EnemyConfigSO: {fileID: 11400000, guid: 16ecd476950dc994eb9f55405d5a7419, type: 2}
-    Count: 20
-    SpawnInterval: 10
-    TimeToStartWave: 30
+    Count: 100
+    SpawnInterval: 6
+    TimeToStartWave: 15
   - EnemyConfigSO: {fileID: 11400000, guid: 16ecd476950dc994eb9f55405d5a7419, type: 2}
-    Count: 20
-    SpawnInterval: 10
-    TimeToStartWave: 30
+    Count: 100
+    SpawnInterval: 6
+    TimeToStartWave: 15
   - EnemyConfigSO: {fileID: 11400000, guid: 16ecd476950dc994eb9f55405d5a7419, type: 2}
-    Count: 20
-    SpawnInterval: 10
+    Count: 100
+    SpawnInterval: 6
+    TimeToStartWave: 15
+  - EnemyConfigSO: {fileID: 11400000, guid: 16ecd476950dc994eb9f55405d5a7419, type: 2}
+    Count: 100
+    SpawnInterval: 6
+    TimeToStartWave: 15
+  - EnemyConfigSO: {fileID: 11400000, guid: 16ecd476950dc994eb9f55405d5a7419, type: 2}
+    Count: 100
+    SpawnInterval: 6
+    TimeToStartWave: 15
+  - EnemyConfigSO: {fileID: 11400000, guid: 81a9d969437faf9439bff001df92be63, type: 2}
+    Count: 100
+    SpawnInterval: 30
     TimeToStartWave: 30
   - EnemyConfigSO: {fileID: 11400000, guid: 81a9d969437faf9439bff001df92be63, type: 2}
-    Count: 20
-    SpawnInterval: 60
-    TimeToStartWave: 60
+    Count: 100
+    SpawnInterval: 30
+    TimeToStartWave: 30

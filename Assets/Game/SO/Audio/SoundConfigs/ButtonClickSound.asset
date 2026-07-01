@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be28a8a2c83b4f2495ba3edbd77a938d, type: 3}
   m_Name: ButtonClickSound
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Infrastructure.Audio.SoundConfigSO
-  _soundId: 13
+  _soundId: 14
   _sounds:
   - {fileID: 8300000, guid: 3ab562c48912be84a94833d4c45c18f0, type: 3}
   _randomPitch: 1

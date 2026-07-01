@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be28a8a2c83b4f2495ba3edbd77a938d, type: 3}
   m_Name: WinSound
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Infrastructure.Audio.SoundConfigSO
-  _soundId: 12
+  _soundId: 11
   _sounds:
-  - {fileID: 8300000, guid: 18f5350bec412f149b04aa3961bab6ca, type: 3}
+  - {fileID: 8300000, guid: 82025786608fac441b9c943ff5509a9a, type: 3}
   _randomPitch: 0
   _pitchRange: {x: -0.1, y: 0.1}
   _volume: 1

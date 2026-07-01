@@ -24,7 +24,7 @@ MonoBehaviour:
     DropRate: 10
   - Config: {fileID: 11400000, guid: 565ccf0c3cd0d7846b25a2639e2e21d3, type: 2}
     Amount: 1
-    DropRate: 100
+    DropRate: 1
   - Config: {fileID: 11400000, guid: 565ccf0c3cd0d7846b25a2639e2e21d3, type: 2}
     Amount: 1
-    DropRate: 20
+    DropRate: 1

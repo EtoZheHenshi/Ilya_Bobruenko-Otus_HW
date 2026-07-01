@@ -41,7 +41,8 @@ namespace Game.Code.Gameplay.Bullets.BulletEffects.BulletEffectTypes
                         damageable.TakeDamage(bullet.Damage.CurrentValue);
                     }
 
-                    if (col.gameObject.layer == LayerMask.NameToLayer("Wall"))
+                    if (col.gameObject.layer == LayerMask.NameToLayer("Wall") ||
+                        col.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
                     {
                         _currentPiercingAmount = _maxPiercingAmount + 1;
                         break;

@@ -19,7 +19,7 @@ MonoBehaviour:
   _radius:
     _baseValue: 0.05
     _minValue: 0.01
-    _maxValue: 0.5
+    _maxValue: 0.2
   _distance:
     _baseValue: 6
     _minValue: 1

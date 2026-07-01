@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Code.Gameplay.Items.ItemConfigSO
   _itemPrefab: {fileID: 7040636309744666921, guid: 66b77c2f8f4ed8d42b3488f2c1f7dcde, type: 3}
   _itemEffect: {fileID: 11400000, guid: 8bd3b7cfcaf9dcc4c917656d9c8de71f, type: 2}
-  _lifeTime: 10
+  _lifeTime: 30
