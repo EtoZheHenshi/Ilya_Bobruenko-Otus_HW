@@ -57,6 +57,22 @@ namespace Game.Code.Infrastructure.Installers
             Debug.Log($"{this.GetType()} initialized");
         }
 
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (!IsInitialized || hasFocus) 
+                return;
+            
+            _eventBusService.Publish(new ApplicationFocusLostEvent());
+        }
+
+        private void OnApplicationPause(bool pauseStatus)
+        {
+            if (!IsInitialized || pauseStatus)
+                return;
+            
+            _eventBusService.Publish(new ApplicationFocusLostEvent());
+        }
+
         public void Dispose()
         {
             _audioService.StopAll();

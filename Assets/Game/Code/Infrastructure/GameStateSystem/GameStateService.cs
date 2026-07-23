@@ -26,7 +26,7 @@ namespace Game.Code.Infrastructure.GameStateSystem
                 case GameStateType.MainMenu:
                 {
                     Time.timeScale = 0;
-                    Cursor.visible = true;
+                    Cursor.visible = false;
                     _inputService.SetMap("MainMenu");
                     CurrentGameState = GameStateType.MainMenu;
                     break;

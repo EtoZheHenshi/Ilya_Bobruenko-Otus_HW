@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +14,12 @@ namespace Game.Code.Gameplay.UI.MainMenu
             _view = view;
             
             _view.StartGameBtn.onClick.AddListener(StartGame);
+
+#if !UNITY_WEBGL
             _view.ExitBtn.onClick.AddListener(Exit);
+#else
+            _view.ExitBtn.gameObject.SetActive(false);
+#endif
         }
 
         private void StartGame()
@@ -21,18 +27,24 @@ namespace Game.Code.Gameplay.UI.MainMenu
             SceneManager.LoadScene("Gameplay");
         }
 
+#if !UNITY_WEBGL
         private void Exit()
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#endif
+            EditorApplication.isPlaying = false;
+#else
             Application.Quit();
+#endif
         }
+#endif
 
         public void Dispose()
         {
             _view.StartGameBtn.onClick.RemoveListener(StartGame);
+            
+#if !UNITY_WEBGL
             _view.ExitBtn.onClick.RemoveListener(Exit);
+#endif
         }
     }
 }
